@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GrinHouseApp</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_data">Data</string>
+    <string name="title_profile">Profile</string>
+    <string name="temperatureName">Temperature</string>
+    <string name="humidityName">Humidity</string>
+    <string name="carbonDioxideName">Carbon Dioxide</string>
+</resources>
