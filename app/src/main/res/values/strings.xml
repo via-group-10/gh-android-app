@@ -7,4 +7,6 @@
     <string name="temperatureName">Temperature</string>
     <string name="humidityName">Humidity</string>
     <string name="carbonDioxideName">Carbon Dioxide</string>
+    <string name="seeMore">See more ></string>
+    <string name="temperatureSubhead">Change the levels of temperature</string>
 </resources>

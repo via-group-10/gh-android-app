@@ -6,17 +6,570 @@
     android:layout_height="match_parent"
     tools:context=".ui.data.DataFragment">
 
-    <TextView
-        android:id="@+id/text_data"
+
+    <!-- FILTER -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_filter_alt_24"
+            android:layout_marginRight="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- TEMPERATURE -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <!-- TEMPERATURE HEADER -->
+        <ImageView
+            android:id="@+id/thermostat"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_thermostat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperatureName"
+            app:layout_constraintStart_toEndOf="@+id/thermostat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- RECTANGLE 1 -->
+        <ImageView
+            android:id="@+id/rectangle1"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rectangle2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/temperatureDate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle1"
+            app:layout_constraintStart_toStartOf="@+id/rectangle1"
+            app:layout_constraintTop_toTopOf="@+id/rectangle1" />
+
+        <TextView
+            android:id="@+id/temperatureTime1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:layout_marginTop="4dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle1"
+            app:layout_constraintStart_toStartOf="@+id/rectangle1"
+            app:layout_constraintTop_toBottomOf="@+id/temperatureDate1" />
+
+        <TextView
+            android:id="@+id/temperatureValue1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23°C"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangle1"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle1"
+            app:layout_constraintStart_toStartOf="@+id/rectangle1"
+            app:layout_constraintTop_toBottomOf="@+id/temperatureTime1" />
+
+        <!-- RECTANGLE 2 -->
+        <ImageView
+            android:id="@+id/rectangle2"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/temperatureDate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle2"
+            app:layout_constraintStart_toStartOf="@+id/rectangle2"
+            app:layout_constraintTop_toTopOf="@+id/rectangle2" />
+
+        <TextView
+            android:id="@+id/temperatureTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:textColor="#000"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle2"
+            app:layout_constraintStart_toStartOf="@+id/rectangle2"
+            app:layout_constraintTop_toBottomOf="@+id/temperatureDate2" />
+
+        <TextView
+            android:id="@+id/temperatureValue2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23°C"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangle2"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle2"
+            app:layout_constraintStart_toStartOf="@+id/rectangle2"
+            app:layout_constraintTop_toBottomOf="@+id/temperatureTime2" />
+
+        <!-- RECTANGLE 3 -->
+        <ImageView
+            android:id="@+id/rectangle3"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rectangle2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/temperatureDate3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle3"
+            app:layout_constraintStart_toStartOf="@+id/rectangle3"
+            app:layout_constraintTop_toTopOf="@+id/rectangle3" />
+
+        <TextView
+            android:id="@+id/temperatureTime3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:textColor="#000"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle3"
+            app:layout_constraintStart_toStartOf="@+id/rectangle3"
+            app:layout_constraintTop_toBottomOf="@+id/temperatureDate3" />
+
+        <TextView
+            android:id="@+id/temperatureValue3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23°C"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangle3"
+            app:layout_constraintEnd_toEndOf="@+id/rectangle3"
+            app:layout_constraintStart_toStartOf="@+id/rectangle3"
+            app:layout_constraintTop_toBottomOf="@+id/temperatureTime3" />
+
+        <TextView
+            android:id="@+id/seeMoreTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seeMore"
+            android:layout_marginRight="20dp"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        <!-- HUMIDITY HEADER -->
+        <ImageView
+            android:id="@+id/drop"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/drop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/humidityName"
+            android:textColor="#000"
+            app:layout_constraintStart_toEndOf="@+id/drop"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- RECTANGLE HUMIDITY 1 -->
+        <ImageView
+            android:id="@+id/rectangleHumidity1"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rectangleHumidity2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/humidityDate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity1"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity1"
+            app:layout_constraintTop_toTopOf="@+id/rectangleHumidity1" />
+
+        <TextView
+            android:id="@+id/HumidityTime1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:textColor="#000"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity1"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity1"
+            app:layout_constraintTop_toBottomOf="@+id/humidityDate1" />
+
+        <TextView
+            android:id="@+id/HumidityValue1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23%"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangleHumidity1"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity1"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity1"
+            app:layout_constraintTop_toBottomOf="@+id/HumidityTime1" />
+
+        <!-- RECTANGLE HUMIDITY 2 -->
+        <ImageView
+            android:id="@+id/rectangleHumidity2"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/humidityDate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity2"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity2"
+            app:layout_constraintTop_toTopOf="@+id/rectangleHumidity2" />
+
+        <TextView
+            android:id="@+id/humidityTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:textColor="#000"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity2"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity2"
+            app:layout_constraintTop_toBottomOf="@+id/humidityDate2" />
+
+        <TextView
+            android:id="@+id/humidityValue2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23%"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangleHumidity2"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity2"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity2"
+            app:layout_constraintTop_toBottomOf="@+id/humidityTime2" />
+
+        <!-- RECTANGLE HUMIDITY 3 -->
+        <ImageView
+            android:id="@+id/rectangleHumidity3"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rectangleHumidity2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/humidityDate3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity3"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity3"
+            app:layout_constraintTop_toTopOf="@+id/rectangleHumidity3" />
+
+        <TextView
+            android:id="@+id/humidityTime3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:layout_marginTop="4dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity3"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity3"
+            app:layout_constraintTop_toBottomOf="@+id/humidityDate3" />
+
+        <TextView
+            android:id="@+id/humidityValue3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23%"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangleHumidity3"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleHumidity3"
+            app:layout_constraintStart_toStartOf="@+id/rectangleHumidity3"
+            app:layout_constraintTop_toBottomOf="@+id/humidityTime3" />
+
+        <TextView
+            android:id="@+id/seeMoreHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seeMore"
+            android:layout_marginRight="20dp"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- CO2 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+
+        <!-- CO2 HEADER -->
+        <ImageView
+            android:id="@+id/co2image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/co2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/co2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/carbonDioxideName"
+            android:textColor="#000"
+            app:layout_constraintStart_toEndOf="@+id/co2image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- RECTANGLE CO2 1 -->
+        <ImageView
+            android:id="@+id/rectangleCO21"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rectangleCO22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/CO2Date1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO21"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO21"
+            app:layout_constraintTop_toTopOf="@+id/rectangleCO21" />
+
+        <TextView
+            android:id="@+id/CO2Time1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:textColor="#000"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO21"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO21"
+            app:layout_constraintTop_toBottomOf="@+id/CO2Date1" />
+
+        <TextView
+            android:id="@+id/CO2Value1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23ppm"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangleCO21"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO21"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO21"
+            app:layout_constraintTop_toBottomOf="@+id/CO2Time1" />
+
+        <!-- RECTANGLE CO2 2 -->
+        <ImageView
+            android:id="@+id/rectangleCO22"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/CO2Date2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO22"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO22"
+            app:layout_constraintTop_toTopOf="@+id/rectangleCO22" />
+
+        <TextView
+            android:id="@+id/CO2Time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:textColor="#000"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO22"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO22"
+            app:layout_constraintTop_toBottomOf="@+id/CO2Date2" />
+
+        <TextView
+            android:id="@+id/CO2Value2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23ppm"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangleCO22"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO22"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO22"
+            app:layout_constraintTop_toBottomOf="@+id/CO2Time2" />
+
+        <!-- RECTANGLE CO2 3 -->
+        <ImageView
+            android:id="@+id/rectangleCO23"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@drawable/data_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rectangleCO22"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/CO2Date3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.5.2021"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO23"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO23"
+            app:layout_constraintTop_toTopOf="@+id/rectangleCO23" />
+
+        <TextView
+            android:id="@+id/CO2Time3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:textSize="10dp"
+            android:layout_marginTop="4dp"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO23"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO23"
+            app:layout_constraintTop_toBottomOf="@+id/CO2Date3" />
+
+        <TextView
+            android:id="@+id/CO2Value3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23%"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rectangleCO23"
+            app:layout_constraintEnd_toEndOf="@+id/rectangleCO23"
+            app:layout_constraintStart_toStartOf="@+id/rectangleCO23"
+            app:layout_constraintTop_toBottomOf="@+id/CO2Time3" />
+
+        <TextView
+            android:id="@+id/seeMoreCO2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seeMore"
+            android:layout_marginRight="20dp"
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
