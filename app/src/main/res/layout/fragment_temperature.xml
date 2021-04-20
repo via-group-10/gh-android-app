@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TemperatureFragment">
+    tools:context=".ui.home.threshold.TemperatureFragment">
 
     <!-- TODO: Update blank fragment layout -->
 <!--<FrameLayout-->
@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
-        android:fontFamily="@font/Nunito"
+        android:fontFamily="@font/nunito"
         android:text="@string/temperatureName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/black"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/Nunito"
+        android:fontFamily="@font/nunito"
         android:text="@string/temperatureSubhead"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -74,7 +74,7 @@
         android:layout_width="32dp"
         android:layout_height="0dp"
         android:layout_marginTop="92dp"
-        android:fontFamily="@font/Nunito"
+        android:fontFamily="@font/nunito"
         android:text="Ok"
         android:textColor="#000000"
         android:textSize="18sp"
