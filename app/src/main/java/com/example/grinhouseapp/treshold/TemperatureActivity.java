@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.example.grinhouseapp.MainActivity;
 import com.example.grinhouseapp.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class TemperatureActivity extends AppCompatActivity {
 
     TemperatureViewModel temperatureViewModel;
@@ -25,6 +28,15 @@ public class TemperatureActivity extends AppCompatActivity {
         temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
 
         temperatureViewModel.setMeasurementRepository(1);
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                temperatureViewModel.setMeasurementRepository(1);
+            }
+        }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
+
+
 
         temperatureViewModel.getMeasurement().observe(this, measurement -> {
             textView.setText(measurement.getValue() + "℃");
