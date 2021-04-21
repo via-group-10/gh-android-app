@@ -17,11 +17,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grinhouseapp.FilterActivity;
 import com.example.grinhouseapp.HomeActivity;
 import com.example.grinhouseapp.R;
+import com.example.grinhouseapp.ui.home.threshold.TemperatureActivity;
 import com.example.grinhouseapp.ui.notification.Notification;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +37,15 @@ public class HomeFragment extends Fragment {
        //        textView.setText(s);
        //    }
        //});
+        TextView textView= (TextView) root.findViewById(R.id.text_temData);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), TemperatureActivity.class);
+                startActivity(in);
+            }
+        });
+
         return root;
 
     }

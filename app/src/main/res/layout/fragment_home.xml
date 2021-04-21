@@ -89,6 +89,8 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:text="30℃"
+                        android:clickable="true"
+
                         android:layout_gravity="top"
                         android:gravity="center"
                         android:textSize="30sp"/>
