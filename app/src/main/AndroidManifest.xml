@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GrinHouseApp">
-        <activity android:name=".ui.home.threshold.TemperatureActivity"
+        <activity android:name=".treshold.TemperatureActivity"
             android:parentActivityName=".HomeActivity">
 
         </activity>
