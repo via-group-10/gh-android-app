@@ -24,8 +24,10 @@ public class TemperatureActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView8);
         temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
 
+        temperatureViewModel.setMeasurementRepository(1);
+
         temperatureViewModel.getMeasurement().observe(this, measurement -> {
-            textView.setText("" + measurement.getValue());
+            textView.setText(measurement.getValue() + "℃");
         });
 
         Intent bundle = getIntent();
