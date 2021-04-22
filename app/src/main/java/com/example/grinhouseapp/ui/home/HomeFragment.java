@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
         }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
 
 
-it
+
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
             textView.setText(measurement.getValue() + "℃");
         });
