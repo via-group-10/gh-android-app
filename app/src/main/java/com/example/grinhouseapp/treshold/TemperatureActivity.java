@@ -2,6 +2,7 @@ package com.example.grinhouseapp.treshold;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,7 +20,7 @@ public class TemperatureActivity extends AppCompatActivity {
 
     TemperatureViewModel temperatureViewModel;
     TextView textView;
-
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,5 @@ public class TemperatureActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.up_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 }
