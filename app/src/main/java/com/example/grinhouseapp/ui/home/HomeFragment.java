@@ -14,30 +14,43 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.treshold.TemperatureActivity;
 
+import com.example.grinhouseapp.treshold.TemperatureViewModel;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
+    TemperatureViewModel temperatureViewModel;
+    TextView textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-       //final TextView textView = root.findViewById(R.id);
-       //homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-       //    @Override
-       //    public void onChanged(@Nullable String s) {
-       //        textView.setText(s);
-       //    }
-       //});
-        TextView textView= (TextView) root.findViewById(R.id.text_temData);
-        textView.setOnClickListener(new View.OnClickListener() {
+
+        textView= (TextView) root.findViewById(R.id.text_temData);
+        textView.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TemperatureActivity.class);
+            startActivity(intent);
+        });
+
+        homeViewModel.setMeasurementRepository(1);
+
+        new Timer().schedule(new TimerTask() {
             @Override
-            public void onClick(View v) {
-                Intent in = new Intent(getActivity(), TemperatureActivity.class);
-                startActivity(in);
+            public void run() {
+                homeViewModel.setMeasurementRepository(1);
             }
+        }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
+
+
+
+        homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            textView.setText(measurement.getValue() + "℃");
         });
 
         return root;
