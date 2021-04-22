@@ -1,6 +1,4 @@
-package com.example.grinhouseapp.treshold;
-
-import java.util.Date;
+package com.example.grinhouseapp.webservices;
 
 public class MeasurementResponse {
     private float value;

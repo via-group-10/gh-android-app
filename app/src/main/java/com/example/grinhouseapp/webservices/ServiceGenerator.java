@@ -1,6 +1,4 @@
-package com.example.grinhouseapp.treshold;
-
-import android.util.Log;
+package com.example.grinhouseapp.webservices;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

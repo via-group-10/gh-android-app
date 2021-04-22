@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.treshold;
+package com.example.grinhouseapp.webservices;
 
 import java.util.Date;
 

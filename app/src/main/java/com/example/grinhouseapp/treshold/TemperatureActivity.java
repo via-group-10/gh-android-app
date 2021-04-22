@@ -24,6 +24,7 @@ public class TemperatureActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
+
         textView = findViewById(R.id.textView8);
         temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
 
