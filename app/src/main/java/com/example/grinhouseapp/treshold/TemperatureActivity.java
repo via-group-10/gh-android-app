@@ -26,7 +26,7 @@ public class TemperatureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
 
-        textView = findViewById(R.id.textView8);
+        textView = findViewById(R.id.degrees);
         temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
 
         temperatureViewModel.setMeasurementRepository(1);
