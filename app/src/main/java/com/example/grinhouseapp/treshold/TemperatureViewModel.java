@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.ui.home.threshold;
+package com.example.grinhouseapp.treshold;
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.ui.home.threshold;
+package com.example.grinhouseapp.treshold;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
