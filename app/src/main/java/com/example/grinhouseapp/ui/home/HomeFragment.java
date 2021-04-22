@@ -15,6 +15,7 @@ import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.treshold.TemperatureActivity;
 
 import com.example.grinhouseapp.treshold.TemperatureViewModel;
+import com.example.grinhouseapp.webservices.MeasurementType;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,12 +39,12 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        homeViewModel.setMeasurementRepository(1);
+        homeViewModel.setMeasurementRepository(MeasurementType.TEMPERATURE);
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                homeViewModel.setMeasurementRepository(1);
+                homeViewModel.setMeasurementRepository(MeasurementType.TEMPERATURE);
             }
         }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
 

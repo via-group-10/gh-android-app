@@ -1,18 +1,18 @@
 package com.example.grinhouseapp.webservices;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Measurement {
 
-    private final float value;
-    private final String unit;
-    //private final Date measurementDateTime;
-    private final int type;
+    private float value;
+    private String unit;
+    private LocalDateTime measurementDateTime;
+    private MeasurementType type;
 
-    public Measurement(float value, String unit, /*Date measurementDateTime,*/ int type) {
+    public Measurement(float value, String unit, LocalDateTime measurementDateTime, MeasurementType type) {
         this.value = value;
         this.unit = unit;
-        //this.measurementDateTime = measurementDateTime;
+        this.measurementDateTime = measurementDateTime;
         this.type = type;
     }
 
@@ -24,11 +24,11 @@ public class Measurement {
         return unit;
     }
 
-    /*public Date getMeasurementDateTime() {
+    public LocalDateTime getMeasurementDateTime() {
         return measurementDateTime;
-    }*/
+    }
 
-    public int getType() {
+    public MeasurementType getType() {
         return type;
     }
 }

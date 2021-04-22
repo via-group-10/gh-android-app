@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.grinhouseapp.webservices.Measurement;
 import com.example.grinhouseapp.webservices.MeasurementRepository;
+import com.example.grinhouseapp.webservices.MeasurementType;
 
 public class TemperatureViewModel extends ViewModel {
     MeasurementRepository measurementRepository;
@@ -19,7 +20,7 @@ public class TemperatureViewModel extends ViewModel {
         return measurementRepository.getMeasurement();
     }
 
-    public void setMeasurementRepository(int type)
+    public void setMeasurementRepository(MeasurementType type)
     {
         measurementRepository.setMeasurement(type);
     }

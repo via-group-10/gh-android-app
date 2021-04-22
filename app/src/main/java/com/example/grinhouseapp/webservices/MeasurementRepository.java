@@ -31,7 +31,7 @@ public class MeasurementRepository {
         return  measurementMutableLiveData;
     }
 
-    public void  setMeasurement(int type)
+    public void  setMeasurement(MeasurementType type)
     {
         MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
         Call<MeasurementResponse> call = measurementApi.getMeasurement(type);
