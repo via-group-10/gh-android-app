@@ -42,9 +42,10 @@ public class MeasurementRepository {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
                 if(response.isSuccessful()) {
+                    Log.i("Ërror", "this is not working");
                     List<MeasurementResponse> measurementResponses = response.body();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
-                        if (measurementResponse.getMeasurement().getType() == MeasurementType.TEMPERATURE)
+                        if (measurementResponse.getMeasurement().getMeasurementTypeEnum() == MeasurementType.temperature)
                         {
                             measurementMutableLiveData.setValue(measurementResponse.getMeasurement());
                         }
@@ -55,7 +56,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong");
+                Log.i("Retrofit", "Something went wrong", t);
             }
         });
     }

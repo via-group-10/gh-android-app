@@ -11,7 +11,7 @@ public class ServiceGenerator {
         if(measurementApi == null)
         {
             measurementApi = new Retrofit.Builder()
-                    .baseUrl("http://localhost:8080/measurements")
+                    .baseUrl("http://localhost:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(MeasurementApi.class);

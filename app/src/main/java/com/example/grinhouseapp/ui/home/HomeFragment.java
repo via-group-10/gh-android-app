@@ -2,6 +2,7 @@ package com.example.grinhouseapp.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,19 +40,20 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        homeViewModel.setMeasurementRepository(MeasurementType.TEMPERATURE);
+        homeViewModel.setMeasurementRepository(MeasurementType.temperature);
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                homeViewModel.setMeasurementRepository(MeasurementType.TEMPERATURE);
+                homeViewModel.setMeasurementRepository(MeasurementType.temperature);
             }
         }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
 
 
 
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            textView.setText(measurement.getValue() + "℃");
+            textView.setText(measurement.getMeasurementValue() + "℃");
+            Log.i("Temperature", measurement.getMeasurementValue()+"");
         });
 
         return root;

@@ -10,6 +10,6 @@ import retrofit2.http.Path;
 public interface MeasurementApi {
     @GET("{type}")
     Call<MeasurementResponse> getMeasurement(@Path("type") MeasurementType type);
-    @GET
+    @GET("measurements")
     Call<List<MeasurementResponse>> getAllMeasurements();
 }

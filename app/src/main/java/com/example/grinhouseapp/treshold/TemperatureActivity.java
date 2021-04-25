@@ -30,19 +30,19 @@ public class TemperatureActivity extends AppCompatActivity {
         textView = findViewById(R.id.degrees);
         temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
 
-        temperatureViewModel.setMeasurementRepository(MeasurementType.TEMPERATURE);
+        temperatureViewModel.setMeasurementRepository(MeasurementType.temperature);
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                temperatureViewModel.setMeasurementRepository(MeasurementType.TEMPERATURE);
+                temperatureViewModel.setMeasurementRepository(MeasurementType.temperature);
             }
         }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
 
 
 
         temperatureViewModel.getMeasurement().observe(this, measurement -> {
-            textView.setText(measurement.getValue() + "℃");
+            textView.setText(measurement.getMeasurementValue() + "℃");
         });
 
         Intent bundle = getIntent();
