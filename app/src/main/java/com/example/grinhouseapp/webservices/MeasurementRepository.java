@@ -41,7 +41,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.code()==201) {
                     Log.i("Ërror", "this is not working");
                     List<MeasurementResponse> measurementResponses = response.body();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
@@ -50,6 +50,11 @@ public class MeasurementRepository {
                             measurementMutableLiveData.setValue(measurementResponse.getMeasurement());
                         }
                     }
+                }
+                else
+                {
+
+                    System.out.println("Not good !!!"+response.code());
                 }
             }
 
