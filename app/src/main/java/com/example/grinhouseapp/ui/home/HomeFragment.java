@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
+import com.example.grinhouseapp.treshold.CarbonDioxideActivity;
+import com.example.grinhouseapp.treshold.CarbonDioxideViewModel;
 import com.example.grinhouseapp.treshold.TemperatureActivity;
 
 import com.example.grinhouseapp.treshold.TemperatureViewModel;
@@ -27,6 +29,8 @@ public class HomeFragment extends Fragment {
 
     TemperatureViewModel temperatureViewModel;
     TextView textView;
+    CarbonDioxideViewModel carbonDioxideViewModel;
+    TextView co2;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+       //temperature
         textView= (TextView) root.findViewById(R.id.text_temData);
         textView.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), TemperatureActivity.class);
@@ -56,9 +61,29 @@ public class HomeFragment extends Fragment {
             Log.i("Temperature", measurement.getMeasurementValue()+"");
         });
 
+
+        //co2
+        co2 = (TextView) root.findViewById(R.id.text_cdData);
+        co2.setOnClickListener(v -> {
+            Intent intentco2 = new Intent(getActivity(), CarbonDioxideActivity.class);
+            startActivity(intentco2);
+        });
+        homeViewModel.setMeasurementRepository(MeasurementType.carbonDioxide);
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                homeViewModel.setMeasurementRepository(MeasurementType.carbonDioxide);
+            }
+        }, 5 * 60 * 1000);
+        homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            co2.setText(measurement.getMeasurementValue() + "ppm");
+            Log.i("Carbon Dioxide", measurement.getMeasurementValue()+"");
+        });
         return root;
 
     }
 
 
-}
+    }
+

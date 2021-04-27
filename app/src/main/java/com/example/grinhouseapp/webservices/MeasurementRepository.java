@@ -41,7 +41,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.code()==201) {
+                if(response.isSuccessful()) {
                     Log.i("Ërror", "this is not working");
                     List<MeasurementResponse> measurementResponses = response.body();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
