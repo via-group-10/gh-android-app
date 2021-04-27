@@ -11,4 +11,5 @@
     <string name="temperatureSubhead">Change the levels of temperature</string>
     <string name="SetBtn">Set</string>
     <string name="carbonDioxideSubhead">CarbonDioxideSubhead</string>
+    <string name="profiles">Profiles</string>
 </resources>

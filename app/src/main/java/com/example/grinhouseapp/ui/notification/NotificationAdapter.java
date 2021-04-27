@@ -53,7 +53,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         holder.imageView.setImageResource(currentItem.getnImageResource());
         holder.date.setText(currentItem.getnDate());
-        holder.hour.setText(currentItem.getnDate());
+        holder.hour.setText(currentItem.getnHour());
         holder.value.setText(currentItem.getnValue());
         holder.description.setText(currentItem.getnDescription());
     }
