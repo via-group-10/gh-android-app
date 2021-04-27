@@ -22,7 +22,7 @@ public class CarbonDioxideActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carbondioxide);
-        carbonDioxideData = findViewById(R.id.ppm);
+//        carbonDioxideData = findViewById(R.id.ppm);
         carbonDioxideViewModel = new ViewModelProvider(this).get(CarbonDioxideViewModel.class);
 
         carbonDioxideViewModel.setMeasurementRepository(MeasurementType.carbonDioxide);
@@ -34,9 +34,9 @@ public class CarbonDioxideActivity extends AppCompatActivity {
             }
         }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes CO2 is updated)
 
-        carbonDioxideViewModel.getMeasurement().observe(this, measurement -> {
-            carbonDioxideData.setText(measurement.getMeasurementValue() + "ppm");
-        });
+//        carbonDioxideViewModel.getMeasurement().observe(this, measurement -> {
+//            carbonDioxideData.setText(measurement.getMeasurementValue() + "ppm");
+//        });
 
         Intent bundle = getIntent();
         Toolbar toolbar = findViewById(R.id.up_toolbar);
