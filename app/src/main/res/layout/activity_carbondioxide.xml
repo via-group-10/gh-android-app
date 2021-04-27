@@ -23,10 +23,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="top"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="100dp"
         android:src="@drawable/co2"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintEnd_toStartOf="@+id/text_cd"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -34,15 +34,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="108dp"
-        android:paddingLeft="10dp"
         android:text="@string/changeCarbonDioxideName"
         android:textColor="@color/black"
         android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.033"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -60,6 +57,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/editText2"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginStart="15dp"

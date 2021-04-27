@@ -10,19 +10,10 @@ import com.example.grinhouseapp.webservices.MeasurementType;
 import java.util.List;
 
 public class TemperatureViewModel extends ViewModel {
+    MeasurementRepository measurementRepository;
 
     public TemperatureViewModel()
     {
         measurementRepository = MeasurementRepository.getInstance();
-    }
-
-    LiveData<List<Measurement>> getMeasurement()
-    {
-        return measurementRepository.getMeasurement();
-    }
-
-    public void setMeasurementRepository()
-    {
-        measurementRepository.setMeasurement();
     }
 }

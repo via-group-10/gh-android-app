@@ -16,14 +16,4 @@ public class CarbonDioxideViewModel extends ViewModel {
     {
         measurementRepository = MeasurementRepository.getInstance();
     }
-
-    LiveData<List<Measurement>> getMeasurement()
-    {
-        return measurementRepository.getMeasurement();
-    }
-
-    public void setMeasurementRepository()
-    {
-        measurementRepository.setMeasurement();
-    }
 }

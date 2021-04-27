@@ -12,6 +12,8 @@
     <string name="SetBtn">Set</string>
     <string name="carbonDioxideSubhead">CarbonDioxideSubhead</string>
     <string name="changeCarbonDioxideName">Change CO2</string>
+    <string name="changeTemperature">Change Temperature</string>
+    <string name="changeHumidity">Change Humidity</string>
     <string name="text_Low">Low</string>
     <string name="text_High">High</string>
 </resources>

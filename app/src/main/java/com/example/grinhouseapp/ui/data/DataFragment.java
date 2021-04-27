@@ -89,68 +89,6 @@ public class DataFragment extends Fragment {
         cdValue2 = root.findViewById(R.id.CO2Value2);
         cdValue3 = root.findViewById(R.id.CO2Value3);
 
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                dataViewModel.getTemperatures();
-                dataViewModel.getHumidities();
-                dataViewModel.getCarbonDioxides();
-            }
-        }, 5 * 60 * 1000);
-
-        dataViewModel.getTemperatures().observe(getViewLifecycleOwner(), measurements -> {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            String date = df.format(measurements.get(measurements.size()-1).getMeasurementDateTime());
-            SimpleDateFormat tdf = new SimpleDateFormat("HH:mm:ss");
-            String time = tdf.format(measurements.get(measurements.size()-1).getMeasurementDateTime());
-            temDate1.setText(date);
-            Log.i("Temperature", date+"");
-            temTime1.setText(time);
-            temValue1.setText(measurements.get(measurements.size()-1).getMeasurementValue()+"℃");
-            temDate2.setText(date);
-            temTime2.setText(String.valueOf(measurements.get(measurements.size()-2).getMeasurementDateTime().getTime()));
-            temValue2.setText(measurements.get(measurements.size()-2).getMeasurementValue()+"℃");
-            temDate3.setText(date);
-            temTime3.setText(time);
-            temValue3.setText(measurements.get(measurements.size()-3).getMeasurementValue()+"℃");
-        });
-
-        dataViewModel.getHumidities().observe(getViewLifecycleOwner(), measurements -> {
-            humDate1.setText(measurements.get(measurements.size()-1).getMeasurementDateTime().getDate());
-            Log.i("humidities", measurements.get(measurements.size()-1).getMeasurementDateTime().getDate()+"");
-            humTime1.setText(String.valueOf(measurements.get(measurements.size()-1).getMeasurementDateTime().getTime()));
-            humValue1.setText(measurements.get(measurements.size()-1).getMeasurementValue()+"%");
-            humDate2.setText(measurements.get(measurements.size()-2).getMeasurementDateTime().getDate());
-            humTime2.setText(String.valueOf(measurements.get(measurements.size()-2).getMeasurementDateTime().getTime()));
-            humValue2.setText(measurements.get(measurements.size()-2).getMeasurementValue()+"%");
-            humDate3.setText(measurements.get(measurements.size()-3).getMeasurementDateTime().getDate());
-            humTime3.setText(String.valueOf(measurements.get(measurements.size()-3).getMeasurementDateTime().getTime()));
-            humValue3.setText(measurements.get(measurements.size()-3).getMeasurementValue()+"%");
-        });
-
-        dataViewModel.getCarbonDioxides().observe(getViewLifecycleOwner(), measurements -> {
-            cdDate1.setText(measurements.get(measurements.size()-1).getMeasurementDateTime().getDate());
-            Log.i("co2", measurements.get(measurements.size()-1).getMeasurementDateTime().getDate()+"");
-            cdTime1.setText(String.valueOf(measurements.get(measurements.size()-1).getMeasurementDateTime().getTime()));
-            cdValue1.setText(measurements.get(measurements.size()-1).getMeasurementValue()+"ppm");
-            cdDate2.setText(measurements.get(measurements.size()-2).getMeasurementDateTime().getDate());
-            cdTime2.setText(String.valueOf(measurements.get(measurements.size()-2).getMeasurementDateTime().getTime()));
-            cdValue2.setText(measurements.get(measurements.size()-2).getMeasurementValue()+"ppm");
-            cdDate3.setText(measurements.get(measurements.size()-3).getMeasurementDateTime().getDate());
-            cdTime3.setText(String.valueOf(measurements.get(measurements.size()-3).getMeasurementDateTime().getTime()));
-            cdValue3.setText(measurements.get(measurements.size()-3).getMeasurementValue()+"ppm");
-        });
-
-
-
-
-        //final TextView textView = root.findViewById(R.id.text_data);
-        //dataViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-        //    @Override
-        //    public void onChanged(@Nullable String s) {
-        //        textView.setText(s);
-        //    }
-        //});
         return root;
     }
 }
