@@ -8,28 +8,37 @@ import com.example.grinhouseapp.webservices.Measurement;
 import com.example.grinhouseapp.webservices.MeasurementRepository;
 import com.example.grinhouseapp.webservices.MeasurementType;
 
+import java.util.List;
+
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
-
     MeasurementRepository measurementRepository;
+    MutableLiveData<Measurement> measurementLiveData;
 
     public HomeViewModel()
     {
         measurementRepository = MeasurementRepository.getInstance();
     }
 
-    LiveData<Measurement> getMeasurement()
+    LiveData<List<Measurement>> getMeasurement()
     {
         return measurementRepository.getMeasurement();
     }
 
-    public void setMeasurementRepository(MeasurementType type)
+    Measurement getLastMeasurement(MeasurementType type)
     {
-        measurementRepository.setMeasurement(type);
+        for(int i = measurementRepository.getMeasurement().getValue().size()-1;i>=0;i--)
+        {
+            if(measurementRepository.getMeasurement().getValue().get(i).getMeasurementTypeEnum() == type)
+            {
+                return measurementRepository.getMeasurement().getValue().get(i);
+            }
+        }
+        return null;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setMeasurementRepository()
+    {
+        measurementRepository.setMeasurement();
     }
 }
