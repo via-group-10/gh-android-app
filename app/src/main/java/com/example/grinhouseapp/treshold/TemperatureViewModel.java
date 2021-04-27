@@ -7,6 +7,8 @@ import com.example.grinhouseapp.webservices.Measurement;
 import com.example.grinhouseapp.webservices.MeasurementRepository;
 import com.example.grinhouseapp.webservices.MeasurementType;
 
+import java.util.List;
+
 public class TemperatureViewModel extends ViewModel {
     MeasurementRepository measurementRepository;
 
@@ -15,13 +17,13 @@ public class TemperatureViewModel extends ViewModel {
         measurementRepository = MeasurementRepository.getInstance();
     }
 
-    LiveData<Measurement> getMeasurement()
+    LiveData<List<Measurement>> getMeasurement()
     {
         return measurementRepository.getMeasurement();
     }
 
-    public void setMeasurementRepository(MeasurementType type)
+    public void setMeasurementRepository()
     {
-        measurementRepository.setMeasurement(type);
+        measurementRepository.setMeasurement();
     }
 }
