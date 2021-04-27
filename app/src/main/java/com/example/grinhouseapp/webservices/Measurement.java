@@ -1,34 +1,77 @@
 package com.example.grinhouseapp.webservices;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class Measurement {
 
-    private float value;
-    private String unit;
-    private LocalDateTime measurementDateTime;
-    private MeasurementType type;
+    private int measurementId;
+    private float measuredValue;
+    private Timestamp measurementDateTime;
+    private int greenhouseId;
+    private MeasurementType measurementTypeEnum;
 
-    public Measurement(float value, String unit, LocalDateTime measurementDateTime, MeasurementType type) {
-        this.value = value;
-        this.unit = unit;
+
+    public Measurement(int measurementId, float measuredValue, Timestamp measurementDateTime, int greenhouseId, MeasurementType measurementTypeEnum)
+    {
+        this.measurementId = measurementId;
+        this.measuredValue = measuredValue;
         this.measurementDateTime = measurementDateTime;
-        this.type = type;
+        this.greenhouseId = greenhouseId;
+        this.measurementTypeEnum = measurementTypeEnum;
     }
 
-    public float getValue() {
-        return value;
+    public Measurement()
+    {
+
     }
 
-    public String getUnit() {
-        return unit;
+    public int getGreenhouseId()
+    {
+        return greenhouseId;
     }
 
-    public LocalDateTime getMeasurementDateTime() {
+    public float getMeasurementValue()
+    {
+        return measuredValue;
+    }
+
+    public Timestamp getMeasurementDateTime()
+    {
         return measurementDateTime;
     }
 
-    public MeasurementType getType() {
-        return type;
+    public int getMeasurementId()
+    {
+        return measurementId;
+    }
+
+    public MeasurementType getMeasurementTypeEnum()
+    {
+        return measurementTypeEnum;
+    }
+
+    public void setGreenhouseId(int greenhouseId)
+    {
+        this.greenhouseId = greenhouseId;
+    }
+
+    public void setMeasurementDateTime(Timestamp measurementDateTime)
+    {
+        this.measurementDateTime = measurementDateTime;
+    }
+
+    public void setMeasurementId(int measurementId)
+    {
+        this.measurementId = measurementId;
+    }
+
+    public void setMeasurementTypeEnum(MeasurementType measurementTypeEnum)
+    {
+        this.measurementTypeEnum = measurementTypeEnum;
+    }
+
+    public void setMeasurementValue(float measurementValue)
+    {
+        this.measuredValue = measurementValue;
     }
 }

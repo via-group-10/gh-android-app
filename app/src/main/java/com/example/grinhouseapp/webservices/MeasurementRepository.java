@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,19 +36,32 @@ public class MeasurementRepository {
     public void  setMeasurement(MeasurementType type)
     {
         MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
-        Call<MeasurementResponse> call = measurementApi.getMeasurement(type);
-        call.enqueue(new Callback<MeasurementResponse>() {
+        Call<List<MeasurementResponse>> call = measurementApi.getAllMeasurements();
+        call.enqueue(new Callback<List<MeasurementResponse>>() {
             @EverythingIsNonNull
             @Override
-            public void onResponse(Call<MeasurementResponse> call, Response<MeasurementResponse> response) {
-                if(response.isSuccessful())
-                    measurementMutableLiveData.setValue(response.body().getMeasurement());
+            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
+                if(response.code()==201) {
+                    Log.i("Ërror", "this is not working");
+                    List<MeasurementResponse> measurementResponses = response.body();
+                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                        if (measurementResponse.getMeasurement().getMeasurementTypeEnum() == MeasurementType.temperature)
+                        {
+                            measurementMutableLiveData.setValue(measurementResponse.getMeasurement());
+                        }
+                    }
+                }
+                else
+                {
+
+                    System.out.println("Not good !!!"+response.code());
+                }
             }
 
             @EverythingIsNonNull
             @Override
-            public void onFailure(Call<MeasurementResponse> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong");
+            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
+                Log.i("Retrofit", "Something went wrong", t);
             }
         });
     }
