@@ -10,7 +10,6 @@ import com.example.grinhouseapp.webservices.MeasurementType;
 import java.util.List;
 
 public class TemperatureViewModel extends ViewModel {
-    MeasurementRepository measurementRepository;
 
     public TemperatureViewModel()
     {

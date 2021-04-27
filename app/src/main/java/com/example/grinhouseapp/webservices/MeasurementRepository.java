@@ -43,7 +43,6 @@ public class MeasurementRepository {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
                 if(response.isSuccessful()) {
-                    Log.i("Ërror", "this is not working");
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
