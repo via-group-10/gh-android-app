@@ -19,14 +19,40 @@ public class HomeViewModel extends ViewModel {
         measurementRepository = MeasurementRepository.getInstance();
     }
 
-    LiveData<Measurement> getMeasurement()
-    {
+
+    public LiveData<Measurement> getTemperature(){
+        measurementRepository.getLatestMeasurement(MeasurementType.temperature);
         return measurementRepository.getMeasurement();
     }
 
-    public void setMeasurementRepository(MeasurementType type)
+
+    public LiveData<Measurement> getHumidity(){
+        measurementRepository.getLatestMeasurement(MeasurementType.humidity);
+        return measurementRepository.getMeasurement();
+    }
+
+    public LiveData<Measurement> getCarbonDioxide()
     {
-        measurementRepository.setMeasurement(type);
+        measurementRepository.getLatestMeasurement(MeasurementType.carbonDioxide);
+        return measurementRepository.getMeasurement();
+    }
+
+
+
+    public LiveData<Measurement> getMeasurement()
+    {
+        switch (measurementRepository.getMeasurement().getValue().getMeasurementTypeEnum())
+        {
+            default:
+            case temperature:measurementRepository.getLatestMeasurement(MeasurementType.temperature);
+            break;
+            case humidity:measurementRepository.getLatestMeasurement(MeasurementType.humidity);
+            break;
+            case carbonDioxide: measurementRepository.getLatestMeasurement(MeasurementType.carbonDioxide);
+                break;
+        }
+        return measurementRepository.getMeasurement();
+
     }
 
     public LiveData<String> getText() {
