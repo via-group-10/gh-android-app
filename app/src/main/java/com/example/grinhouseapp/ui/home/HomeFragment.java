@@ -14,10 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.treshold.CarbonDioxideActivity;
-import com.example.grinhouseapp.treshold.CarbonDioxideViewModel;
 import com.example.grinhouseapp.treshold.TemperatureActivity;
 
-import com.example.grinhouseapp.treshold.TemperatureViewModel;
 import com.example.grinhouseapp.webservices.MeasurementType;
 
 import java.util.Timer;
@@ -27,8 +25,9 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    TextView textView;
-    TextView co2;
+    TextView temperatureTextView;
+    TextView co2TextView;
+    TextView humidityTextView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,8 +36,8 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
        //temperature
-        textView= (TextView) root.findViewById(R.id.text_temData);
-        textView.setOnClickListener(v -> {
+        temperatureTextView = (TextView) root.findViewById(R.id.text_temData);
+        temperatureTextView.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), TemperatureActivity.class);
             startActivity(intent);
         });
@@ -55,33 +54,33 @@ public class HomeFragment extends Fragment {
 
 
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            textView.setText(homeViewModel.getLastMeasurement(MeasurementType.temperature).getMeasurementValue() + "℃");
+            temperatureTextView.setText(homeViewModel.getLastMeasurement(MeasurementType.temperature).getMeasurementValue() + "℃");
         });
 
 
         //co2
-        co2 = root.findViewById(R.id.text_cdData);
-        co2.setOnClickListener(v -> {
+        co2TextView = root.findViewById(R.id.text_cdData);
+        co2TextView.setOnClickListener(v -> {
             Intent intentco2 = new Intent(getActivity(), CarbonDioxideActivity.class);
             startActivity(intentco2);
         });
 
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            co2.setText(homeViewModel.getLastMeasurement(MeasurementType.carbonDioxide).getMeasurementValue() + "ppm");
+            co2TextView.setText(homeViewModel.getLastMeasurement(MeasurementType.carbonDioxide).getMeasurementValue() + "ppm");
+            Log.i("CarbonDioxide", homeViewModel.getLastMeasurement(MeasurementType.carbonDioxide).getMeasurementId()+"");
         });
 
         //humidity
-        co2 = root.findViewById(R.id.text_humData);
-        co2.setOnClickListener(v -> {
+        humidityTextView = root.findViewById(R.id.text_humData);
+        humidityTextView.setOnClickListener(v -> {
             Intent intentco2 = new Intent(getActivity(), CarbonDioxideActivity.class);
             startActivity(intentco2);
         });
 
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            co2.setText(homeViewModel.getLastMeasurement(MeasurementType.humidity).getMeasurementValue() + "%");
+            humidityTextView.setText(homeViewModel.getLastMeasurement(MeasurementType.humidity).getMeasurementValue() + "%");
         });
 
         return root;
     }
 }
-
