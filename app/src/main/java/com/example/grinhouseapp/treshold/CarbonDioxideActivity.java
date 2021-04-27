@@ -22,7 +22,7 @@ public class CarbonDioxideActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carbondioxide);
-        carbonDioxideData = findViewById(R.id.ppm);
+//        carbonDioxideData = findViewById(R.id.ppm);
         carbonDioxideViewModel = new ViewModelProvider(this).get(CarbonDioxideViewModel.class);
 
         carbonDioxideViewModel.setMeasurementRepository();
