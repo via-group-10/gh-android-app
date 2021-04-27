@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -14,7 +15,7 @@ import retrofit2.internal.EverythingIsNonNull;
 
 public class MeasurementRepository {
     private static MeasurementRepository instance;
-    private final MutableLiveData<Measurement> measurementMutableLiveData;
+    private final MutableLiveData<List<Measurement>> measurementMutableLiveData;
 
     private MeasurementRepository()
     {
@@ -28,12 +29,12 @@ public class MeasurementRepository {
         return instance;
     }
 
-    public LiveData<Measurement> getMeasurement()
+    public LiveData<List<Measurement>> getMeasurement()
     {
         return  measurementMutableLiveData;
     }
 
-    public void  setMeasurement(MeasurementType type)
+    public void  setMeasurement()
     {
         MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
         Call<List<MeasurementResponse>> call = measurementApi.getAllMeasurements();
@@ -44,17 +45,11 @@ public class MeasurementRepository {
                 if(response.isSuccessful()) {
                     Log.i("Ërror", "this is not working");
                     List<MeasurementResponse> measurementResponses = response.body();
+                    ArrayList<Measurement> measurements = new ArrayList<>();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
-                        if (measurementResponse.getMeasurement().getMeasurementTypeEnum() == MeasurementType.temperature)
-                        {
-                            measurementMutableLiveData.setValue(measurementResponse.getMeasurement());
-                        }
+                        measurements.add(measurementResponse.getMeasurement());
                     }
-                }
-                else
-                {
-
-                    System.out.println("Not good !!!"+response.code());
+                    measurementMutableLiveData.setValue(measurements);
                 }
             }
 
