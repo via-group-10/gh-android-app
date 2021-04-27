@@ -1,16 +1,12 @@
 package com.example.grinhouseapp.treshold;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.grinhouseapp.MainActivity;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.webservices.MeasurementType;
 
@@ -20,30 +16,12 @@ import java.util.TimerTask;
 public class TemperatureActivity extends AppCompatActivity {
 
     TemperatureViewModel temperatureViewModel;
-    TextView textView;
-  
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
-
-        textView = findViewById(R.id.degrees);
         temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
-
-        temperatureViewModel.setMeasurementRepository(MeasurementType.temperature);
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                temperatureViewModel.setMeasurementRepository(MeasurementType.temperature);
-            }
-        }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
-
-
-
-        temperatureViewModel.getMeasurement().observe(this, measurement -> {
-            textView.setText(measurement.getMeasurementValue() + "℃");
-        });
 
         Intent bundle = getIntent();
         Toolbar toolbar = findViewById(R.id.up_toolbar);
@@ -51,3 +29,5 @@ public class TemperatureActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
+
+

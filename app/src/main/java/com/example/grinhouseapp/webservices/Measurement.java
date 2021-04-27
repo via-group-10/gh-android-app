@@ -1,6 +1,7 @@
 package com.example.grinhouseapp.webservices;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Measurement {
 

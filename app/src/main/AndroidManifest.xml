@@ -2,30 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.grinhouseapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GrinHouseApp">
-        <activity android:name=".treshold.TemperatureActivity"
+        android:theme="@style/Theme.GrinHouseApp"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".treshold.HumidityActivity"
             android:parentActivityName=".HomeActivity">
-
         </activity>
         <activity android:name=".treshold.CarbonDioxideActivity"
             android:parentActivityName=".HomeActivity">
 
         </activity>
         <activity
-            android:name=".FilterActivity"
+            android:name=".treshold.TemperatureActivity"
             android:parentActivityName=".HomeActivity"></activity>
         <activity
+            android:name=".FilterActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
             android:name=".ui.notification.Notification"
-            android:parentActivityName=".HomeActivity"></activity>
+            android:parentActivityName=".HomeActivity" />
 
         <meta-data
             android:name="com.google.android.actions"

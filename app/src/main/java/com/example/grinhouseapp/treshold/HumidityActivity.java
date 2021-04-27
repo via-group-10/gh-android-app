@@ -13,15 +13,15 @@ import com.example.grinhouseapp.webservices.MeasurementType;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CarbonDioxideActivity extends AppCompatActivity {
+public class HumidityActivity extends AppCompatActivity {
 
-    CarbonDioxideViewModel carbonDioxideViewModel;
+    HumidityViewModel humidityViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carbondioxide);
-        carbonDioxideViewModel = new ViewModelProvider(this).get(CarbonDioxideViewModel.class);
+        setContentView(R.layout.activity_humidity);
+        humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
 
         Intent bundle = getIntent();
         Toolbar toolbar = findViewById(R.id.up_toolbar);

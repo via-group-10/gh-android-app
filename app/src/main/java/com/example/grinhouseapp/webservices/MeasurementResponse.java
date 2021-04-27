@@ -2,6 +2,8 @@ package com.example.grinhouseapp.webservices;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MeasurementResponse {
 
@@ -14,5 +16,10 @@ public class MeasurementResponse {
     public Measurement getMeasurement()
     {
         return new Measurement(measurementId, measurementValue, measurementDateTime, greenhouseId, measurementTypeEnum);
+    }
+
+    public List<Measurement> getMeasurementList(MeasurementType type)
+    {
+        return new ArrayList<Measurement>();
     }
 }
