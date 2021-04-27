@@ -8,54 +8,37 @@ import com.example.grinhouseapp.webservices.Measurement;
 import com.example.grinhouseapp.webservices.MeasurementRepository;
 import com.example.grinhouseapp.webservices.MeasurementType;
 
+import java.util.List;
+
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
-
     MeasurementRepository measurementRepository;
+    MutableLiveData<Measurement> measurementLiveData;
 
     public HomeViewModel()
     {
         measurementRepository = MeasurementRepository.getInstance();
     }
 
-
-    public LiveData<Measurement> getTemperature(){
-        measurementRepository.getLatestMeasurement(MeasurementType.temperature);
-        return measurementRepository.getMeasurement();
-    }
-
-
-    public LiveData<Measurement> getHumidity(){
-        measurementRepository.getLatestMeasurement(MeasurementType.humidity);
-        return measurementRepository.getMeasurement();
-    }
-
-    public LiveData<Measurement> getCarbonDioxide()
+    LiveData<List<Measurement>> getMeasurement()
     {
-        measurementRepository.getLatestMeasurement(MeasurementType.carbonDioxide);
         return measurementRepository.getMeasurement();
     }
 
-
-
-    public LiveData<Measurement> getMeasurement()
+    Measurement getLastMeasurement(MeasurementType type)
     {
-        switch (measurementRepository.getMeasurement().getValue().getMeasurementTypeEnum())
+        for(int i = measurementRepository.getMeasurement().getValue().size()-1;i>=0;i--)
         {
-            default:
-            case temperature:measurementRepository.getLatestMeasurement(MeasurementType.temperature);
-            break;
-            case humidity:measurementRepository.getLatestMeasurement(MeasurementType.humidity);
-            break;
-            case carbonDioxide: measurementRepository.getLatestMeasurement(MeasurementType.carbonDioxide);
-                break;
+            if(measurementRepository.getMeasurement().getValue().get(i).getMeasurementTypeEnum() == type)
+            {
+                return measurementRepository.getMeasurement().getValue().get(i);
+            }
         }
-        return measurementRepository.getMeasurement();
-
+        return null;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setMeasurementRepository()
+    {
+        measurementRepository.setMeasurement();
     }
 }

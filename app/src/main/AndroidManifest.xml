@@ -15,6 +15,10 @@
         <activity android:name=".treshold.HumidityActivity"
             android:parentActivityName=".HomeActivity">
         </activity>
+        <activity android:name=".treshold.CarbonDioxideActivity"
+            android:parentActivityName=".HomeActivity">
+
+        </activity>
         <activity
             android:name=".treshold.TemperatureActivity"
             android:parentActivityName=".HomeActivity"></activity>

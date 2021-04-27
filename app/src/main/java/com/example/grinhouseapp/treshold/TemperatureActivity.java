@@ -30,6 +30,9 @@ public class TemperatureActivity extends AppCompatActivity {
         textView = findViewById(R.id.degrees);
         temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
 
+        temperatureViewModel.getMeasurement().observe(this, measurement -> {
+            textView.setText(measurement.get(measurement.size()-3).getMeasurementValue() + "℃");
+        });
 
         Intent bundle = getIntent();
         Toolbar toolbar = findViewById(R.id.up_toolbar);
