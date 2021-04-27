@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".treshold.CarbonDioxideActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/up_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/teal_200"
+        app:title="@string/app_name"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_new_24"
+        style="@style/Widget.MaterialComponents.ActionBar.Primary"/>
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="116dp"-->
+<!--        android:fontFamily="@font/nunito"-->
+<!--        android:text="@string/carbonDioxideName"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="36sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:fontFamily="@font/nunito"-->
+<!--        android:text="@string/carbonDioxideSubhead"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.496"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
+
+<!--    <Button-->
+<!--        android:id="@+id/button"-->
+<!--        android:layout_width="172dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="@color/teal_200"-->
+<!--        android:text="@string/SetBtn"-->
+
+<!--        tools:layout_editor_absoluteX="113dp"-->
+<!--        tools:layout_editor_absoluteY="617dp" />-->
+
+    <TextView
+        android:id="@+id/ppm"
+        android:layout_width="186dp"
+        android:layout_height="168dp"
+        android:layout_gravity="top"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:shadowColor="#1C1010"
+        android:text="10℃"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--    <Button-->
+<!--        android:id="@+id/decreaseValueBtn"-->
+<!--        android:layout_width="78dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:rotationX="0"-->
+<!--        android:scaleX="1"-->
+<!--        android:text="-"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textColorLink="@color/black"-->
+<!--        android:textSize="24sp"-->
+<!--        tools:layout_editor_absoluteX="62dp"-->
+<!--        tools:layout_editor_absoluteY="490dp" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/increaseValueBtn"-->
+<!--        android:layout_width="78dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:rotationX="0"-->
+<!--        android:scaleX="1"-->
+<!--        android:text="+"-->
+
+<!--        android:textColor="@color/white"-->
+<!--        android:textColorLink="@color/black"-->
+<!--        android:textSize="24sp"-->
+<!--        tools:layout_editor_absoluteX="253dp"-->
+<!--        tools:layout_editor_absoluteY="490dp" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/fragment"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>

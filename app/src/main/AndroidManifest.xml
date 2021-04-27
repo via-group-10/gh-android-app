@@ -16,6 +16,10 @@
             android:parentActivityName=".HomeActivity">
 
         </activity>
+        <activity android:name=".treshold.CarbonDioxideActivity"
+            android:parentActivityName=".HomeActivity">
+
+        </activity>
         <activity
             android:name=".FilterActivity"
             android:parentActivityName=".HomeActivity"></activity>
