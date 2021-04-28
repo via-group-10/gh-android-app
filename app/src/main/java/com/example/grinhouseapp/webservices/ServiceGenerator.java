@@ -11,7 +11,7 @@ public class ServiceGenerator {
         if(measurementApi == null)
         {
             measurementApi = new Retrofit.Builder()
-                    .baseUrl("https://run.mocky.io/v3/")
+                    .baseUrl("http://ajajaj.serveminecraft.net:8080/")
 //                    .baseUrl("http://192.168.87.100:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

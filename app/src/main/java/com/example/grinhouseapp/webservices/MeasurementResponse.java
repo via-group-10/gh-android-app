@@ -17,9 +17,4 @@ public class MeasurementResponse {
     {
         return new Measurement(measurementId, measurementValue, measurementDateTime, greenhouseId, measurementTypeEnum);
     }
-
-    public List<Measurement> getMeasurementList(MeasurementType type)
-    {
-        return new ArrayList<Measurement>();
-    }
 }

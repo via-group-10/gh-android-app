@@ -15,6 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
 
+import com.example.grinhouseapp.webservices.MeasurementType;
+
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -89,6 +92,71 @@ public class DataFragment extends Fragment {
         cdValue2 = root.findViewById(R.id.CO2Value2);
         cdValue3 = root.findViewById(R.id.CO2Value3);
 
+        /*******************************
+         SETTING TABLE FOR TEMPERATURE *
+         *******************************/
+        dataViewModel.setMeasurementRepository(MeasurementType.temperature);
+        dataViewModel.getTemperatureMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            dataViewModel.setMeasurementRepository(MeasurementType.temperature);
+            temDate1.setText(toDate(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-1).getMeasurementDateTime()));
+            temDate2.setText(toDate(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-2).getMeasurementDateTime()));
+            temDate3.setText(toDate(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-3).getMeasurementDateTime()));
+
+            temTime1.setText(toTime(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-1).getMeasurementDateTime()));
+            temTime2.setText(toTime(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-2).getMeasurementDateTime()));
+            temTime3.setText(toTime(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-3).getMeasurementDateTime()));
+
+            temValue1.setText(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-1).getMeasurementValue()+"℃");
+            temValue2.setText(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-2).getMeasurementValue()+"℃");
+            temValue3.setText(dataViewModel.liveDataToList(MeasurementType.temperature).get(dataViewModel.liveDataToList(MeasurementType.temperature).size()-3).getMeasurementValue()+"℃");
+        });
+
+        /*******************************
+           SETTING TABLE FOR HUMIDITY  *
+         *******************************/
+        dataViewModel.setMeasurementRepository(MeasurementType.humidity);
+        dataViewModel.getHumidityMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            humDate1.setText(toDate(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-1).getMeasurementDateTime()));
+            humDate2.setText(toDate(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-2).getMeasurementDateTime()));
+            humDate3.setText(toDate(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-3).getMeasurementDateTime()));
+
+            humTime1.setText(toTime(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-1).getMeasurementDateTime()));
+            humTime2.setText(toTime(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-2).getMeasurementDateTime()));
+            humTime3.setText(toTime(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-3).getMeasurementDateTime()));
+
+            humValue1.setText(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-1).getMeasurementValue()+"%");
+            humValue2.setText(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-2).getMeasurementValue()+"%");
+            humValue3.setText(dataViewModel.liveDataToList(MeasurementType.humidity).get(dataViewModel.liveDataToList(MeasurementType.humidity).size()-3).getMeasurementValue()+"%");
+        });
+
+        /*******************************
+             SETTING TABLE FOR CO2     *
+         *******************************/
+        dataViewModel.setMeasurementRepository(MeasurementType.carbonDioxide);
+        dataViewModel.getCarbonDioxideMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            cdDate1.setText(toDate(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-1).getMeasurementDateTime()));
+            cdDate2.setText(toDate(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-2).getMeasurementDateTime()));
+            cdDate3.setText(toDate(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-3).getMeasurementDateTime()));
+
+            cdTime1.setText(toTime(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-1).getMeasurementDateTime()));
+            cdTime2.setText(toTime(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-2).getMeasurementDateTime()));
+            cdTime3.setText(toTime(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-3).getMeasurementDateTime()));
+
+            cdValue1.setText(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-1).getMeasurementValue()+"ppm");
+            cdValue2.setText(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-2).getMeasurementValue()+"ppm");
+            cdValue3.setText(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).get(dataViewModel.liveDataToList(MeasurementType.carbonDioxide).size()-3).getMeasurementValue()+"ppm");
+        });
+
         return root;
+    }
+
+    private String toDate(Timestamp timestamp)
+    {
+        return new SimpleDateFormat("dd.MM.yyyy").format(timestamp);
+    }
+
+    private String toTime(Timestamp timestamp)
+    {
+        return new SimpleDateFormat("HH:mm").format(timestamp);
     }
 }

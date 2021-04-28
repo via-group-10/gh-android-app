@@ -8,6 +8,14 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface MeasurementApi {
-    @GET("4d74dded-3341-468b-bb16-9ce921723b97/") //measurements
+    @GET("api/measurement")
     Call<List<MeasurementResponse>> getAllMeasurements();
+    @GET("api/measurement/latest")
+    Call<List<MeasurementResponse>> getLatestMeasurements();
+    @GET("api/measurement/temperature")
+    Call<List<MeasurementResponse>> getTemperatureMeasurement();
+    @GET("api/measurement/humidity")
+    Call<List<MeasurementResponse>> getHumidityMeasurement();
+    @GET("api/measurement/carbon-dioxide")
+    Call<List<MeasurementResponse>> getCarbonDioxideMeasurement();
 }

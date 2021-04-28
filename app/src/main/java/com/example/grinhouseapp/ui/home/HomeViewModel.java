@@ -13,7 +13,6 @@ import java.util.List;
 public class HomeViewModel extends ViewModel {
 
     MeasurementRepository measurementRepository;
-    MutableLiveData<Measurement> measurementLiveData;
 
     public HomeViewModel()
     {
@@ -22,23 +21,21 @@ public class HomeViewModel extends ViewModel {
 
     LiveData<List<Measurement>> getMeasurement()
     {
-        return measurementRepository.getMeasurement();
+        return measurementRepository.getLatestMeasurements();
     }
 
-    Measurement getLastMeasurement(MeasurementType type)
+    Measurement getLatestMeasurement(MeasurementType type)
     {
-        for(int i = measurementRepository.getMeasurement().getValue().size()-1;i>=0;i--)
+        for(Measurement measurement : measurementRepository.getLatestMeasurements().getValue())
         {
-            if(measurementRepository.getMeasurement().getValue().get(i).getMeasurementTypeEnum() == type)
-            {
-                return measurementRepository.getMeasurement().getValue().get(i);
-            }
+            if(measurement.getMeasurementTypeEnum() == type)
+                return measurement;
         }
         return null;
     }
 
     public void setMeasurementRepository()
     {
-        measurementRepository.setMeasurement();
+        measurementRepository.setLatestMeasurements();
     }
 }

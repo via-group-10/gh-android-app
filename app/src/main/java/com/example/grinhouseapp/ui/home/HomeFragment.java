@@ -2,7 +2,6 @@ package com.example.grinhouseapp.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +34,6 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-       //temperature
-        temperatureTextView = (TextView) root.findViewById(R.id.text_temData);
-        temperatureTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), TemperatureActivity.class);
-            startActivity(intent);
-        });
-
         homeViewModel.setMeasurementRepository();
 
         new Timer().schedule(new TimerTask() {
@@ -51,10 +43,15 @@ public class HomeFragment extends Fragment {
             }
         }, 5 * 60 * 1000);// Repeat every 5 minutes (every 5 minutes temperature is updated)
 
-
+        //temperature
+        temperatureTextView = root.findViewById(R.id.text_temData);
+        temperatureTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TemperatureActivity.class);
+            startActivity(intent);
+        });
 
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            temperatureTextView.setText(homeViewModel.getLastMeasurement(MeasurementType.temperature).getMeasurementValue() + "℃");
+            temperatureTextView.setText(homeViewModel.getLatestMeasurement(MeasurementType.temperature).getMeasurementValue() + "℃");
         });
 
 
@@ -66,8 +63,7 @@ public class HomeFragment extends Fragment {
         });
 
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            co2TextView.setText(homeViewModel.getLastMeasurement(MeasurementType.carbonDioxide).getMeasurementValue() + "ppm");
-            Log.i("CarbonDioxide", homeViewModel.getLastMeasurement(MeasurementType.carbonDioxide).getMeasurementId()+"");
+            co2TextView.setText(homeViewModel.getLatestMeasurement(MeasurementType.carbonDioxide).getMeasurementValue() + "ppm");
         });
 
         //humidity
@@ -78,7 +74,7 @@ public class HomeFragment extends Fragment {
         });
 
         homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            humidityTextView.setText(homeViewModel.getLastMeasurement(MeasurementType.humidity).getMeasurementValue() + "%");
+            humidityTextView.setText(homeViewModel.getLatestMeasurement(MeasurementType.humidity).getMeasurementValue() + "%");
         });
 
         return root;

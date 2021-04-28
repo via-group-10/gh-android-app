@@ -8,16 +8,48 @@ import com.example.grinhouseapp.webservices.Measurement;
 import com.example.grinhouseapp.webservices.MeasurementRepository;
 import com.example.grinhouseapp.webservices.MeasurementType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataViewModel extends ViewModel {
 
     MeasurementRepository measurementRepository;
 
-    public DataViewModel() {
+    public DataViewModel()
+    {
         measurementRepository = MeasurementRepository.getInstance();
     }
 
+    LiveData<List<Measurement>> getTemperatureMeasurement()
+    {
+        return measurementRepository.getTemperatureMeasurementMutableData();
+    }
+    LiveData<List<Measurement>> getHumidityMeasurement()
+    {
+        return measurementRepository.getHumidityMeasurementMutableData();
+    }
+    LiveData<List<Measurement>> getCarbonDioxideMeasurement()
+    {
+        return measurementRepository.getCarbonDioxideMeasurementMutableData();
+    }
 
+    List<Measurement> liveDataToList(MeasurementType type)
+    {
+        if(type == MeasurementType.temperature)
+            return measurementRepository.getTemperatureMeasurementMutableData().getValue();
+        else if(type == MeasurementType.carbonDioxide)
+            return measurementRepository.getCarbonDioxideMeasurementMutableData().getValue();
+        else
+            return measurementRepository.getHumidityMeasurementMutableData().getValue();
+    }
 
+    public void setMeasurementRepository(MeasurementType type)
+    {
+        if(type == MeasurementType.temperature)
+            measurementRepository.setTemperatureMeasurements();
+        else if(type == MeasurementType.carbonDioxide)
+            measurementRepository.setCarbonDioxideMeasurement();
+        else
+            measurementRepository.setHumidityMeasurements();
+    }
 }
