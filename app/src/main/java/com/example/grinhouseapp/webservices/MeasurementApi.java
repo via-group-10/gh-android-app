@@ -5,9 +5,11 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 public interface MeasurementApi {
+    /****************
+     * Measurements *
+     ****************/
     @GET("api/measurement")
     Call<List<MeasurementResponse>> getAllMeasurements();
     @GET("api/measurement/latest")
@@ -18,4 +20,15 @@ public interface MeasurementApi {
     Call<List<MeasurementResponse>> getHumidityMeasurement();
     @GET("api/measurement/carbon-dioxide")
     Call<List<MeasurementResponse>> getCarbonDioxideMeasurement();
+
+    /************
+     * Profiles *
+     ************/
+    @GET("api/profile")
+    Call<List<ThresholdProfile>> getProfiles();
+    @GET("api/profile/current")
+    Call<ThresholdProfile> getCurrentProfile();
+    /*@DELETE("api/profile/{id}")
+    @POST("api/profile")
+    @PUT("api/profile")*/
 }
