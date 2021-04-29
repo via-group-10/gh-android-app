@@ -16,13 +16,13 @@ import retrofit2.http.Path;
 
 public interface ProfileApi {
     @GET("api/profile")
-    Call<List<ThresholdProfile>> getProfiles();
+    Call<List<ProfileResponse>> getProfiles();
     @GET("api/profile/current")
-    Call<ThresholdProfile> getCurrentProfile();
+    Call<ProfileResponse> getCurrentProfile();
     @DELETE("api/profile/{id}")
     Call<ResponseBody> deleteProfile(@Path("id") int id);
     @POST("api/profile")
-    Call<Response> createProfile(@Body ThresholdProfile profile);
+    Call<ResponseBody> createProfile(@Body ThresholdProfile profile);
     @PUT("api/profile")
     Call<ResponseBody> putProfile();
 }
