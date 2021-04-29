@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.webservices;
+package com.example.grinhouseapp.model;
 
 public class ThresholdProfile {
     private String profileName;

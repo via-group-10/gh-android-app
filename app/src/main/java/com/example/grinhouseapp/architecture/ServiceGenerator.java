@@ -1,4 +1,6 @@
-package com.example.grinhouseapp.webservices;
+package com.example.grinhouseapp.architecture;
+
+import com.example.grinhouseapp.architecture.measurement.MeasurementApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

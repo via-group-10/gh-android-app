@@ -1,30 +1,21 @@
 package com.example.grinhouseapp.ui.data;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
 
-import com.example.grinhouseapp.webservices.MeasurementType;
+import com.example.grinhouseapp.model.MeasurementType;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class DataFragment extends Fragment {
 

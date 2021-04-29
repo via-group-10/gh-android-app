@@ -1,14 +1,12 @@
 package com.example.grinhouseapp.ui.data;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.grinhouseapp.webservices.Measurement;
-import com.example.grinhouseapp.webservices.MeasurementRepository;
-import com.example.grinhouseapp.webservices.MeasurementType;
+import com.example.grinhouseapp.model.Measurement;
+import com.example.grinhouseapp.architecture.measurement.MeasurementRepository;
+import com.example.grinhouseapp.model.MeasurementType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataViewModel extends ViewModel {

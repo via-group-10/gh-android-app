@@ -1,7 +1,6 @@
-package com.example.grinhouseapp.webservices;
+package com.example.grinhouseapp.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Measurement {
 

@@ -1,9 +1,9 @@
-package com.example.grinhouseapp.webservices;
+package com.example.grinhouseapp.architecture.measurement;
+
+import com.example.grinhouseapp.model.Measurement;
+import com.example.grinhouseapp.model.MeasurementType;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MeasurementResponse {
 

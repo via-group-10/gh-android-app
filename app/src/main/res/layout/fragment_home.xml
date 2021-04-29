@@ -88,6 +88,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textStyle="bold"
+                        android:text="N/A"
                         android:clickable="true"
 
                         android:layout_gravity="top"
@@ -109,7 +110,7 @@
                         android:textColor="@color/black"
                         android:layout_gravity="top"
                         android:textStyle="bold"
-                        android:text="90%"
+                        android:text="N/A"
                         android:gravity="center"
                         android:textSize="30sp"/>
 
@@ -165,7 +166,8 @@
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:clickable="true"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
+                    android:text="N/A"
                     android:textStyle="bold" />
 
 

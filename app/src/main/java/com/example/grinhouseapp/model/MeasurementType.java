@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.webservices;
+package com.example.grinhouseapp.model;
 
 public enum MeasurementType {
     temperature, humidity, carbonDioxide

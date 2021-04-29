@@ -15,7 +15,7 @@ import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.treshold.CarbonDioxideActivity;
 import com.example.grinhouseapp.treshold.TemperatureActivity;
 
-import com.example.grinhouseapp.webservices.MeasurementType;
+import com.example.grinhouseapp.model.MeasurementType;
 
 import java.util.Timer;
 import java.util.TimerTask;
