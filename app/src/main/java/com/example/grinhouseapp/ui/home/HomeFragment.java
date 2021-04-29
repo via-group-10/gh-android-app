@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.treshold.CarbonDioxideActivity;
+import com.example.grinhouseapp.treshold.HumidityActivity;
 import com.example.grinhouseapp.treshold.TemperatureActivity;
 
 import com.example.grinhouseapp.model.MeasurementType;
@@ -69,7 +70,7 @@ public class HomeFragment extends Fragment {
         //humidity
         humidityTextView = root.findViewById(R.id.text_humData);
         humidityTextView.setOnClickListener(v -> {
-            Intent intentco2 = new Intent(getActivity(), CarbonDioxideActivity.class);
+            Intent intentco2 = new Intent(getActivity(), HumidityActivity.class);
             startActivity(intentco2);
         });
 
