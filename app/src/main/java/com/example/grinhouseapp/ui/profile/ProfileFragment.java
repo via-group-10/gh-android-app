@@ -22,23 +22,28 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements ProfileAdapter.OnListItemClickListener{
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private FloatingActionButton fab;
     private ProfileViewModel viewModel;
+    private ArrayList<ThresholdProfile> profileList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        //@TODO: decrease RecycleViews loading time
+
         viewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         viewModel.setProfileRepository();
+        viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
+            profileList.addAll(viewModel.getAllProfilesInList());
+        });
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        ArrayList<ThresholdProfile> profileList = new ArrayList<>();
         fab = root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,20 +52,21 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
-            profileList.addAll(thresholdProfiles);
-        });
+
 
         recyclerView = root.findViewById(R.id.profileRecView);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(getContext());
-        adapter = new ProfileAdapter(profileList);
+        adapter = new ProfileAdapter(profileList, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
         return root;
     }
 
-
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        //@TODO: clickable buttons
+    }
 }

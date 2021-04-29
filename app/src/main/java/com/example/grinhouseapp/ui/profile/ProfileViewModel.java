@@ -30,6 +30,11 @@ public class ProfileViewModel extends ViewModel {
         return profileRepository.getAllProfiles();
     }
 
+    public List<ThresholdProfile> getAllProfilesInList()
+    {
+        return profileRepository.getAllProfiles().getValue();
+    }
+
     public LiveData<String> getText() {
         return mText;
     }

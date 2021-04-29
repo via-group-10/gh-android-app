@@ -15,7 +15,9 @@ import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> {
     private ArrayList<ThresholdProfile> profileList;
-    public static class ProfileViewHolder extends RecyclerView.ViewHolder{
+    final private OnListItemClickListener listener;
+
+    class ProfileViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView profileName;
         public TextView carbonValue;
@@ -28,9 +30,18 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
             humidityValue = itemView.findViewById(R.id.measurement_humidity);
             temperatureValue = itemView.findViewById(R.id.measurement_temperature);
         }
+
+        @Override
+        public void onClick(View v) {
+            listener.onListItemClick(getAdapterPosition());
+        }
     }
 
-    public ProfileAdapter(ArrayList<ThresholdProfile> profileLst){ profileList = profileLst;}
+    public ProfileAdapter(ArrayList<ThresholdProfile> profileLst, OnListItemClickListener listener)
+    {
+        this.profileList = profileLst;
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -58,5 +69,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         return profileList.size();
     }
 
-
+    public interface OnListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
 }
