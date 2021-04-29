@@ -9,11 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grinhouseapp.R;
+import com.example.grinhouseapp.model.ThresholdProfile;
 
 import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> {
-    private ArrayList<ProfileItem> profileList;
+    private ArrayList<ThresholdProfile> profileList;
     public static class ProfileViewHolder extends RecyclerView.ViewHolder{
 
         public TextView profileName;
@@ -29,7 +30,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         }
     }
 
-    public ProfileAdapter(ArrayList<ProfileItem> profileLst){ profileList = profileLst;}
+    public ProfileAdapter(ArrayList<ThresholdProfile> profileLst){ profileList = profileLst;}
 
     @NonNull
     @Override
@@ -41,19 +42,13 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
     @Override
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
-        ProfileItem currentItem = profileList.get(position);
+        ThresholdProfile currentItem = profileList.get(position);
 
         holder.profileName.setText(currentItem.getProfileName());
 
-        //converting float to string since setText can't take float
-        String co2 = String.valueOf(currentItem.getValueCO2());
-        holder.carbonValue.setText(co2 + "ppm");
-
-        String hum = String.valueOf(currentItem.getValueHumidity());
-        holder.humidityValue.setText(hum+"%");
-
-        String temp = String.valueOf(currentItem.getValueTemperature());
-        holder.temperatureValue.setText(temp+"°C");
+        holder.carbonValue.setText(currentItem.getMinimumCarbonDioxide() + "ppm - " + currentItem.getMaximumCarbonDioxide() + "ppm");
+        holder.humidityValue.setText(currentItem.getMinimumHumidity() + "% - " + currentItem.getMaximumHumidity() + "%");
+        holder.temperatureValue.setText(currentItem.getMinimumTemperature() + "℃ - " + currentItem.getMaximumTemperature() + "℃");
 
 
     }

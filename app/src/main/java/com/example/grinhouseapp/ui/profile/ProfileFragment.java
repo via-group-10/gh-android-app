@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grinhouseapp.R;
+import com.example.grinhouseapp.model.ThresholdProfile;
+import com.example.grinhouseapp.ui.home.HomeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -26,12 +28,17 @@ public class ProfileFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private FloatingActionButton fab;
+    private ProfileViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        viewModel =
+                new ViewModelProvider(this).get(ProfileViewModel.class);
+        viewModel.setProfileRepository();
+
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        ArrayList<ProfileItem> profileList = new ArrayList<>();
+        ArrayList<ThresholdProfile> profileList = new ArrayList<>();
         fab = root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,13 +46,10 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getContext(), "soon", Toast.LENGTH_SHORT).show();
             }
         });
-        profileList.add(new ProfileItem("Sweet strawberry",23,45,65));
-        profileList.add(new ProfileItem("Blueberry",23,45,65));
-        profileList.add(new ProfileItem("Mrkva",23,45,65));
-        profileList.add(new ProfileItem("Paprika",21,64,90));
-        profileList.add(new ProfileItem("Paprika",21,64,90));
 
-        profileList.add(new ProfileItem("Paprika",21,64,90));
+        viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
+            profileList.addAll(thresholdProfiles);
+        });
 
         recyclerView = root.findViewById(R.id.profileRecView);
         recyclerView.setHasFixedSize(true);
@@ -54,6 +58,7 @@ public class ProfileFragment extends Fragment {
         adapter = new ProfileAdapter(profileList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
         return root;
     }
 

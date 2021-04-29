@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
             android:fontFamily="@font/nunito_semibold"
-            android:text="Jahodka"
+            android:text="Name"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -28,20 +28,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp">
 
-            <TextView
+            <ImageView
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="8dp"
-                android:fontFamily="@font/nunito_regular"
-                android:text="CO2:" />
+                android:src="@drawable/co2" />
 
             <TextView
                 android:id="@+id/measurement_carbon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="332ppm"
+                android:text="N/A"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -51,20 +50,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
 
                 android:layout_marginRight="8dp"
-                android:fontFamily="@font/nunito_regular"
-                android:text="Temperature:" />
+                android:src="@drawable/drop" />
 
             <TextView
                 android:id="@+id/measurement_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="22C"
+                android:text="N/A"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -74,19 +72,18 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="8dp"
-                android:fontFamily="@font/nunito_regular"
-                android:text="Humidity" />
+                android:src="@drawable/ic_thermostat" />
 
             <TextView
                 android:id="@+id/measurement_humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="80%"
+                android:text="N/A"
                 android:textColor="@color/black" />
 
         </LinearLayout>
