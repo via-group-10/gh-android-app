@@ -5,18 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment"
-    android:backgroundTint="@color/white"
-<<<<<<< Updated upstream
-    >
-=======
-    android:id="@+id/dopice"
-    >
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_container"/>
+    android:backgroundTint="@color/white">
 
->>>>>>> Stashed changes
 
     <TextView
         android:id="@+id/text_profile"
@@ -43,7 +33,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="20dp"
         android:id="@+id/profileRecView"
         android:scrollbars="vertical"
@@ -58,10 +48,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="end|bottom"
-        android:layout_marginRight="29dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
         android:backgroundTint="@color/primary_green"
-        android:contentDescription="Submit"
+        android:contentDescription="@string/submit"
         android:src="@drawable/ic_add" />
 
 </RelativeLayout>

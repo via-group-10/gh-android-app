@@ -17,4 +17,14 @@
     <string name="changeHumidity">Change Humidity</string>
     <string name="text_Low">Low</string>
     <string name="text_High">High</string>
+    <string name="lowThreshold">Low:</string>
+    <string name="highThreshold">High:</string>
+    <string name="createProfile">Create a new profile</string>
+    <string name="profileName">Name of the profile:</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="temperature_threshold">Temperature threshold</string>
+    <string name="co2_threshold">CO2 threshold</string>
+    <string name="humidity_threshold">Humidity threshold</string>
+    <string name="submit">Submit</string>
 </resources>

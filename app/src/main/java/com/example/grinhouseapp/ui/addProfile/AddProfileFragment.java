@@ -1,5 +1,6 @@
 package com.example.grinhouseapp.ui.addProfile;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -20,10 +21,6 @@ public class AddProfileFragment extends Fragment {
 
     private Button cancelButton;
     private Button saveButton;
-
-    public static AddProfileFragment newInstance() {
-        return new AddProfileFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
