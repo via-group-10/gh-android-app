@@ -9,6 +9,7 @@ import com.example.grinhouseapp.architecture.ServiceGenerator;
 import com.example.grinhouseapp.architecture.measurement.MeasurementRepository;
 import com.example.grinhouseapp.model.ThresholdProfile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

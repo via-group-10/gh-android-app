@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment"
     android:backgroundTint="@color/white"
+<<<<<<< Updated upstream
     >
+=======
+    android:id="@+id/dopice"
+    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container"/>
+
+>>>>>>> Stashed changes
 
     <TextView
         android:id="@+id/text_profile"
