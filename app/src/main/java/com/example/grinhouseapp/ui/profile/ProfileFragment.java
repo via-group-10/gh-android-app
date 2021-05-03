@@ -31,7 +31,7 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
     private RecyclerView.LayoutManager layoutManager;
     private FloatingActionButton fab;
     private ProfileViewModel viewModel;
-    private ArrayList<ThresholdProfile> profileList = new ArrayList<>();
+    private ArrayList<ThresholdProfile> profileList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,9 +41,6 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
         viewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         viewModel.setProfileRepository();
-        viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
-            profileList.addAll(viewModel.getAllProfilesInList());
-        });
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         fab = root.findViewById(R.id.fab);
@@ -54,7 +51,7 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
             }
         });
 
-
+        profileList = new ArrayList<>();
 
         recyclerView = root.findViewById(R.id.profileRecView);
         recyclerView.setHasFixedSize(true);
@@ -63,6 +60,12 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
         adapter = new ProfileAdapter(profileList, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
+            profileList.clear();
+            profileList.addAll(viewModel.getAllProfilesInList());
+            adapter.notifyDataSetChanged();
+        });
 
         return root;
     }
