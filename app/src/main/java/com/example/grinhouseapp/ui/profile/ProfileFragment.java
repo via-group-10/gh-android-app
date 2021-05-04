@@ -24,6 +24,8 @@ import com.example.grinhouseapp.ui.home.HomeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ProfileFragment extends Fragment implements ProfileAdapter.OnListItemClickListener{
 
@@ -63,7 +65,9 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
 
         viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
             profileList.clear();
-            profileList.addAll(viewModel.getAllProfilesInList());
+            List<ThresholdProfile> profiles = viewModel.getAllProfilesInList();
+            Collections.reverse(profiles);
+            profileList.addAll(profiles);
             adapter.notifyDataSetChanged();
         });
 
