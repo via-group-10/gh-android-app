@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +51,6 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
                 Navigation.findNavController(root).navigate(R.id.navigateToProfilesFragment);
             }
         });
-
         profileList = new ArrayList<>();
 
         recyclerView = root.findViewById(R.id.profileRecView);
@@ -67,11 +67,29 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
             adapter.notifyDataSetChanged();
         });
 
+
         return root;
     }
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
         //@TODO: clickable buttons
+        viewModel.deleteProfile(profileList.get(clickedItemIndex).getProfileId());
+        profileList.remove(clickedItemIndex);
+        adapter.notifyItemRemoved(clickedItemIndex);
+        adapter.notifyItemRangeChanged(clickedItemIndex,adapter.getItemCount());
+        adapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void deleteProfile(int id,int position){
+        viewModel.deleteProfile(id);
+        profileList.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position,adapter.getItemCount());
+        adapter.notifyDataSetChanged();
+    }
+
+
+
 }

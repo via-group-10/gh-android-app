@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/addProfileFragment"
         android:name="com.example.grinhouseapp.ui.addProfile.AddProfileFragment"
-        android:label="fragment_add_profile"
+        android:label="Add a profile"
         tools:layout="@layout/fragment_add_profile" >
         <action
             android:id="@+id/action_addProfileFragment_to_navigation_profile"
