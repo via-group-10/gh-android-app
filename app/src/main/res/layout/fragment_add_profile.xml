@@ -180,7 +180,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/profileName"
+        android:text="Profile Name : "
         android:textColor="@color/black"
         android:textSize="17sp"
 
@@ -197,7 +197,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 

@@ -87,4 +87,55 @@ public class ProfileRepository {
             }
         });
     }
+
+    public void createProfile(int profileId, String profileName, boolean active, int minimumTemperature,
+                              int maximumTemperature, int minimumHumidity, int maximumHumidity,
+                              int minimumCarbonDioxide, int maximumCarbonDioxide, int greenhouseId)
+    {
+        ProfileApi profileApi = ServiceGenerator.getProfileApi();
+        ThresholdProfile profile = new ThresholdProfile(profileId, profileName, active, minimumTemperature,
+                maximumTemperature, minimumHumidity, maximumHumidity, minimumCarbonDioxide, maximumCarbonDioxide, greenhouseId);
+        Call<ProfileResponse> call = profileApi.createProfile(profile);
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if(response.isSuccessful())
+                {
+                    //allProfilesMutableData.getValue().add(profile);
+                    Log.i("Post profile",response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Log.i("Retrofit", "CREATE PROFILE Something went wrong");
+            }
+        });
+    }
+
+    public void deleteProfile(int id) {
+        ProfileApi profileApi = ServiceGenerator.getProfileApi();
+        Call<ProfileResponse> call = profileApi.deleteProfile(id);
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful()) {
+                    //for (int i=0; i<allProfilesMutableData.getValue().size(); i++)
+                    //{
+                    //    if (allProfilesMutableData.getValue().get(i).getProfileId()==id)
+                    //    {
+                    //        allProfilesMutableData.getValue().remove(allProfilesMutableData.getValue().get(i));
+                    //        break;
+                    //    }
+                    //}
+                    Log.i("Delete profile", response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Log.i("Retrofit", "DELETE PROFILE Something went wrong");
+            }
+        });
+    }
 }

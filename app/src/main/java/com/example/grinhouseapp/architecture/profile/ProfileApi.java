@@ -20,9 +20,9 @@ public interface ProfileApi {
     @GET("api/profile/current")
     Call<ProfileResponse> getCurrentProfile();
     @DELETE("api/profile/{id}")
-    Call<ResponseBody> deleteProfile(@Path("id") int id);
+    Call<ProfileResponse> deleteProfile(@Path("id") int id);
     @POST("api/profile")
-    Call<ResponseBody> createProfile(@Body ThresholdProfile profile);
+    Call<ProfileResponse> createProfile(@Body ThresholdProfile profile);
     @PUT("api/profile")
-    Call<ResponseBody> putProfile();
+    Call<ProfileResponse> putProfile();
 }
