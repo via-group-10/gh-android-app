@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GrinHouseApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".treshold.HumidityActivity"
-            android:parentActivityName=".HomeActivity">
-        </activity>
-        <activity android:name=".treshold.CarbonDioxideActivity"
-            android:parentActivityName=".HomeActivity">
-
-        </activity>
+        <activity android:name=".GraphActivity"></activity>
+        <activity
+            android:name=".treshold.HumidityActivity"
+            android:parentActivityName=".HomeActivity"></activity>
+        <activity
+            android:name=".treshold.CarbonDioxideActivity"
+            android:parentActivityName=".HomeActivity"></activity>
         <activity
             android:name=".treshold.TemperatureActivity"
-            android:parentActivityName=".HomeActivity"></activity>
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".FilterActivity"
             android:parentActivityName=".HomeActivity" />

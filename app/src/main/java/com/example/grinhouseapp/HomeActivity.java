@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.grinhouseapp.model.MeasurementType;
 import com.example.grinhouseapp.ui.notification.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -57,5 +58,16 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void seeMoreButton(View view) {
+        Intent intent = new Intent(this, GraphActivity.class);
+        if(view.getId() == R.id.seeMoreTemperature)
+            intent.putExtra("category", 1);
+        else if(view.getId() == R.id.seeMoreHumidity)
+            intent.putExtra("category", 2);
+        else
+            intent.putExtra("category", 3);
+        startActivity(intent);
     }
 }
