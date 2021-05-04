@@ -59,15 +59,4 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void seeMoreButton(View view) {
-        Intent intent = new Intent(this, GraphActivity.class);
-        if(view.getId() == R.id.seeMoreTemperature)
-            intent.putExtra("category", 1);
-        else if(view.getId() == R.id.seeMoreHumidity)
-            intent.putExtra("category", 2);
-        else
-            intent.putExtra("category", 3);
-        startActivity(intent);
-    }
 }
