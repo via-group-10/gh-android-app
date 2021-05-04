@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.grinhouseapp.R;
+import com.example.grinhouseapp.ui.data.DataViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,8 @@ public class AddProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
+        viewModel =
+                new ViewModelProvider(this).get(AddProfileViewModel.class);
         View view = inflater.inflate(R.layout.fragment_add_profile, container, false);
         cancelButton = view.findViewById(R.id.button_cancel);
         saveButton = view.findViewById(R.id.button_save_profile);
