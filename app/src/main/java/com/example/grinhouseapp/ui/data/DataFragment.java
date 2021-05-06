@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.grinhouseapp.R;
 
@@ -47,7 +48,7 @@ public class DataFragment extends Fragment {
     private TextView cdValue1;
     private TextView cdValue2;
     private TextView cdValue3;
-
+    private TextView moreTemperatureBtn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +83,17 @@ public class DataFragment extends Fragment {
         cdValue1 = root.findViewById(R.id.CO2Value1);
         cdValue2 = root.findViewById(R.id.CO2Value2);
         cdValue3 = root.findViewById(R.id.CO2Value3);
+
+        moreTemperatureBtn = root.findViewById(R.id.seeMoreTemperature);
+
+        moreTemperatureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(root).navigate(R.id.graphFragment);
+
+            }
+        });
+
 
         /*******************************
          SETTING TABLE FOR TEMPERATURE *
