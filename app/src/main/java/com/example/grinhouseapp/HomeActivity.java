@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.grinhouseapp.model.MeasurementType;
 import com.example.grinhouseapp.ui.notification.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
