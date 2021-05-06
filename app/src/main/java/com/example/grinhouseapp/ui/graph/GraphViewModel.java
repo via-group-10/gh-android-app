@@ -3,6 +3,7 @@ package com.example.grinhouseapp.ui.graph;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.grinhouseapp.architecture.graph.GraphRepository;
 import com.example.grinhouseapp.architecture.measurement.MeasurementRepository;
 import com.example.grinhouseapp.model.Measurement;
 import com.example.grinhouseapp.model.MeasurementType;
@@ -10,41 +11,27 @@ import com.example.grinhouseapp.model.MeasurementType;
 import java.util.List;
 
 public class GraphViewModel extends ViewModel {
-    MeasurementRepository measurementRepository;
+    GraphRepository repository;
 
-    public GraphViewModel(){measurementRepository = MeasurementRepository.getInstance();}
+    public GraphViewModel(){repository = GraphRepository.getInstance();}
     // TODO: Implement the ViewModel
 
-    LiveData<List<Measurement>> getTemperatureMeasurement()
+    LiveData<List<Measurement>> getMeasurements(int category)
     {
-        return measurementRepository.getTemperatureMeasurementMutableData();
-    }
-    LiveData<List<Measurement>> getHumidityMeasurement()
-    {
-        return measurementRepository.getHumidityMeasurementMutableData();
-    }
-    LiveData<List<Measurement>> getCarbonDioxideMeasurement()
-    {
-        return measurementRepository.getCarbonDioxideMeasurementMutableData();
+        if(category == 0)
+            return repository.getTemperatureMeasurement();
+        else if(category == 1)
+            return repository.getHumidityMeasurement();
+        return repository.getCarbonDioxideMeasurement();
     }
 
-    List<Measurement> liveDataToList(MeasurementType type)
+    public void setTemperatureMeasurements(String filter, int category)
     {
-        if(type == MeasurementType.temperature)
-            return measurementRepository.getTemperatureMeasurementMutableData().getValue();
-        else if(type == MeasurementType.carbonDioxide)
-            return measurementRepository.getCarbonDioxideMeasurementMutableData().getValue();
+        if(category == 0)
+            repository.setTemperatureMeasurement(filter);
+        else if(category == 1)
+            repository.setHumidityMeasurement(filter);
         else
-            return measurementRepository.getHumidityMeasurementMutableData().getValue();
-    }
-
-    public void setMeasurementRepository(MeasurementType type)
-    {
-        if(type == MeasurementType.temperature)
-            measurementRepository.setTemperatureMeasurements();
-        else if(type == MeasurementType.carbonDioxide)
-            measurementRepository.setCarbonDioxideMeasurement();
-        else
-            measurementRepository.setHumidityMeasurements();
+            repository.setCarbonDioxideMeasurement(filter);
     }
 }

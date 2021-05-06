@@ -10,9 +10,9 @@ import retrofit2.http.Path;
 
 public interface GraphApi {
     @GET("api/graph/temperature/{filter}")
-    Call<MeasurementResponse> getTemperatureGraphData(@Path("filter") String filter);
+    Call<List<MeasurementResponse>> getTemperatureGraphData(@Path("filter") String filter);
     @GET("api/graph/humidity/{filter}")
-    Call<MeasurementResponse> getHumidityGraphData(@Path("filter") String filter);
+    Call<List<MeasurementResponse>> getHumidityGraphData(@Path("filter") String filter);
     @GET("api/graph/carbon-dioxide/{filter}")
-    Call<MeasurementResponse> getCarbonDioxideGraphData(@Path("filter") String filter);
+    Call<List<MeasurementResponse>> getCarbonDioxideGraphData(@Path("filter") String filter);
 }

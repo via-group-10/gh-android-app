@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.grinhouseapp.model.MeasurementType;
+import com.example.grinhouseapp.ui.graph.GraphFragment;
 import com.example.grinhouseapp.ui.notification.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -59,5 +60,20 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void seeMore(View view) {
+        int measurementCategory = 0;
+
+        if(view.getId() == R.id.seeMoreTemperature)
+            measurementCategory = 0;
+        else if(view.getId() == R.id.seeMoreCO2)
+            measurementCategory = 1;
+        else
+            measurementCategory = 2;
+
+        Intent intent = new Intent(this, GraphFragment.class);
+        intent.putExtra("measurement", measurementCategory);
+        startActivity(intent);
     }
 }

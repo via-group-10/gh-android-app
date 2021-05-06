@@ -24,6 +24,7 @@
         <activity
             android:name=".FilterActivity"
             android:parentActivityName=".HomeActivity" />
+        <activity android:name=".ui.graph.GraphFragment"/>
         <activity
             android:name=".ui.notification.Notification"
             android:parentActivityName=".HomeActivity" />

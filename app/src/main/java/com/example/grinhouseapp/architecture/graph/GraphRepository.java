@@ -9,15 +9,18 @@ import com.example.grinhouseapp.architecture.ServiceGenerator;
 import com.example.grinhouseapp.architecture.measurement.MeasurementResponse;
 import com.example.grinhouseapp.model.Measurement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class GraphRepository {
     private static GraphRepository instance;
-    private final MutableLiveData<Measurement> temperatureMeasurement;
-    private final MutableLiveData<Measurement> humidityMeasurement;
-    private final MutableLiveData<Measurement> carbonDioxideMeasurement;
+    private final MutableLiveData<List<Measurement>> temperatureMeasurement;
+    private final MutableLiveData<List<Measurement>> humidityMeasurement;
+    private final MutableLiveData<List<Measurement>> carbonDioxideMeasurement;
 
     private GraphRepository()
     {
@@ -33,31 +36,38 @@ public class GraphRepository {
         return instance;
     }
 
-    public LiveData<Measurement> getTemperatureMeasurement() {
+    public LiveData<List<Measurement>> getTemperatureMeasurement() {
         return temperatureMeasurement;
     }
 
-    public LiveData<Measurement> getHumidityMeasurement() {
+    public LiveData<List<Measurement>> getHumidityMeasurement() {
         return humidityMeasurement;
     }
 
-    public LiveData<Measurement> getCarbonDioxideMeasurement() {
+    public LiveData<List<Measurement>> getCarbonDioxideMeasurement() {
         return carbonDioxideMeasurement;
     }
 
     public void setTemperatureMeasurement(String filter)
     {
         GraphApi graphApi = ServiceGenerator.getGraphApi();
-        Call<MeasurementResponse> call = graphApi.getTemperatureGraphData(filter);
-        call.enqueue(new Callback<MeasurementResponse>() {
+        Call<List<MeasurementResponse>> call = graphApi.getTemperatureGraphData(filter);
+        call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
-            public void onResponse(Call<MeasurementResponse> call, Response<MeasurementResponse> response) {
+            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
                 if(response.isSuccessful())
-                    temperatureMeasurement.setValue(response.body().getMeasurement());
+                {
+                    List<MeasurementResponse> measurementResponses = response.body();
+                    ArrayList<Measurement> measurements = new ArrayList<>();
+                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                        measurements.add(measurementResponse.getMeasurement());
+                    }
+                    temperatureMeasurement.setValue(measurements);
+                }
             }
 
             @Override
-            public void onFailure(Call<MeasurementResponse> call, Throwable t) {
+            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong");
             }
         });
@@ -66,16 +76,23 @@ public class GraphRepository {
     public void setHumidityMeasurement(String filter)
     {
         GraphApi graphApi = ServiceGenerator.getGraphApi();
-        Call<MeasurementResponse> call = graphApi.getHumidityGraphData(filter);
-        call.enqueue(new Callback<MeasurementResponse>() {
+        Call<List<MeasurementResponse>> call = graphApi.getTemperatureGraphData(filter);
+        call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
-            public void onResponse(Call<MeasurementResponse> call, Response<MeasurementResponse> response) {
+            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
                 if(response.isSuccessful())
-                    humidityMeasurement.setValue(response.body().getMeasurement());
+                {
+                    List<MeasurementResponse> measurementResponses = response.body();
+                    ArrayList<Measurement> measurements = new ArrayList<>();
+                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                        measurements.add(measurementResponse.getMeasurement());
+                    }
+                    humidityMeasurement.setValue(measurements);
+                }
             }
 
             @Override
-            public void onFailure(Call<MeasurementResponse> call, Throwable t) {
+            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong");
             }
         });
@@ -84,16 +101,23 @@ public class GraphRepository {
     public void setCarbonDioxideMeasurement(String filter)
     {
         GraphApi graphApi = ServiceGenerator.getGraphApi();
-        Call<MeasurementResponse> call = graphApi.getCarbonDioxideGraphData(filter);
-        call.enqueue(new Callback<MeasurementResponse>() {
+        Call<List<MeasurementResponse>> call = graphApi.getTemperatureGraphData(filter);
+        call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
-            public void onResponse(Call<MeasurementResponse> call, Response<MeasurementResponse> response) {
+            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
                 if(response.isSuccessful())
-                    carbonDioxideMeasurement.setValue(response.body().getMeasurement());
+                {
+                    List<MeasurementResponse> measurementResponses = response.body();
+                    ArrayList<Measurement> measurements = new ArrayList<>();
+                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                        measurements.add(measurementResponse.getMeasurement());
+                    }
+                    carbonDioxideMeasurement.setValue(measurements);
+                }
             }
 
             @Override
-            public void onFailure(Call<MeasurementResponse> call, Throwable t) {
+            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong");
             }
         });

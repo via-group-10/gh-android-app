@@ -1,5 +1,6 @@
 package com.example.grinhouseapp.ui.data;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.navigation.Navigation;
 import com.example.grinhouseapp.R;
 
 import com.example.grinhouseapp.model.MeasurementType;
+import com.example.grinhouseapp.ui.graph.GraphFragment;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -49,6 +51,8 @@ public class DataFragment extends Fragment {
     private TextView cdValue2;
     private TextView cdValue3;
     private TextView moreTemperatureBtn;
+    private TextView moreHumidityBtn;
+    private TextView moreCO2Btn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -85,12 +89,33 @@ public class DataFragment extends Fragment {
         cdValue3 = root.findViewById(R.id.CO2Value3);
 
         moreTemperatureBtn = root.findViewById(R.id.seeMoreTemperature);
+        moreCO2Btn = root.findViewById(R.id.seeMoreCO2);
+        moreHumidityBtn = root.findViewById(R.id.seeMoreHumidity);
 
         moreTemperatureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(root).navigate(R.id.graphFragment);
+                Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
+                intent.putExtra("measurement", 0);
+                getActivity().startActivity(intent);
+            }
+        });
 
+        moreHumidityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
+                intent.putExtra("measurement", 1);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        moreCO2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
+                intent.putExtra("measurement", 2);
+                getActivity().startActivity(intent);
             }
         });
 
