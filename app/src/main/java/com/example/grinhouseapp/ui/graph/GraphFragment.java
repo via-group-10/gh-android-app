@@ -1,38 +1,33 @@
 package com.example.grinhouseapp.ui.graph;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.grinhouseapp.R;
-import com.example.grinhouseapp.model.Measurement;
-import com.example.grinhouseapp.ui.data.DataViewModel;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class GraphFragment extends AppCompatActivity {
 
     private GraphViewModel viewModel;
-    private LineChart mChart;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,37 +35,65 @@ public class GraphFragment extends AppCompatActivity {
         setContentView(R.layout.graph_fragment);
 
         Intent intent = getIntent();
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+
 
         /** TEMPERATURE = 0 ; HUMIDITY = 1 ; CO2 = 2 **/
         int category = intent.getIntExtra("measurement", 0);
 
-        mChart = (LineChart) findViewById(R.id.chart);
-//        mChart.setOnChartGestureListener(GraphFragment.this);
-//        mChart.setOnChartValueSelectedListener(GraphFragment.this);
-        mChart.setDragEnabled(true);
-        mChart.setScaleEnabled(false);
+
 
         ArrayList<Entry> yValues = new ArrayList<>();
+        LineGraphSeries<DataPoint> series = null;
+            series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                    new DataPoint(1, 0),
+                    new DataPoint(2, 5),
+                    new DataPoint(3, 3),
+                    new DataPoint(4, 2),
+                    new DataPoint(5, 6)
+            });
+        
+        graph.addSeries(series);
+
+        //viewModel.setTemperatureMeasurements("daily",category);
+//        viewModel.getMeasurements(category).observe(this, measurements ->
+//        {
+//            for(Measurement measurement : measurements)
+//            {
+//                LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+//                        new DataPoint(measurement.getMeasurementValue(),  measurement.getMeasurementValue()),
+//                        new DataPoint(measurement.getMeasurementDateTime(), measurement.getMeasurementValue()),
+//                        new DataPoint(measurement.getMeasurementDateTime(), measurement.getMeasurementValue()),
+//                        new DataPoint(measurement.getMeasurementDateTime(), measurement.getMeasurementValue()),
+//
+//                });
+//                graph.addSeries(series);
+//
+////                yValues.add(new Entry(measurement.getMeasurementValue(), measurement.getMeasurementDateTime());
+//            }
+//        });
 
 
-        viewModel.setTemperatureMeasurements("daily",category);
 
-        viewModel.getMeasurements(category).observe(this, measurements ->
-        {
-            for(Measurement measurement : measurements)
-            {
-                yValues.add(measurement.getMeasurementValue(), measurement.getMeasurementDateTime());
-            }
-        });
 
-        LineDataSet set1 = new LineDataSet(yValues,"Data set 1");
-
-        set1.setFillAlpha(110);
-
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(set1);
-
-        LineData data = new LineData(dataSets);
-        mChart.setData(data);
+//
+//        LineDataSet set1 = new LineDataSet(yValues,"Data set 1");
+//
+//        set1.setFillAlpha(110);
+//
+//        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+//        dataSets.add(set1);
+//
+//        LineData data = new LineData(dataSets);
+//        mChart.setData(data);
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private String toDate(long timestamp) {
+        Date date = new Date(timestamp * 1000);
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+
 }
