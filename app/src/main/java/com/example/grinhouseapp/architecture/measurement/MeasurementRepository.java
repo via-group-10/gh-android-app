@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.grinhouseapp.architecture.ServiceGenerator;
 import com.example.grinhouseapp.model.Measurement;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class MeasurementRepository {
     private final MutableLiveData<List<Measurement>> temperatureMeasurementMutableData;
     private final MutableLiveData<List<Measurement>> humidityMeasurementMutableData;
     private final MutableLiveData<List<Measurement>> carbonDioxideMeasurementMutableData;
+    private final MutableLiveData<List<Measurement>> filteredTemperatureMeasurementMutableData;
+    private final MutableLiveData<List<Measurement>> filteredCarbonDioxideMeasurementMutableData;
+    private final MutableLiveData<List<Measurement>> filteredHumidityMeasurementMutableData;
 
     private MeasurementRepository()
     {
@@ -31,6 +35,9 @@ public class MeasurementRepository {
         temperatureMeasurementMutableData = new MutableLiveData<>();
         humidityMeasurementMutableData = new MutableLiveData<>();
         carbonDioxideMeasurementMutableData = new MutableLiveData<>();
+        filteredHumidityMeasurementMutableData = new MutableLiveData<>();
+        filteredCarbonDioxideMeasurementMutableData = new MutableLiveData<>();
+        filteredTemperatureMeasurementMutableData = new MutableLiveData<>();
     }
 
     public static synchronized MeasurementRepository getInstance()
@@ -59,6 +66,18 @@ public class MeasurementRepository {
 
     public LiveData<List<Measurement>> getCarbonDioxideMeasurementMutableData() {
         return carbonDioxideMeasurementMutableData;
+    }
+
+    public LiveData<List<Measurement>> getFilteredTemperatureMeasurementMutableData() {
+        return filteredTemperatureMeasurementMutableData;
+    }
+
+    public LiveData<List<Measurement>> getFilteredCarbonDioxideMeasurementMutableData() {
+        return filteredCarbonDioxideMeasurementMutableData;
+    }
+
+    public LiveData<List<Measurement>> getFilteredHumidityMeasurementMutableData() {
+        return filteredHumidityMeasurementMutableData;
     }
 
     public void setAllMeasurements()
@@ -184,6 +203,87 @@ public class MeasurementRepository {
                         measurements.add(measurementResponse.getMeasurement());
                     }
                     carbonDioxideMeasurementMutableData.setValue(measurements);
+                }
+            }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
+                Log.i("Retrofit", "Something went wrong", t);
+            }
+        });
+    }
+
+    public void setFilterTemperature(Timestamp from, Timestamp to)
+    {
+        MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
+        Call<List<MeasurementResponse>> call = measurementApi.getFilteredTemperature(from, to);
+        call.enqueue(new Callback<List<MeasurementResponse>>() {
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
+                if(response.isSuccessful()) {
+
+                    ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
+                    ArrayList<Measurement> measurements = new ArrayList<>();
+                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                        measurements.add(measurementResponse.getMeasurement());
+                    }
+                    filteredTemperatureMeasurementMutableData.setValue(measurements);
+                }
+            }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
+                Log.i("Retrofit", "Something went wrong", t);
+            }
+        });
+    }
+
+    public void setFilterHumidity(Timestamp from, Timestamp to)
+    {
+        MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
+        Call<List<MeasurementResponse>> call = measurementApi.getFilteredHumidity(from, to);
+        call.enqueue(new Callback<List<MeasurementResponse>>() {
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
+                if(response.isSuccessful()) {
+
+                    ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
+                    ArrayList<Measurement> measurements = new ArrayList<>();
+                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                        measurements.add(measurementResponse.getMeasurement());
+                    }
+                    filteredHumidityMeasurementMutableData.setValue(measurements);
+                }
+            }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
+                Log.i("Retrofit", "Something went wrong", t);
+            }
+        });
+    }
+
+    public void setFilterCarbonDioxide(Timestamp from, Timestamp to)
+    {
+        MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
+        Call<List<MeasurementResponse>> call = measurementApi.getFilteredCarbonDioxide(from, to);
+        call.enqueue(new Callback<List<MeasurementResponse>>() {
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
+                if(response.isSuccessful()) {
+
+                    ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
+                    ArrayList<Measurement> measurements = new ArrayList<>();
+                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                        measurements.add(measurementResponse.getMeasurement());
+                    }
+                    filteredCarbonDioxideMeasurementMutableData.setValue(measurements);
                 }
             }
 
