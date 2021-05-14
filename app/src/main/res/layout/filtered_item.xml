@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal|center_vertical">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/filter_image"
+            android:src="@drawable/ic__home_green_24"
+            />
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+
+            <TextView
+                android:fontFamily="@font/nunito_regular"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7.5.2021"
+                android:id="@+id/filter_date"
+                />
+
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/filter_hour"
+            android:text="15:00"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/black"
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+        <TextView
+            android:fontFamily="@font/nunito_bold"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/filter_value"
+            android:layout_toEndOf="@+id/filter_hour"
+            android:text="200ppm"
+            android:layout_centerVertical="true"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,10 +1,15 @@
 package com.example.grinhouseapp.ui.measurementFilter;
 
+import android.text.format.Time;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.grinhouseapp.architecture.measurement.MeasurementRepository;
+import com.example.grinhouseapp.model.Measurement;
+import com.example.grinhouseapp.model.MeasurementType;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class MeasurementFilterViewModel extends ViewModel {
@@ -31,13 +36,13 @@ public class MeasurementFilterViewModel extends ViewModel {
         return repository.getFilteredCarbonDioxideMeasurementMutableData();
     }
 
-    public void setMeasurementRepository(MeasurementType type)
+    public void setMeasurementRepository(MeasurementType type, Timestamp from,Timestamp to )
     {
         if(type == MeasurementType.temperature)
-            measurementRepository.setFilterTemperature();
+            repository.setFilterTemperature(from,to);
         else if(type == MeasurementType.carbonDioxide)
-            measurementRepository.setFilterCarbonDioxide();
+            repository.setFilterCarbonDioxide(from,to);
         else
-            measurementRepository.setFilterHumidity();
+            repository.setFilterHumidity(from,to);
     }
 }

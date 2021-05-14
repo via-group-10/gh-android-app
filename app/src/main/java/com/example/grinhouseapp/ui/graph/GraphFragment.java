@@ -59,7 +59,7 @@ public class GraphFragment extends AppCompatActivity {
         {
             for(Measurement measurement : measurements)
             {
-                yValues.add(measurement.getMeasurementValue(), measurement.getMeasurementDateTime());
+//                yValues.add(measurement.getMeasurementValue(), measurement.getMeasurementDateTime());
             }
         });
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.grinhouseapp.model.MeasurementType;
 import com.example.grinhouseapp.ui.graph.GraphFragment;
+import com.example.grinhouseapp.ui.measurementFilter.MeasurementFilterActivity;
 import com.example.grinhouseapp.ui.notification.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -55,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if (itemId == R.id.filter){
-            Intent intent = new Intent(this,FilterActivity.class);
+            Intent intent = new Intent(this, MeasurementFilterActivity.class);
             startActivity(intent);
         }
 
