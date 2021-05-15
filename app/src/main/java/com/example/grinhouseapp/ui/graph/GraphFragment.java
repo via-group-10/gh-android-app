@@ -53,15 +53,20 @@ public class GraphFragment extends AppCompatActivity {
         ArrayList<Entry> yValues = new ArrayList<>();
 
 
-        viewModel.setTemperatureMeasurements("daily",category);
+        //viewModel.setTemperatureMeasurements("daily",category);
 
-        viewModel.getMeasurements(category).observe(this, measurements ->
-        {
-            for(Measurement measurement : measurements)
-            {
-                yValues.add(measurement.getMeasurementValue(), measurement.getMeasurementDateTime());
-            }
-        });
+
+        yValues.add(new Entry(1,2));
+        yValues.add(new Entry(2,5));
+        yValues.add(new Entry(3,10));
+        yValues.add(new Entry(4,5));
+//        viewModel.getMeasurements(category).observe(this, measurements ->
+//        {
+//            for(Measurement measurement : measurements)
+//            {
+//                //yValues.add(measurement.getMeasurementValue(), measurement.getMeasurementDateTime());
+//            }
+//        });
 
         LineDataSet set1 = new LineDataSet(yValues,"Data set 1");
 
