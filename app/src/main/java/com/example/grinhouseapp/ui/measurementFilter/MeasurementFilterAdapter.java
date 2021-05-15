@@ -13,18 +13,18 @@ import com.example.grinhouseapp.model.Measurement;
 
 import java.util.ArrayList;
 
-public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFilterAdapter.NewFilterViewHolder> {
+public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFilterAdapter.MeasurementFilterViewHolder> {
 
     private ArrayList<Measurement> measurementsList;
 
-    static class NewFilterViewHolder extends RecyclerView.ViewHolder{
+    class MeasurementFilterViewHolder extends RecyclerView.ViewHolder{
         public TextView date;
         public TextView hour;
         public TextView value;
 //        public ImageView image;
 
 
-        public NewFilterViewHolder(@NonNull View itemView) {
+        public MeasurementFilterViewHolder(@NonNull View itemView) {
             super(itemView);
             date = itemView.findViewById(R.id.filter_date);
             hour = itemView.findViewById(R.id.filter_hour);
@@ -39,14 +39,14 @@ public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFi
 
     @NonNull
     @Override
-    public NewFilterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MeasurementFilterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.filtered_item,parent,false);
-        NewFilterViewHolder evh = new NewFilterViewHolder(v);
+        MeasurementFilterViewHolder evh = new MeasurementFilterViewHolder(v);
         return evh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewFilterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MeasurementFilterViewHolder holder, int position) {
         Measurement currentItem = measurementsList.get(position);
         holder.hour.setText(String.valueOf(currentItem.getMeasurementDateTime()) );
         holder.date.setText(String.valueOf(currentItem.getMeasurementDateTime()));
