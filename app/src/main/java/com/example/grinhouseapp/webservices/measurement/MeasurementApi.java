@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.architecture.measurement;
+package com.example.grinhouseapp.webservices.measurement;
 
 
 import java.sql.Timestamp;

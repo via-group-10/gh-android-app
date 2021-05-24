@@ -1,6 +1,6 @@
-package com.example.grinhouseapp.architecture.graph;
+package com.example.grinhouseapp.webservices.graph;
 
-import com.example.grinhouseapp.architecture.measurement.MeasurementResponse;
+import com.example.grinhouseapp.webservices.measurement.MeasurementResponse;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.grinhouseapp.model.Measurement;
-import com.example.grinhouseapp.architecture.measurement.MeasurementRepository;
+import com.example.grinhouseapp.webservices.measurement.MeasurementRepository;
 import com.example.grinhouseapp.model.MeasurementType;
 
 import java.util.List;

@@ -1,12 +1,12 @@
-package com.example.grinhouseapp.architecture.graph;
+package com.example.grinhouseapp.webservices.graph;
 
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.grinhouseapp.architecture.ServiceGenerator;
-import com.example.grinhouseapp.architecture.measurement.MeasurementResponse;
+import com.example.grinhouseapp.webservices.ServiceGenerator;
+import com.example.grinhouseapp.webservices.measurement.MeasurementResponse;
 import com.example.grinhouseapp.model.Measurement;
 
 import java.util.ArrayList;

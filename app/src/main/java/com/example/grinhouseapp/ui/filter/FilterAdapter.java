@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.ui.measurementFilter;
+package com.example.grinhouseapp.ui.filter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.Measurement;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
-public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFilterAdapter.MeasurementFilterViewHolder> {
+public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.MeasurementFilterViewHolder> {
 
     private ArrayList<Measurement> measurementsList;
 
@@ -37,7 +35,7 @@ public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFi
         }
     }
 
-    public MeasurementFilterAdapter(ArrayList<Measurement> list ){
+    public FilterAdapter(ArrayList<Measurement> list ){
         this.measurementsList = list;
     }
 

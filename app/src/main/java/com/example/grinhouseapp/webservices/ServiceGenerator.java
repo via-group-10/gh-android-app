@@ -1,8 +1,8 @@
-package com.example.grinhouseapp.architecture;
+package com.example.grinhouseapp.webservices;
 
-import com.example.grinhouseapp.architecture.graph.GraphApi;
-import com.example.grinhouseapp.architecture.measurement.MeasurementApi;
-import com.example.grinhouseapp.architecture.profile.ProfileApi;
+import com.example.grinhouseapp.webservices.graph.GraphApi;
+import com.example.grinhouseapp.webservices.measurement.MeasurementApi;
+import com.example.grinhouseapp.webservices.profile.ProfileApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
-import com.example.grinhouseapp.treshold.CarbonDioxideActivity;
-import com.example.grinhouseapp.treshold.HumidityActivity;
-import com.example.grinhouseapp.treshold.TemperatureActivity;
+import com.example.grinhouseapp.ui.treshold.CarbonDioxideActivity;
+import com.example.grinhouseapp.ui.treshold.HumidityActivity;
+import com.example.grinhouseapp.ui.treshold.TemperatureActivity;
 
 import com.example.grinhouseapp.model.MeasurementType;
 

@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.architecture.profile;
+package com.example.grinhouseapp.webservices.profile;
 
 import com.example.grinhouseapp.model.ThresholdProfile;
 

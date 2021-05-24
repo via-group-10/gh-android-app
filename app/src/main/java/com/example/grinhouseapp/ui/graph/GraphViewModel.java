@@ -3,10 +3,8 @@ package com.example.grinhouseapp.ui.graph;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.grinhouseapp.architecture.graph.GraphRepository;
-import com.example.grinhouseapp.architecture.measurement.MeasurementRepository;
+import com.example.grinhouseapp.webservices.graph.GraphRepository;
 import com.example.grinhouseapp.model.Measurement;
-import com.example.grinhouseapp.model.MeasurementType;
 
 import java.util.List;
 

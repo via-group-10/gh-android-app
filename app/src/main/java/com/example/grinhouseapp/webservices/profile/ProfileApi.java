@@ -1,11 +1,9 @@
-package com.example.grinhouseapp.architecture.profile;
+package com.example.grinhouseapp.webservices.profile;
 
 import com.example.grinhouseapp.model.ThresholdProfile;
 
 import java.util.List;
 
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;

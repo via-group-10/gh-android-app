@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.treshold;
+package com.example.grinhouseapp.ui.treshold;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,15 +9,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
 
-public class CarbonDioxideActivity extends AppCompatActivity {
+public class HumidityActivity extends AppCompatActivity {
 
-    CarbonDioxideViewModel carbonDioxideViewModel;
+    HumidityViewModel humidityViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carbondioxide);
-        carbonDioxideViewModel = new ViewModelProvider(this).get(CarbonDioxideViewModel.class);
+        setContentView(R.layout.activity_humidity);
+        humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
 
         Intent bundle = getIntent();
         Toolbar toolbar = findViewById(R.id.up_toolbar);

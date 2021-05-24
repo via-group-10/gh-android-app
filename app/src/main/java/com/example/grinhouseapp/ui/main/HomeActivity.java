@@ -1,20 +1,20 @@
-package com.example.grinhouseapp;
+package com.example.grinhouseapp.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
-import com.example.grinhouseapp.model.MeasurementType;
+import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.ui.graph.GraphFragment;
-import com.example.grinhouseapp.ui.measurementFilter.MeasurementFilterActivity;
+import com.example.grinhouseapp.ui.filter.FilterActivity;
 import com.example.grinhouseapp.ui.notification.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //disable dark mode
         setContentView(R.layout.activity_home);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         Toolbar toolbar = findViewById(R.id.nav_toolbar);
@@ -56,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if (itemId == R.id.filter){
-            Intent intent = new Intent(this, MeasurementFilterActivity.class);
+            Intent intent = new Intent(this, FilterActivity.class);
             startActivity(intent);
         }
 

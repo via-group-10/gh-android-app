@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.architecture.measurement;
+package com.example.grinhouseapp.webservices.measurement;
 
 import com.example.grinhouseapp.model.Measurement;
 import com.example.grinhouseapp.model.MeasurementType;

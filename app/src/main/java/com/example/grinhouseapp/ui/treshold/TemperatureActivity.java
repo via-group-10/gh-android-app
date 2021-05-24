@@ -1,4 +1,4 @@
-package com.example.grinhouseapp.treshold;
+package com.example.grinhouseapp.ui.treshold;
 
 import android.content.Intent;
 import android.os.Bundle;

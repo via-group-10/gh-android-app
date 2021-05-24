@@ -12,30 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GrinHouseApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.measurementFilter.MeasurementFilterActivity"></activity>
+        <activity android:name=".ui.filter.FilterActivity"
+            android:parentActivityName=".ui.main.HomeActivity"/>
         <activity
-            android:name=".treshold.HumidityActivity"
-            android:parentActivityName=".HomeActivity" />
+            android:name=".ui.treshold.HumidityActivity"
+            android:parentActivityName=".ui.main.HomeActivity" />
         <activity
-            android:name=".treshold.CarbonDioxideActivity"
-            android:parentActivityName=".HomeActivity" />
+            android:name=".ui.treshold.CarbonDioxideActivity"
+            android:parentActivityName=".ui.main.HomeActivity" />
         <activity
-            android:name=".treshold.TemperatureActivity"
-            android:parentActivityName=".HomeActivity" />
-        <activity
-            android:name=".FilterActivity"
-            android:parentActivityName=".HomeActivity" />
+            android:name=".ui.treshold.TemperatureActivity"
+            android:parentActivityName=".ui.main.HomeActivity" />
         <activity android:name=".ui.graph.GraphFragment" />
         <activity
             android:name=".ui.notification.Notification"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".ui.main.HomeActivity" />
 
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@drawable/shape" />
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.main.HomeActivity"
             android:label="GrinHouse">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,7 +3,7 @@ package com.example.grinhouseapp.ui.addProfile;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.grinhouseapp.architecture.profile.ProfileRepository;
+import com.example.grinhouseapp.webservices.profile.ProfileRepository;
 import com.example.grinhouseapp.model.ThresholdProfile;
 
 public class AddProfileViewModel extends ViewModel {

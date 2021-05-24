@@ -1,11 +1,11 @@
-package com.example.grinhouseapp.architecture.measurement;
+package com.example.grinhouseapp.webservices.measurement;
 
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.grinhouseapp.architecture.ServiceGenerator;
+import com.example.grinhouseapp.webservices.ServiceGenerator;
 import com.example.grinhouseapp.model.Measurement;
 
 import java.sql.Timestamp;
