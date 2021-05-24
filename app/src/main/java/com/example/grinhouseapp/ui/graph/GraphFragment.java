@@ -54,38 +54,6 @@ public class GraphFragment extends AppCompatActivity {
             });
         
         graph.addSeries(series);
-
-        //viewModel.setTemperatureMeasurements("daily",category);
-//        viewModel.getMeasurements(category).observe(this, measurements ->
-//        {
-//            for(Measurement measurement : measurements)
-//            {
-//                LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-//                        new DataPoint(measurement.getMeasurementValue(),  measurement.getMeasurementValue()),
-//                        new DataPoint(measurement.getMeasurementDateTime(), measurement.getMeasurementValue()),
-//                        new DataPoint(measurement.getMeasurementDateTime(), measurement.getMeasurementValue()),
-//                        new DataPoint(measurement.getMeasurementDateTime(), measurement.getMeasurementValue()),
-//
-//                });
-//                graph.addSeries(series);
-//
-////                yValues.add(new Entry(measurement.getMeasurementValue(), measurement.getMeasurementDateTime());
-//            }
-//        });
-
-
-
-
-//
-//        LineDataSet set1 = new LineDataSet(yValues,"Data set 1");
-//
-//        set1.setFillAlpha(110);
-//
-//        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-//        dataSets.add(set1);
-//
-//        LineData data = new LineData(dataSets);
-//        mChart.setData(data);
     }
 
 
