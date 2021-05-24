@@ -18,36 +18,36 @@
         android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <CheckBox
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/filter_data"
-        android:text="@string/carbonDioxideName"
-        android:id="@+id/checkboxCO2"
-        android:fontFamily="@font/nunito_regular"
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"
-        />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_regular"
-        android:textColor="@color/black"
-        android:layout_below="@id/checkboxCO2"
-        android:text="@string/temperatureName"
-        android:id="@+id/checkboxTemperature"
+        android:id="@+id/radioGroup"
+        >
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioCO2"
+            android:text="CO2"
+            android:textColor="@color/black"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioTemperature"
+            android:text="Temperature"
+            android:textColor="@color/black"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioHumidity"
+            android:text="Humidity"
+            android:textColor="@color/black"
+            />
+    </RadioGroup>
 
-        />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_regular"
-        android:textColor="@color/black"
-        android:layout_below="@id/checkboxTemperature"
-        android:text="@string/humidityName"
-        android:id="@+id/checkboxHumidity"
-        />
 
     <Button
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/nunito_regular"
 
-        android:layout_below="@id/checkboxHumidity"/>
+        android:layout_below="@id/radioGroup"/>
 
 
 

@@ -1,7 +1,5 @@
 package com.example.grinhouseapp.ui.measurementFilter;
 
-import android.text.format.Time;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -36,7 +34,7 @@ public class MeasurementFilterViewModel extends ViewModel {
         return repository.getFilteredCarbonDioxideMeasurementMutableData();
     }
 
-    public void setMeasurementRepository(MeasurementType type, Timestamp from,Timestamp to )
+    public void setMeasurementRepository(MeasurementType type, Timestamp from, Timestamp to )
     {
         if(type == MeasurementType.temperature)
             repository.setFilterTemperature(from,to);

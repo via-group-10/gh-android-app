@@ -11,7 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.Measurement;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFilterAdapter.MeasurementFilterViewHolder> {
 
@@ -48,8 +52,12 @@ public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFi
     @Override
     public void onBindViewHolder(@NonNull MeasurementFilterViewHolder holder, int position) {
         Measurement currentItem = measurementsList.get(position);
-        holder.hour.setText(String.valueOf(currentItem.getMeasurementDateTime()) );
-        holder.date.setText(String.valueOf(currentItem.getMeasurementDateTime()));
+        Date date = new Date();
+        date.setTime(currentItem.getMeasurementDateTime().getTime());
+        String hourString = new SimpleDateFormat("HH:mm").format(date);
+        String dateString = new SimpleDateFormat("dd-MM-yyyy").format(date);
+        holder.hour.setText(hourString);
+        holder.date.setText(dateString);
         holder.value.setText( String.valueOf(currentItem.getMeasurementValue()));
     }
 
@@ -57,8 +65,6 @@ public class MeasurementFilterAdapter extends RecyclerView.Adapter<MeasurementFi
     public int getItemCount() {
         return measurementsList.size();
     }
-
-
 
 
 }
