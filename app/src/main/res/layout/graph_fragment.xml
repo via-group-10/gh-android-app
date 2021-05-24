@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.graph.GraphFragment">
 
-    <com.github.mikephil.charting.charts.LineChart
+
+
+    <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/chart"/>
+        android:id="@+id/graph" />
 </RelativeLayout>
