@@ -4,7 +4,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -14,12 +13,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -57,7 +51,6 @@ public class GraphFragment extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private String toDate(long timestamp) {
         Date date = new Date(timestamp * 1000);
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
