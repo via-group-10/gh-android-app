@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.measurementFilter.MeasurementFilterActivity"
+    android:padding="20sp"
+    android:backgroundTint="@color/white"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/filter_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Filter data"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/filter_data"
+        android:text="@string/carbonDioxideName"
+        android:id="@+id/checkboxCO2"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/black"
+        android:layout_below="@id/checkboxCO2"
+        android:text="@string/temperatureName"
+        android:id="@+id/checkboxTemperature"
+
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/black"
+        android:layout_below="@id/checkboxTemperature"
+        android:text="@string/humidityName"
+        android:id="@+id/checkboxHumidity"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_picker_btn"
+        android:text="Select date"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/nunito_regular"
+
+        android:layout_below="@id/checkboxHumidity"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/date_picker_btn"
+        android:layout_marginTop="20dp"
+        android:id="@+id/row"
+        android:layout_margin="4dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal|center_vertical"
+        >
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/filter_image"
+            android:src="@drawable/ic__home_green_24"
+            android:visibility="invisible"
+            />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1.5" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="Date"
+            android:textColor="@color/black" />
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="Hour"
+            android:textColor="@color/black" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></Space>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/filter_hour"
+
+            android:fontFamily="@font/nunito_regular"
+            android:text="Value"
+            android:textColor="@color/black" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></Space>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filterRecView"
+        android:layout_below="@+id/row"/>
+
+</RelativeLayout>

@@ -19,6 +19,11 @@ import com.example.grinhouseapp.ui.graph.GraphFragment;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class DataFragment extends Fragment {
 
