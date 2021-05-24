@@ -10,9 +10,11 @@ import android.widget.RadioButton;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.MeasurementType;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class GraphFragment extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class GraphFragment extends AppCompatActivity {
     GraphView graph;
     int category;
     String filter;
+    Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,9 @@ public class GraphFragment extends AppCompatActivity {
 
         /** TEMPERATURE = 0 ; HUMIDITY = 1 ; CO2 = 2 **/
         category = intent.getIntExtra("measurement", 0);
-
+        calendar = Calendar.getInstance();
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
         filter = "monthly";
         drawGraph(filter);
 
@@ -73,9 +78,15 @@ public class GraphFragment extends AppCompatActivity {
                     graph.removeAllSeries();
                     DataPoint[] dataPoints = new DataPoint[measurements.size()];
                     for (int i = 0;i<measurements.size();i++){
+//                        Date[i] = new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasurementValue());
                         dataPoints[i] = new DataPoint(new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasurementValue());
                     }
                     series = new LineGraphSeries<>(dataPoints);
+                    graph.getViewport().setMinX(dataPoints[0].getX());
+                    graph.getViewport().setMaxX(dataPoints[dataPoints.length - 1].getX());
+                    graph.getViewport().setMinY(dataPoints[0].getY());
+                    graph.getViewport().setMaxY(dataPoints[dataPoints.length - 1].getY());
+
                     graph.addSeries(series);
                 });
                 break;
