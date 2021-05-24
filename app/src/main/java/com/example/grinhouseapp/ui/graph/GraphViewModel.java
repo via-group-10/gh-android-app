@@ -3,33 +3,43 @@ package com.example.grinhouseapp.ui.graph;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.grinhouseapp.webservices.graph.GraphRepository;
 import com.example.grinhouseapp.model.Measurement;
+import com.example.grinhouseapp.webservices.graph.GraphRepository;
+import com.example.grinhouseapp.webservices.measurement.MeasurementRepository;
+import com.example.grinhouseapp.model.MeasurementType;
 
 import java.util.List;
 
 public class GraphViewModel extends ViewModel {
-    GraphRepository repository;
 
-    public GraphViewModel(){repository = GraphRepository.getInstance();}
-    // TODO: Implement the ViewModel
+    GraphRepository graphRepository;
 
-    LiveData<List<Measurement>> getMeasurements(int category)
+    public GraphViewModel()
     {
-        if(category == 0)
-            return repository.getTemperatureMeasurement();
-        else if(category == 1)
-            return repository.getHumidityMeasurement();
-        return repository.getCarbonDioxideMeasurement();
+        graphRepository = GraphRepository.getInstance();
     }
 
-    public void setTemperatureMeasurements(String filter, int category)
+    public LiveData<List<Measurement>> getTemperatureGraphMeasurement()
     {
-        if(category == 0)
-            repository.setTemperatureMeasurement(filter);
-        else if(category == 1)
-            repository.setHumidityMeasurement(filter);
+        return graphRepository.getTemperatureMeasurement();
+    }
+    LiveData<List<Measurement>> getHumidityMeasurement()
+    {
+        return graphRepository.getHumidityMeasurement();
+    }
+    LiveData<List<Measurement>> getCarbonDioxideMeasurement()
+    {
+        return graphRepository.getCarbonDioxideMeasurement();
+    }
+
+
+    public void setMeasurementRepository(MeasurementType type, String filter)
+    {
+        if(type == MeasurementType.temperature)
+            graphRepository.setTemperatureMeasurement(filter);
+        else if(type == MeasurementType.carbonDioxide)
+            graphRepository.setCarbonDioxideMeasurement(filter);
         else
-            repository.setCarbonDioxideMeasurement(filter);
+            graphRepository.setHumidityMeasurement(filter);
     }
 }

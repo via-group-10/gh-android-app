@@ -7,12 +7,13 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface GraphApi {
-    @GET("api/graph/temperature/{filter}")
-    Call<List<MeasurementResponse>> getTemperatureGraphData(@Path("filter") String filter);
-    @GET("api/graph/humidity/{filter}")
-    Call<List<MeasurementResponse>> getHumidityGraphData(@Path("filter") String filter);
-    @GET("api/graph/carbon-dioxide/{filter}")
-    Call<List<MeasurementResponse>> getCarbonDioxideGraphData(@Path("filter") String filter);
+    @GET("api/graph/temperature")
+    Call<List<MeasurementResponse>> getTemperatureGraphData(@Query("filter") String filter);
+    @GET("api/graph/humidity")
+    Call<List<MeasurementResponse>> getHumidityGraphData(@Query("filter") String filter);
+    @GET("api/graph/carbon-dioxide")
+    Call<List<MeasurementResponse>> getCarbonDioxideGraphData(@Query("filter") String filter);
 }

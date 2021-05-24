@@ -18,7 +18,7 @@ public class DataViewModel extends ViewModel {
         measurementRepository = MeasurementRepository.getInstance();
     }
 
-    LiveData<List<Measurement>> getTemperatureMeasurement()
+    public LiveData<List<Measurement>> getTemperatureMeasurement()
     {
         return measurementRepository.getTemperatureMeasurementMutableData();
     }
