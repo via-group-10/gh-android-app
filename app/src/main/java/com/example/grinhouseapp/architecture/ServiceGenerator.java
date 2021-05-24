@@ -17,7 +17,7 @@ public class ServiceGenerator {
         if(measurementApi == null)
         {
             measurementApi = new Retrofit.Builder()
-                    .baseUrl("http://ajajaj.serveminecraft.net:8080/")
+                    .baseUrl("http://20.52.3.144:8080/")
 //                    .baseUrl("http://192.168.87.100:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
@@ -31,7 +31,7 @@ public class ServiceGenerator {
         if(profileApi == null)
         {
             profileApi = new Retrofit.Builder()
-                    .baseUrl("http://ajajaj.serveminecraft.net:8080/")
+                    .baseUrl("http://20.52.3.144:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(ProfileApi.class);
@@ -44,7 +44,7 @@ public class ServiceGenerator {
         if(graphApi == null)
         {
             graphApi = new Retrofit.Builder()
-                    .baseUrl("http://ajajaj.serveminecraft.net:8080/")
+                    .baseUrl("http://20.52.3.144:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(GraphApi.class);
