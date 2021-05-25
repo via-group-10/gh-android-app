@@ -7,8 +7,4 @@
         android:icon="@drawable/ic_baseline_filter_alt_24"
         app:showAsAction="ifRoom"/>
 
-    <item android:title="Notification"
-        android:id="@+id/notify_icon"
-        android:icon="@drawable/ic_baseline_notifications_24"
-        app:showAsAction="ifRoom"/>
 </menu>

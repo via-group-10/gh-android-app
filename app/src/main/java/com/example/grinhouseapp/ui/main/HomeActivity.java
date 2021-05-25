@@ -9,7 +9,6 @@ import android.view.View;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.ui.graph.GraphFragment;
 import com.example.grinhouseapp.ui.filter.FilterFragment;
-import com.example.grinhouseapp.ui.notification.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -55,11 +54,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.notify_icon){
-            Intent intent = new Intent(this, Notification.class);
-            startActivity(intent);
-        }
-        else if (itemId == R.id.filter){
+        if (itemId == R.id.filter){
 
             Fragment fragment = new FilterFragment();
           
@@ -72,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void seeMore(View view) {
-        int measurementCategory = 0;
+        int measurementCategory;
 
         if(view.getId() == R.id.seeMoreTemperature)
             measurementCategory = 0;

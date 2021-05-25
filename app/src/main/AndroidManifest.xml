@@ -20,9 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.filter.FilterActivity"
-            android:parentActivityName=".ui.main.HomeActivity" />
-        <activity
             android:name=".ui.treshold.HumidityActivity"
             android:parentActivityName=".ui.main.HomeActivity" />
         <activity
@@ -32,9 +29,6 @@
             android:name=".ui.treshold.TemperatureActivity"
             android:parentActivityName=".ui.main.HomeActivity" />
         <activity android:name=".ui.graph.GraphFragment" />
-        <activity
-            android:name=".ui.notification.Notification"
-            android:parentActivityName=".ui.main.HomeActivity" />
 
         <meta-data
             android:name="com.google.android.actions"
