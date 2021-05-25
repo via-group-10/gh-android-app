@@ -136,4 +136,29 @@ public class ProfileRepository {
             }
         });
     }
+
+    public void updateProfile(int profileId, String profileName, boolean active, int minimumTemperature,
+                              int maximumTemperature, int minimumHumidity, int maximumHumidity,
+                              int minimumCarbonDioxide, int maximumCarbonDioxide, int greenhouseId)
+    {
+        ProfileApi profileApi = ServiceGenerator.getProfileApi();
+        ThresholdProfile profile = new ThresholdProfile(profileId, profileName, active, minimumTemperature,
+                maximumTemperature, minimumHumidity, maximumHumidity, minimumCarbonDioxide, maximumCarbonDioxide, greenhouseId);
+        Call<ProfileResponse> call = profileApi.putProfile(profile);
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if(response.isSuccessful())
+                {
+                    //allProfilesMutableData.getValue().add(profile);
+                    Log.i("Update profile",response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Log.i("Retrofit", "CREATE PROFILE Something went wrong");
+            }
+        });
+    }
 }

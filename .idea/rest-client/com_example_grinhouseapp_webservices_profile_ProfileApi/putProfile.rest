@@ -1,0 +1,19 @@
+PUT
+{BASE_URL}/api/profile
+
+# Headers
+@Content-Type: application/json
+
+# Body
+{
+  "profileId": "{profileId}",
+  "profileName": "{profileName}",
+  "active": "{active}",
+  "minimumTemperature": "{minimumTemperature}",
+  "maximumTemperature": "{maximumTemperature}",
+  "minimumHumidity": "{minimumHumidity}",
+  "maximumHumidity": "{maximumHumidity}",
+  "minimumCarbonDioxide": "{minimumCarbonDioxide}",
+  "maximumCarbonDioxide": "{maximumCarbonDioxide}",
+  "greenhouseId": "{greenhouseId}"
+}

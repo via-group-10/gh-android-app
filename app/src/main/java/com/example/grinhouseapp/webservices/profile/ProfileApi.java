@@ -22,5 +22,5 @@ public interface ProfileApi {
     @POST("api/profile")
     Call<ProfileResponse> createProfile(@Body ThresholdProfile profile);
     @PUT("api/profile")
-    Call<ProfileResponse> putProfile();
+    Call<ProfileResponse> putProfile(@Body ThresholdProfile profile);
 }
