@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grinhouseapp.R;
+import com.example.grinhouseapp.ui.data.DataViewModel;
 import com.example.grinhouseapp.ui.treshold.CarbonDioxideActivity;
 import com.example.grinhouseapp.ui.treshold.HumidityActivity;
 import com.example.grinhouseapp.ui.treshold.TemperatureActivity;
@@ -31,8 +32,9 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+
+        homeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         homeViewModel.setMeasurementRepository();

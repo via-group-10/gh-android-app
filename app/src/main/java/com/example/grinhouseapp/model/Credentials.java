@@ -1,8 +1,6 @@
 package com.example.grinhouseapp.model;
 
-import java.io.Serializable;
-
-public class Credentials implements Serializable {
+public class Credentials{
 
     private final String username;
     private final String password;
@@ -11,13 +9,5 @@ public class Credentials implements Serializable {
     {
         this.username = username;
         this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }

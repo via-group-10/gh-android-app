@@ -1,44 +1,36 @@
 package com.example.grinhouseapp.ui.data;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.grinhouseapp.database.DatabaseRepository;
 import com.example.grinhouseapp.model.Measurement;
 import com.example.grinhouseapp.webservices.measurement.MeasurementRepository;
 import com.example.grinhouseapp.model.MeasurementType;
 
 import java.util.List;
 
-public class DataViewModel extends ViewModel {
+public class DataViewModel extends AndroidViewModel {
 
     MeasurementRepository measurementRepository;
 
-    public DataViewModel()
+    public DataViewModel(Application app)
     {
+        super(app);
         measurementRepository = MeasurementRepository.getInstance();
     }
 
-    public LiveData<List<Measurement>> getTemperatureMeasurement()
+    public LiveData<List<Measurement>> getMeasurement(MeasurementType measurementType)
     {
-        return measurementRepository.getTemperatureMeasurementMutableData();
-    }
-    LiveData<List<Measurement>> getHumidityMeasurement()
-    {
-        return measurementRepository.getHumidityMeasurementMutableData();
-    }
-    LiveData<List<Measurement>> getCarbonDioxideMeasurement()
-    {
-        return measurementRepository.getCarbonDioxideMeasurementMutableData();
-    }
-
-    List<Measurement> liveDataToList(MeasurementType type)
-    {
-        if(type == MeasurementType.temperature)
-            return measurementRepository.getTemperatureMeasurementMutableData().getValue();
-        else if(type == MeasurementType.carbonDioxide)
-            return measurementRepository.getCarbonDioxideMeasurementMutableData().getValue();
+        if(measurementType == MeasurementType.temperature)
+            return measurementRepository.getTemperatureMeasurementMutableData();
+        else if(measurementType == MeasurementType.humidity)
+            return measurementRepository.getHumidityMeasurementMutableData();
         else
-            return measurementRepository.getHumidityMeasurementMutableData().getValue();
+            return measurementRepository.getCarbonDioxideMeasurementMutableData();
     }
 
     public void setMeasurementRepository(MeasurementType type)
