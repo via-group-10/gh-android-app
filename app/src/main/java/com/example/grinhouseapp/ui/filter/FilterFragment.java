@@ -1,15 +1,18 @@
 package com.example.grinhouseapp.ui.filter;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -26,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FilterActivity extends AppCompatActivity  {
+public class FilterFragment extends Fragment {
 
     private Button datePickerBtn, searchButton;
 
@@ -41,23 +44,22 @@ public class FilterActivity extends AppCompatActivity  {
 
     private Long dateFromL, dateToL;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_filter,container, false);
 
         viewModel = new ViewModelProvider(this).get(FilterViewModel.class);
 
-        co2 = findViewById(R.id.radioCO2);
-        humidity = findViewById(R.id.radioHumidity);
-        temperature = findViewById(R.id.radioTemperature);
-        date_picker_text = findViewById(R.id.date_picker_text);
-        searchButton = findViewById(R.id.searchButton);
+        co2 = view.findViewById(R.id.radioCO2);
+        humidity = view.findViewById(R.id.radioHumidity);
+        temperature = view.findViewById(R.id.radioTemperature);
+        date_picker_text = view.findViewById(R.id.date_picker_text);
+        searchButton = view.findViewById(R.id.searchButton);
 
-        datePickerBtn = findViewById(R.id.date_picker_btn);
-        recyclerView = findViewById(R.id.filterRecView);
+        datePickerBtn = view.findViewById(R.id.date_picker_btn);
+        recyclerView = view.findViewById(R.id.filterRecView);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(getActivity());
 
         filterList = new ArrayList<>();
 
@@ -72,9 +74,11 @@ public class FilterActivity extends AppCompatActivity  {
         datePickerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+                materialDatePicker.show(getActivity().getSupportFragmentManager(), "DATE_PICKER");
             }
         });
+
+
 
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long,Long>>() {
             @Override
@@ -94,25 +98,29 @@ public class FilterActivity extends AppCompatActivity  {
             try {
                 listenerOnCheckboxClick(dateFromL, dateToL);
             }catch (NullPointerException e){
-                Toast.makeText(this, "You need to set date first!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "You need to set date first!", Toast.LENGTH_SHORT).show();
             }
             filterList.clear();
         });
+
+        return view;
     }
+
+
 
 
     public void listenerOnCheckboxClick(long from, long to){
 
         if (co2.isChecked()){
             viewModel.setMeasurementRepository(MeasurementType.carbonDioxide, new Timestamp(from),new Timestamp(to));
-            viewModel.getCarbonDioxideFilterMeasurement().observe(this, measurements -> {
+            viewModel.getCarbonDioxideFilterMeasurement().observe(getActivity(), measurements -> {
                 filterList.clear();
                 filterList.addAll(measurements);
                 adapter.notifyDataSetChanged();
             });
         } else if (humidity.isChecked()){
             viewModel.setMeasurementRepository(MeasurementType.humidity, new Timestamp(from),new Timestamp(to));
-            viewModel.getHumidityFilterMeasurement().observe(this, measurements -> {
+            viewModel.getHumidityFilterMeasurement().observe(getActivity(), measurements -> {
                 filterList.clear();
                 filterList.addAll(measurements);
                 adapter.notifyDataSetChanged();
@@ -121,7 +129,7 @@ public class FilterActivity extends AppCompatActivity  {
 
         else {
             viewModel.setMeasurementRepository(MeasurementType.temperature, new Timestamp(from),new Timestamp(to));
-            viewModel.getTemperatureFilterMeasurement().observe(this, measurements -> {
+            viewModel.getTemperatureFilterMeasurement().observe(getActivity(), measurements -> {
                 filterList.clear();
                 filterList.addAll(measurements);
                 adapter.notifyDataSetChanged();

@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.filter.FilterActivity"
+    tools:context=".ui.filter.FilterFragment"
     android:padding="20sp"
+    android:id="@+id/filtering"
     android:backgroundTint="@color/white"
     android:background="@color/white">
 
