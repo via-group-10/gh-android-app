@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.Measurement;
 import com.example.grinhouseapp.model.MeasurementType;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
@@ -41,7 +44,7 @@ public class FilterFragment extends Fragment {
     private RadioButton co2, humidity, temperature;
     private TextView date_picker_text;
     MaterialDatePicker materialDatePicker;
-
+    BottomNavigationView bottomNavigationView;
     private Long dateFromL, dateToL;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -49,6 +52,8 @@ public class FilterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_filter,container, false);
 
         viewModel = new ViewModelProvider(this).get(FilterViewModel.class);
+        bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+        bottomNavigationView.setVisibility(View.INVISIBLE);
 
         co2 = view.findViewById(R.id.radioCO2);
         humidity = view.findViewById(R.id.radioHumidity);
@@ -137,7 +142,9 @@ public class FilterFragment extends Fragment {
         }
     }
 
-
-
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        bottomNavigationView.setVisibility(View.VISIBLE);
+    }
 }
