@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.ui.graph.GraphFragment;
-import com.example.grinhouseapp.ui.filter.FilterActivity;
+import com.example.grinhouseapp.ui.filter.FilterFragment;
 import com.example.grinhouseapp.ui.notification.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,6 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -57,8 +60,12 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if (itemId == R.id.filter){
-            Intent intent = new Intent(this, FilterActivity.class);
-            startActivity(intent);
+
+            Fragment fragment = new FilterFragment();
+          
+            FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.content_frame,fragment).addToBackStack(null).commit();
+
         }
 
         return super.onOptionsItemSelected(item);

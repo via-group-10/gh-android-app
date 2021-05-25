@@ -12,8 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GrinHouseApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.filter.FilterActivity"
-            android:parentActivityName=".ui.main.HomeActivity"/>
         <activity
             android:name=".ui.treshold.HumidityActivity"
             android:parentActivityName=".ui.main.HomeActivity" />
