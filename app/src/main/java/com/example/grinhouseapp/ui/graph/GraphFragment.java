@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RadioButton;
 
 import com.example.grinhouseapp.R;
@@ -81,36 +82,46 @@ public class GraphFragment extends AppCompatActivity {
 //                        Date[i] = new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasurementValue());
                         dataPoints[i] = new DataPoint(new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasurementValue());
                     }
+                    Log.i("Graph", "Temperature " + filter);
                     series = new LineGraphSeries<>(dataPoints);
                     graph.getViewport().setMinX(dataPoints[0].getX());
                     graph.getViewport().setMaxX(dataPoints[dataPoints.length - 1].getX());
                     graph.getViewport().setMinY(dataPoints[0].getY());
                     graph.getViewport().setMaxY(dataPoints[dataPoints.length - 1].getY());
-
                     graph.addSeries(series);
                 });
                 break;
             case 1:
                 viewModel.setMeasurementRepository(MeasurementType.humidity, filter);
-                viewModel.getTemperatureGraphMeasurement().observe(this, measurements -> {
+                viewModel.getHumidityMeasurement().observe(this, measurements -> {
                     graph.removeAllSeries();
                     DataPoint[] dataPoints = new DataPoint[measurements.size()];
                     for (int i = 0;i<measurements.size();i++){
                         dataPoints[i] = new DataPoint(new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasurementValue());
                     }
+                    Log.i("Graph", "Humidity " + filter);
                     series = new LineGraphSeries<>(dataPoints);
+                    graph.getViewport().setMinX(dataPoints[0].getX());
+                    graph.getViewport().setMaxX(dataPoints[dataPoints.length - 1].getX());
+                    graph.getViewport().setMinY(dataPoints[0].getY());
+                    graph.getViewport().setMaxY(dataPoints[dataPoints.length - 1].getY());
                     graph.addSeries(series);
                 });
                 break;
             case 2:
                 viewModel.setMeasurementRepository(MeasurementType.carbonDioxide, filter);
-                viewModel.getTemperatureGraphMeasurement().observe(this, measurements -> {
+                viewModel.getCarbonDioxideMeasurement().observe(this, measurements -> {
                     graph.removeAllSeries();
                     DataPoint[] dataPoints = new DataPoint[measurements.size()];
                     for (int i = 0;i<measurements.size();i++){
                         dataPoints[i] = new DataPoint(new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasurementValue());
                     }
+                    Log.i("Graph", "CO2 " + filter);
                     series = new LineGraphSeries<>(dataPoints);
+                    graph.getViewport().setMinX(dataPoints[0].getX());
+                    graph.getViewport().setMaxX(dataPoints[dataPoints.length - 1].getX());
+                    graph.getViewport().setMinY(dataPoints[0].getY());
+                    graph.getViewport().setMaxY(dataPoints[dataPoints.length - 1].getY());
                     graph.addSeries(series);
                 });
                 break;
