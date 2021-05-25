@@ -1,6 +1,7 @@
 package com.example.grinhouseapp.webservices;
 
 import com.example.grinhouseapp.webservices.graph.GraphApi;
+import com.example.grinhouseapp.webservices.greenhouse.GreenhouseApi;
 import com.example.grinhouseapp.webservices.measurement.MeasurementApi;
 import com.example.grinhouseapp.webservices.profile.ProfileApi;
 
@@ -11,6 +12,7 @@ public class ServiceGenerator {
     private static MeasurementApi measurementApi;
     private static ProfileApi profileApi;
     private static GraphApi graphApi;
+    private static GreenhouseApi greenhouseApi;
 
     public static MeasurementApi getMeasurementApi()
     {
@@ -18,7 +20,6 @@ public class ServiceGenerator {
         {
             measurementApi = new Retrofit.Builder()
                     .baseUrl("http://20.52.3.144:8080/")
-//                    .baseUrl("http://192.168.87.100:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(MeasurementApi.class);
@@ -50,5 +51,18 @@ public class ServiceGenerator {
                     .create(GraphApi.class);
         }
         return graphApi;
+    }
+
+    public static GreenhouseApi getGreenhouseApi()
+    {
+        if(greenhouseApi == null)
+        {
+            greenhouseApi = new Retrofit.Builder().
+                    baseUrl("http://20.52.3.144:8080/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(GreenhouseApi.class);
+        }
+        return greenhouseApi;
     }
 }

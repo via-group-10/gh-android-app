@@ -12,8 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GrinHouseApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.filter.FilterActivity"
-            android:parentActivityName=".ui.main.HomeActivity"/>
+        <activity android:name=".ui.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.filter.FilterActivity"
+            android:parentActivityName=".ui.main.HomeActivity" />
         <activity
             android:name=".ui.treshold.HumidityActivity"
             android:parentActivityName=".ui.main.HomeActivity" />
@@ -35,11 +43,7 @@
         <activity
             android:name=".ui.main.HomeActivity"
             android:label="GrinHouse">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
