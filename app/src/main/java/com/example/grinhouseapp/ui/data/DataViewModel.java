@@ -45,8 +45,8 @@ public class DataViewModel extends AndroidViewModel {
             measurementRepository.setHumidityMeasurements();
     }
 
-    public LiveData<List<Measurement>> getMeasurementsDB(MeasurementType measurementType)
+    public LiveData<List<Measurement>> getMeasurementsDB()
     {
-        return databaseRepository.getAllMeasurements(measurementType);
+        return databaseRepository.getAllMeasurements();
     }
 }

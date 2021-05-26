@@ -16,6 +16,6 @@ public interface MeasurementsDAO {
     @Insert(onConflict = (OnConflictStrategy.REPLACE))
     void insert(Measurement measurement);
 
-    @Query("SELECT * FROM measurements_table WHERE measurementTypeEnum=:measurementType ORDER BY measurementDateTimeLong DESC")
-    LiveData<List<Measurement>> getAllTypeMeasurements(MeasurementType measurementType);
+    @Query("SELECT * FROM measurements_table ORDER BY measurementTypeEnum, measurementDateTimeLong DESC")
+    LiveData<List<Measurement>> getAllTypeMeasurements();
 }

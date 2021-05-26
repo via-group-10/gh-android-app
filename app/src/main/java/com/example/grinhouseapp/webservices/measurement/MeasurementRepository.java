@@ -19,7 +19,6 @@ import retrofit2.internal.EverythingIsNonNull;
 
 public class MeasurementRepository {
     private static MeasurementRepository instance;
-    private final MutableLiveData<List<Measurement>> allMeasurementsMutableData;
     private final MutableLiveData<List<Measurement>> latestMeasurementsMutableData;
     private final MutableLiveData<List<Measurement>> temperatureMeasurementMutableData;
     private final MutableLiveData<List<Measurement>> humidityMeasurementMutableData;
@@ -30,7 +29,6 @@ public class MeasurementRepository {
 
     private MeasurementRepository()
     {
-        allMeasurementsMutableData = new MutableLiveData<>();
         latestMeasurementsMutableData = new MutableLiveData<>();
         temperatureMeasurementMutableData = new MutableLiveData<>();
         humidityMeasurementMutableData = new MutableLiveData<>();
@@ -45,11 +43,6 @@ public class MeasurementRepository {
         if(instance == null)
             instance = new MeasurementRepository();
         return instance;
-    }
-
-    public LiveData<List<Measurement>> getAllMeasurements()
-    {
-        return allMeasurementsMutableData;
     }
 
     public LiveData<List<Measurement>> getLatestMeasurements() {
@@ -78,32 +71,6 @@ public class MeasurementRepository {
 
     public LiveData<List<Measurement>> getFilteredHumidityMeasurementMutableData() {
         return filteredHumidityMeasurementMutableData;
-    }
-
-    public void setAllMeasurements()
-    {
-        MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
-        Call<List<MeasurementResponse>> call = measurementApi.getAllMeasurements();
-        call.enqueue(new Callback<List<MeasurementResponse>>() {
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
-                    List<MeasurementResponse> measurementResponses = response.body();
-                    ArrayList<Measurement> measurements = new ArrayList<>();
-                    for (MeasurementResponse measurementResponse : measurementResponses) {
-                        measurements.add(measurementResponse.getMeasurement());
-                    }
-                    allMeasurementsMutableData.setValue(measurements);
-                }
-            }
-
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong", t);
-            }
-        });
     }
 
     public void setLatestMeasurements()

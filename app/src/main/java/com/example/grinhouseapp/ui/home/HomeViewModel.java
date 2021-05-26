@@ -30,37 +30,12 @@ public class HomeViewModel extends AndroidViewModel {
         return measurementRepository.getLatestMeasurements();
     }
 
-    Measurement getLatestMeasurement(MeasurementType type)
-    {
-        for(Measurement measurement : measurementRepository.getLatestMeasurements().getValue())
-        {
-            if(measurement.getMeasurementTypeEnum() == type)
-                return measurement;
-        }
-        return null;
-    }
-
     public void setMeasurementRepository()
     {
         measurementRepository.setLatestMeasurements();
     }
 
     /** DATABASE **/
-    public void setAllMeasurements()
-    {
-        measurementRepository.setAllMeasurements();
-    }
-
-    public LiveData<List<Measurement>> getAllMeasurements()
-    {
-        return measurementRepository.getAllMeasurements();
-    }
-
-    public LiveData<Measurement> getLastMeasurement()
-    {
-        return databaseRepository.getLastMeasurement();
-    }
-
     public LiveData<List<Measurement>> getAllMeasurementsDB()
     {
         return databaseRepository.getAllMeasurements();

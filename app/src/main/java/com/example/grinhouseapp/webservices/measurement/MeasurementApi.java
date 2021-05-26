@@ -9,8 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface MeasurementApi {
-    @GET("api/measurement")
-    Call<List<MeasurementResponse>> getAllMeasurements();
     @GET("api/measurement/latest")
     Call<List<MeasurementResponse>> getLatestMeasurements();
     @GET("api/measurement/temperature")

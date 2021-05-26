@@ -59,10 +59,10 @@ public class DatabaseRepository {
         executorService.execute(() -> measurementsDAO.insert(measurement));
     }
 
-    public LiveData<List<Measurement>> getAllMeasurements(MeasurementType measurementType)
+    public LiveData<List<Measurement>> getAllMeasurements()
     {
-        executorService.execute(()-> measurementsDAO.getAllTypeMeasurements(measurementType));
-        measurementsLiveData.setValue(measurementsDAO.getAllTypeMeasurements(measurementType).getValue());
+        executorService.execute(measurementsDAO::getAllTypeMeasurements);
+        measurementsLiveData.setValue(measurementsDAO.getAllTypeMeasurements().getValue());
         return measurementsLiveData;
     }
 }
