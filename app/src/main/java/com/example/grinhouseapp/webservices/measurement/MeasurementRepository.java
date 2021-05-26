@@ -88,7 +88,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -114,7 +114,7 @@ public class MeasurementRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -140,7 +140,7 @@ public class MeasurementRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -166,7 +166,7 @@ public class MeasurementRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -193,7 +193,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -220,7 +220,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -247,7 +247,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
                     ArrayList<Measurement> measurements = new ArrayList<>();

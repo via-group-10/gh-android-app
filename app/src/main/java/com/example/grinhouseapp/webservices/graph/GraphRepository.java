@@ -55,19 +55,14 @@ public class GraphRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    try {
-                        temperatureMeasurement.setValue(measurements);
-                    }catch (ArrayIndexOutOfBoundsException e)
-                    {
-
-                    }
+                    temperatureMeasurement.setValue(measurements);
                 }
             }
 
@@ -85,7 +80,7 @@ public class GraphRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -115,7 +110,7 @@ public class GraphRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
