@@ -1,7 +1,7 @@
 package com.example.grinhouseapp.model;
 
 public class ThresholdProfile {
-    private int profileId;
+    private int thresholdProfileId;
     private String profileName;
     private boolean active;
     private int minimumTemperature;
@@ -12,12 +12,12 @@ public class ThresholdProfile {
     private int maximumCarbonDioxide;
     private int greenhouseId;
 
-    public int getProfileId() {
-        return profileId;
+    public int getThresholdProfileId() {
+        return thresholdProfileId;
     }
 
-    public void setProfileId(int profileId) {
-        this.profileId = profileId;
+    public void setThresholdProfileId(int thresholdProfileId) {
+        this.thresholdProfileId = thresholdProfileId;
     }
 
     public String getProfileName() {
@@ -92,8 +92,8 @@ public class ThresholdProfile {
         this.greenhouseId = greenhouseId;
     }
 
-    public ThresholdProfile(int profileId, String profileName, boolean active, int minimumTemperature, int maximumTemperature, int minimumHumidity, int maximumHumidity, int minimumCarbonDioxide, int maximumCarbonDioxide, int greenhouseId) {
-        this.profileId = profileId;
+    public ThresholdProfile(int thresholdProfileId, String profileName, boolean active, int minimumTemperature, int maximumTemperature, int minimumHumidity, int maximumHumidity, int minimumCarbonDioxide, int maximumCarbonDioxide, int greenhouseId) {
+        this.thresholdProfileId = thresholdProfileId;
         this.profileName = profileName;
         this.active = active;
         this.minimumTemperature = minimumTemperature;

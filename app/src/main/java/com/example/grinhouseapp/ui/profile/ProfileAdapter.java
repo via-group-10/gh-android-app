@@ -46,7 +46,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         @Override
         public void onClick(View v) {
             listener.onListItemClick(getAdapterPosition());
-            listener.deleteProfile(profileList.get(getAdapterPosition()).getProfileId(),getAdapterPosition());
+            listener.deleteProfile(profileList.get(getAdapterPosition()).getThresholdProfileId(),getAdapterPosition());
             listener.updateProfile(getAdapterPosition());
            // switch (v.getId())
            // {
@@ -88,7 +88,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
               //notifyItemRangeChanged(position,getItemCount());
               //notifyDataSetChanged();
                ifActivate = false;
-               listener.deleteProfile(profileList.get(position).getProfileId(),position);
+               listener.deleteProfile(profileList.get(position).getThresholdProfileId(),position);
            }
        });
         holder.editBtn.setOnClickListener(new View.OnClickListener() {

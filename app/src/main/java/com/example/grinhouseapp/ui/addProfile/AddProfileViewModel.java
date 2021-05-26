@@ -40,7 +40,7 @@ public class AddProfileViewModel extends ViewModel {
     public ThresholdProfile getThresholdProfileById(int id)
     {
         for (int i=0;i<profileRepository.getAllProfiles().getValue().size();i++) {
-            if (profileRepository.getAllProfiles().getValue().get(i).getProfileId()==id)
+            if (profileRepository.getAllProfiles().getValue().get(i).getThresholdProfileId()==id)
             {
                 return profileRepository.getAllProfiles().getValue().get(i);
             }
