@@ -6,13 +6,19 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MeasurementApi {
-    @GET("api/measurement")
-    Call<List<MeasurementResponse>> getAllMeasurements();
     @GET("api/measurement/latest")
     Call<List<MeasurementResponse>> getLatestMeasurements();
+    @GET("api/measurement/temperature")
+    Call<List<MeasurementResponse>> getTopTemperatureMeasurements(@Query("top") int count);
+    @GET("api/measurement/humidity")
+    Call<List<MeasurementResponse>> getTopHumidityMeasurements(@Query("top") int count);
+    @GET("api/measurement/carbon-dioxide")
+    Call<List<MeasurementResponse>> getTopCarbonDioxideMeasurements(@Query("top") int count);
+
     @GET("api/measurement/temperature")
     Call<List<MeasurementResponse>> getTemperatureMeasurement();
     @GET("api/measurement/humidity")

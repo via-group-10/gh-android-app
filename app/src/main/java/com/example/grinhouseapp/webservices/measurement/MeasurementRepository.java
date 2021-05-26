@@ -19,22 +19,24 @@ import retrofit2.internal.EverythingIsNonNull;
 
 public class MeasurementRepository {
     private static MeasurementRepository instance;
-    private final MutableLiveData<List<Measurement>> allMeasurementsMutableData;
     private final MutableLiveData<List<Measurement>> latestMeasurementsMutableData;
-    private final MutableLiveData<List<Measurement>> temperatureMeasurementMutableData;
-    private final MutableLiveData<List<Measurement>> humidityMeasurementMutableData;
-    private final MutableLiveData<List<Measurement>> carbonDioxideMeasurementMutableData;
+
+    private final MutableLiveData<List<Measurement>> topTemperatureMeasurements;
+    private final MutableLiveData<List<Measurement>> topHumidityMeasurements;
+    private final MutableLiveData<List<Measurement>> topCarbonDioxideMeasurements;
+
     private final MutableLiveData<List<Measurement>> filteredTemperatureMeasurementMutableData;
     private final MutableLiveData<List<Measurement>> filteredCarbonDioxideMeasurementMutableData;
     private final MutableLiveData<List<Measurement>> filteredHumidityMeasurementMutableData;
 
     private MeasurementRepository()
     {
-        allMeasurementsMutableData = new MutableLiveData<>();
         latestMeasurementsMutableData = new MutableLiveData<>();
-        temperatureMeasurementMutableData = new MutableLiveData<>();
-        humidityMeasurementMutableData = new MutableLiveData<>();
-        carbonDioxideMeasurementMutableData = new MutableLiveData<>();
+
+        topTemperatureMeasurements = new MutableLiveData<>();
+        topHumidityMeasurements = new MutableLiveData<>();
+        topCarbonDioxideMeasurements = new MutableLiveData<>();
+
         filteredHumidityMeasurementMutableData = new MutableLiveData<>();
         filteredCarbonDioxideMeasurementMutableData = new MutableLiveData<>();
         filteredTemperatureMeasurementMutableData = new MutableLiveData<>();
@@ -47,25 +49,23 @@ public class MeasurementRepository {
         return instance;
     }
 
-    public LiveData<List<Measurement>> getAllMeasurements()
-    {
-        return allMeasurementsMutableData;
-    }
-
     public LiveData<List<Measurement>> getLatestMeasurements() {
         return  latestMeasurementsMutableData;
     }
 
-    public LiveData<List<Measurement>> getTemperatureMeasurementMutableData() {
-        return temperatureMeasurementMutableData;
+    public LiveData<List<Measurement>> getTopTemperatureMeasurements()
+    {
+        return topTemperatureMeasurements;
     }
 
-    public LiveData<List<Measurement>> getHumidityMeasurementMutableData() {
-        return humidityMeasurementMutableData;
+    public LiveData<List<Measurement>> getTopHumidityMeasurements()
+    {
+        return topHumidityMeasurements;
     }
 
-    public LiveData<List<Measurement>> getCarbonDioxideMeasurementMutableData() {
-        return carbonDioxideMeasurementMutableData;
+    public LiveData<List<Measurement>> getTopCarbonDioxideMeasurements()
+    {
+        return topCarbonDioxideMeasurements;
     }
 
     public LiveData<List<Measurement>> getFilteredTemperatureMeasurementMutableData() {
@@ -80,32 +80,6 @@ public class MeasurementRepository {
         return filteredHumidityMeasurementMutableData;
     }
 
-    public void setAllMeasurements()
-    {
-        MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
-        Call<List<MeasurementResponse>> call = measurementApi.getAllMeasurements();
-        call.enqueue(new Callback<List<MeasurementResponse>>() {
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
-                    List<MeasurementResponse> measurementResponses = response.body();
-                    ArrayList<Measurement> measurements = new ArrayList<>();
-                    for (MeasurementResponse measurementResponse : measurementResponses) {
-                        measurements.add(measurementResponse.getMeasurement());
-                    }
-                    allMeasurementsMutableData.setValue(measurements);
-                }
-            }
-
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong", t);
-            }
-        });
-    }
-
     public void setLatestMeasurements()
     {
         MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
@@ -114,7 +88,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -133,26 +107,25 @@ public class MeasurementRepository {
         });
     }
 
-    public void setTemperatureMeasurements()
+    public void setTopTemperatureMeasurements(int count)
     {
         MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
-        Call<List<MeasurementResponse>> call = measurementApi.getTemperatureMeasurement();
+        Call<List<MeasurementResponse>> call = measurementApi.getTopTemperatureMeasurements(count);
         call.enqueue(new Callback<List<MeasurementResponse>>() {
-            @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
-
-                    ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
+                if(response.isSuccessful() && !response.body().isEmpty())
+                {
+                    List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
-                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                    for(MeasurementResponse measurementResponse : measurementResponses)
+                    {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    temperatureMeasurementMutableData.setValue(measurements);
+                    topTemperatureMeasurements.setValue(measurements);
                 }
             }
 
-            @EverythingIsNonNull
             @Override
             public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong", t);
@@ -160,26 +133,25 @@ public class MeasurementRepository {
         });
     }
 
-    public void setHumidityMeasurements()
+    public void setTopHumidityMeasurements(int count)
     {
         MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
-        Call<List<MeasurementResponse>> call = measurementApi.getHumidityMeasurement();
+        Call<List<MeasurementResponse>> call = measurementApi.getTopHumidityMeasurements(count);
         call.enqueue(new Callback<List<MeasurementResponse>>() {
-            @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
-
-                    ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
+                if(response.isSuccessful() && !response.body().isEmpty())
+                {
+                    List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
-                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                    for(MeasurementResponse measurementResponse : measurementResponses)
+                    {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    humidityMeasurementMutableData.setValue(measurements);
+                    topHumidityMeasurements.setValue(measurements);
                 }
             }
 
-            @EverythingIsNonNull
             @Override
             public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong", t);
@@ -187,26 +159,25 @@ public class MeasurementRepository {
         });
     }
 
-    public void setCarbonDioxideMeasurement()
+    public void setTopCarbonDioxideMeasurements(int count)
     {
         MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
-        Call<List<MeasurementResponse>> call = measurementApi.getCarbonDioxideMeasurement();
+        Call<List<MeasurementResponse>> call = measurementApi.getTopCarbonDioxideMeasurements(count);
         call.enqueue(new Callback<List<MeasurementResponse>>() {
-            @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
-
-                    ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
+                if(response.isSuccessful() && !response.body().isEmpty())
+                {
+                    List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
-                    for (MeasurementResponse measurementResponse : measurementResponses) {
+                    for(MeasurementResponse measurementResponse : measurementResponses)
+                    {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    carbonDioxideMeasurementMutableData.setValue(measurements);
+                    topCarbonDioxideMeasurements.setValue(measurements);
                 }
             }
 
-            @EverythingIsNonNull
             @Override
             public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong", t);
@@ -222,7 +193,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -249,7 +220,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -276,7 +247,7 @@ public class MeasurementRepository {
             @EverythingIsNonNull
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful()) {
+                if(response.isSuccessful() && !response.body().isEmpty()) {
 
                     ArrayList<MeasurementResponse> measurementResponses = new ArrayList<MeasurementResponse>(response.body());
                     ArrayList<Measurement> measurements = new ArrayList<>();

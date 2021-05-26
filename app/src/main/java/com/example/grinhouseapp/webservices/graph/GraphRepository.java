@@ -55,7 +55,7 @@ public class GraphRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
@@ -80,14 +80,19 @@ public class GraphRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    humidityMeasurement.setValue(measurements);
+                    try {
+                        humidityMeasurement.setValue(measurements);
+                    }catch (ArrayIndexOutOfBoundsException e)
+                    {
+
+                    }
                 }
             }
 
@@ -105,14 +110,19 @@ public class GraphRepository {
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful() && !response.body().isEmpty())
                 {
                     List<MeasurementResponse> measurementResponses = response.body();
                     ArrayList<Measurement> measurements = new ArrayList<>();
                     for (MeasurementResponse measurementResponse : measurementResponses) {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    carbonDioxideMeasurement.setValue(measurements);
+                    try {
+                        carbonDioxideMeasurement.setValue(measurements);
+                    }catch (ArrayIndexOutOfBoundsException e)
+                    {
+
+                    }
                 }
             }
 

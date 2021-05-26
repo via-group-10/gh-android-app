@@ -56,7 +56,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.Measuremen
         String dateString = new SimpleDateFormat("dd-MM-yyyy").format(date);
         holder.hour.setText(hourString);
         holder.date.setText(dateString);
-        holder.value.setText( String.valueOf(currentItem.getMeasurementValue()));
+        holder.value.setText( String.valueOf(currentItem.getMeasuredValue()));
     }
 
     @Override

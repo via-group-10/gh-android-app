@@ -1,53 +1,52 @@
 package com.example.grinhouseapp.ui.data;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.grinhouseapp.database.DatabaseRepository;
 import com.example.grinhouseapp.model.Measurement;
 import com.example.grinhouseapp.webservices.measurement.MeasurementRepository;
 import com.example.grinhouseapp.model.MeasurementType;
 
 import java.util.List;
 
-public class DataViewModel extends ViewModel {
+public class DataViewModel extends AndroidViewModel {
 
     MeasurementRepository measurementRepository;
+    DatabaseRepository databaseRepository;
 
-    public DataViewModel()
+    public DataViewModel(Application app)
     {
+        super(app);
         measurementRepository = MeasurementRepository.getInstance();
+        databaseRepository = DatabaseRepository.getInstance(app);
     }
 
-    public LiveData<List<Measurement>> getTemperatureMeasurement()
+    public LiveData<List<Measurement>> getTopMeasurement(MeasurementType measurementType)
     {
-        return measurementRepository.getTemperatureMeasurementMutableData();
-    }
-    LiveData<List<Measurement>> getHumidityMeasurement()
-    {
-        return measurementRepository.getHumidityMeasurementMutableData();
-    }
-    LiveData<List<Measurement>> getCarbonDioxideMeasurement()
-    {
-        return measurementRepository.getCarbonDioxideMeasurementMutableData();
-    }
-
-    List<Measurement> liveDataToList(MeasurementType type)
-    {
-        if(type == MeasurementType.temperature)
-            return measurementRepository.getTemperatureMeasurementMutableData().getValue();
-        else if(type == MeasurementType.carbonDioxide)
-            return measurementRepository.getCarbonDioxideMeasurementMutableData().getValue();
+        if(measurementType == MeasurementType.temperature)
+            return measurementRepository.getTopTemperatureMeasurements();
+        else if(measurementType == MeasurementType.humidity)
+            return measurementRepository.getTopHumidityMeasurements();
         else
-            return measurementRepository.getHumidityMeasurementMutableData().getValue();
+            return measurementRepository.getTopCarbonDioxideMeasurements();
     }
 
-    public void setMeasurementRepository(MeasurementType type)
+    public void setTopMeasurement(MeasurementType measurementType, int count)
     {
-        if(type == MeasurementType.temperature)
-            measurementRepository.setTemperatureMeasurements();
-        else if(type == MeasurementType.carbonDioxide)
-            measurementRepository.setCarbonDioxideMeasurement();
+        if(measurementType == MeasurementType.temperature)
+            measurementRepository.setTopTemperatureMeasurements(count);
+        else if(measurementType == MeasurementType.humidity)
+            measurementRepository.setTopHumidityMeasurements(count);
         else
-            measurementRepository.setHumidityMeasurements();
+            measurementRepository.setTopCarbonDioxideMeasurements(count);
+    }
+
+    public LiveData<List<Measurement>> getMeasurementsDB(MeasurementType measurementType)
+    {
+        return databaseRepository.getAllMeasurements(measurementType);
     }
 }
