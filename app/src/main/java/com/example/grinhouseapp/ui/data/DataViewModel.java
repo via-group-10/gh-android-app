@@ -25,28 +25,28 @@ public class DataViewModel extends AndroidViewModel {
         databaseRepository = DatabaseRepository.getInstance(app);
     }
 
-    public LiveData<List<Measurement>> getMeasurement(MeasurementType measurementType)
+    public LiveData<List<Measurement>> getTopMeasurement(MeasurementType measurementType)
     {
         if(measurementType == MeasurementType.temperature)
-            return measurementRepository.getTemperatureMeasurementMutableData();
+            return measurementRepository.getTopTemperatureMeasurements();
         else if(measurementType == MeasurementType.humidity)
-            return measurementRepository.getHumidityMeasurementMutableData();
+            return measurementRepository.getTopHumidityMeasurements();
         else
-            return measurementRepository.getCarbonDioxideMeasurementMutableData();
+            return measurementRepository.getTopCarbonDioxideMeasurements();
     }
 
-    public void setMeasurementRepository(MeasurementType type)
+    public void setTopMeasurement(MeasurementType measurementType, int count)
     {
-        if(type == MeasurementType.temperature)
-            measurementRepository.setTemperatureMeasurements();
-        else if(type == MeasurementType.carbonDioxide)
-            measurementRepository.setCarbonDioxideMeasurement();
+        if(measurementType == MeasurementType.temperature)
+            measurementRepository.setTopTemperatureMeasurements(count);
+        else if(measurementType == MeasurementType.humidity)
+            measurementRepository.setTopHumidityMeasurements(count);
         else
-            measurementRepository.setHumidityMeasurements();
+            measurementRepository.setTopCarbonDioxideMeasurements(count);
     }
 
-    public LiveData<List<Measurement>> getMeasurementsDB()
+    public LiveData<List<Measurement>> getMeasurementsDB(MeasurementType measurementType)
     {
-        return databaseRepository.getAllMeasurements();
+        return databaseRepository.getAllMeasurements(measurementType);
     }
 }

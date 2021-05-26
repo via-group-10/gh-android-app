@@ -21,8 +21,8 @@ public class DatabaseRepository {
 
     private final ExecutorService executorService;
 
-    private final MutableLiveData<Account> accountLiveData;
-    private final MutableLiveData<List<Measurement>> measurementsLiveData;
+    private LiveData<Account> accountLiveData;
+    private LiveData<List<Measurement>> measurementsLiveData;
 
     private DatabaseRepository(Application app)
     {
@@ -30,9 +30,6 @@ public class DatabaseRepository {
         accountsDAO = database.accountsDAO();
         measurementsDAO = database.measurementsDAO();
         executorService = Executors.newFixedThreadPool(2);
-
-        accountLiveData = new MutableLiveData<>();
-        measurementsLiveData = new MutableLiveData<>();
     }
 
     public static synchronized DatabaseRepository getInstance(Application app)
@@ -44,8 +41,7 @@ public class DatabaseRepository {
 
     public LiveData<Account> getAccount(String username, String password)
     {
-        executorService.execute(()-> accountsDAO.getAccount(username, password));
-        accountLiveData.setValue(accountsDAO.getAccount(username,password).getValue());
+        accountLiveData = accountsDAO.getAccount(username, password);
         return accountLiveData;
     }
 
@@ -54,15 +50,14 @@ public class DatabaseRepository {
         executorService.execute(() -> accountsDAO.insert(account));
     }
 
-    public void insertMeasurement(Measurement measurement)
+    public void insertMeasurement(List<Measurement> measurements)
     {
-        executorService.execute(() -> measurementsDAO.insert(measurement));
+        executorService.execute(() -> measurementsDAO.insert(measurements));
     }
 
-    public LiveData<List<Measurement>> getAllMeasurements()
+    public LiveData<List<Measurement>> getAllMeasurements(MeasurementType measurementType)
     {
-        executorService.execute(measurementsDAO::getAllTypeMeasurements);
-        measurementsLiveData.setValue(measurementsDAO.getAllTypeMeasurements().getValue());
+        measurementsLiveData = measurementsDAO.getAllTypeMeasurements(measurementType);
         return measurementsLiveData;
     }
 }

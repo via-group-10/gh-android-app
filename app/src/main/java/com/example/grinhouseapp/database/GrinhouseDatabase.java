@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.grinhouseapp.model.Account;
 import com.example.grinhouseapp.model.Measurement;
 
-@Database(entities = {Account.class, Measurement.class}, version = 3)
+@Database(entities = {Account.class, Measurement.class}, version = 11)
 public abstract class GrinhouseDatabase extends RoomDatabase {
 
     private static GrinhouseDatabase instance;

@@ -30,19 +30,39 @@ public class HomeViewModel extends AndroidViewModel {
         return measurementRepository.getLatestMeasurements();
     }
 
+    public LiveData<List<Measurement>> getTopMeasurement(MeasurementType measurementType)
+    {
+        if(measurementType == MeasurementType.temperature)
+            return measurementRepository.getTopTemperatureMeasurements();
+        else if(measurementType == MeasurementType.humidity)
+            return measurementRepository.getTopHumidityMeasurements();
+        else
+            return measurementRepository.getTopCarbonDioxideMeasurements();
+    }
+
+    public void setTopMeasurement(MeasurementType measurementType, int count)
+    {
+        if(measurementType == MeasurementType.temperature)
+            measurementRepository.setTopTemperatureMeasurements(count);
+        else if(measurementType == MeasurementType.humidity)
+            measurementRepository.setTopHumidityMeasurements(count);
+        else
+            measurementRepository.setTopCarbonDioxideMeasurements(count);
+    }
+
     public void setMeasurementRepository()
     {
         measurementRepository.setLatestMeasurements();
     }
 
     /** DATABASE **/
-    public LiveData<List<Measurement>> getAllMeasurementsDB()
+    public LiveData<List<Measurement>> getAllMeasurementsDB(MeasurementType measurementType)
     {
-        return databaseRepository.getAllMeasurements();
+        return databaseRepository.getAllMeasurements(measurementType);
     }
 
-    public void insertMeasurement(Measurement measurement)
+    public void insertMeasurement(List<Measurement> measurements)
     {
-        insertMeasurement(measurement);
+        databaseRepository.insertMeasurement(measurements);
     }
 }

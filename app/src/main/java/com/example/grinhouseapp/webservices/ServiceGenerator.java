@@ -14,12 +14,14 @@ public class ServiceGenerator {
     private static GraphApi graphApi;
     private static GreenhouseApi greenhouseApi;
 
+    private static String url = "http://20.52.3.144:8080/";
+
     public static MeasurementApi getMeasurementApi()
     {
         if(measurementApi == null)
         {
             measurementApi = new Retrofit.Builder()
-                    .baseUrl("http://20.52.3.144:8080/")
+                    .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(MeasurementApi.class);
@@ -32,7 +34,7 @@ public class ServiceGenerator {
         if(profileApi == null)
         {
             profileApi = new Retrofit.Builder()
-                    .baseUrl("http://20.52.3.144:8080/")
+                    .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(ProfileApi.class);
@@ -45,7 +47,7 @@ public class ServiceGenerator {
         if(graphApi == null)
         {
             graphApi = new Retrofit.Builder()
-                    .baseUrl("http://20.52.3.144:8080/")
+                    .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(GraphApi.class);
@@ -57,8 +59,8 @@ public class ServiceGenerator {
     {
         if(greenhouseApi == null)
         {
-            greenhouseApi = new Retrofit.Builder().
-                    baseUrl("http://20.52.3.144:8080/")
+            greenhouseApi = new Retrofit.Builder()
+                    .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(GreenhouseApi.class);

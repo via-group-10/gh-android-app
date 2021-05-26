@@ -62,7 +62,12 @@ public class GraphRepository {
                     for (MeasurementResponse measurementResponse : measurementResponses) {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    temperatureMeasurement.setValue(measurements);
+                    try {
+                        temperatureMeasurement.setValue(measurements);
+                    }catch (ArrayIndexOutOfBoundsException e)
+                    {
+
+                    }
                 }
             }
 
@@ -87,7 +92,12 @@ public class GraphRepository {
                     for (MeasurementResponse measurementResponse : measurementResponses) {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    humidityMeasurement.setValue(measurements);
+                    try {
+                        humidityMeasurement.setValue(measurements);
+                    }catch (ArrayIndexOutOfBoundsException e)
+                    {
+
+                    }
                 }
             }
 
@@ -112,7 +122,12 @@ public class GraphRepository {
                     for (MeasurementResponse measurementResponse : measurementResponses) {
                         measurements.add(measurementResponse.getMeasurement());
                     }
-                    carbonDioxideMeasurement.setValue(measurements);
+                    try {
+                        carbonDioxideMeasurement.setValue(measurements);
+                    }catch (ArrayIndexOutOfBoundsException e)
+                    {
+
+                    }
                 }
             }
 

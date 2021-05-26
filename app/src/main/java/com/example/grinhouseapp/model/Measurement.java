@@ -51,7 +51,7 @@ public class Measurement {
         return greenhouseId;
     }
 
-    public float getMeasurementValue()
+    public float getMeasuredValue()
     {
         return measuredValue;
     }
@@ -95,11 +95,6 @@ public class Measurement {
     {
         this.measuredValue = measurementValue;
     }
-
-    public float getMeasuredValue() {
-        return measuredValue;
-    }
-
     public void setMeasuredValue(float measuredValue) {
         this.measuredValue = measuredValue;
     }
@@ -110,5 +105,17 @@ public class Measurement {
 
     public void setMeasurementDateTimeLong(long measurementDateTimeLong) {
         this.measurementDateTimeLong = measurementDateTimeLong;
+    }
+
+    @Override
+    public String toString() {
+        return "Measurement{" +
+                "measurementId=" + measurementId +
+                ", measuredValue=" + measuredValue +
+                ", measurementDateTime=" + measurementDateTime +
+                ", measurementDateTimeLong=" + measurementDateTimeLong +
+                ", greenhouseId=" + greenhouseId +
+                ", measurementTypeEnum=" + measurementTypeEnum +
+                '}';
     }
 }

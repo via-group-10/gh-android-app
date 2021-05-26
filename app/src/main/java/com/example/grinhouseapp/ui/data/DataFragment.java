@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.example.grinhouseapp.NetworkCheck;
 import com.example.grinhouseapp.R;
@@ -19,15 +18,11 @@ import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.Measurement;
 import com.example.grinhouseapp.model.MeasurementType;
 import com.example.grinhouseapp.ui.graph.GraphFragment;
-import com.example.grinhouseapp.ui.home.HomeViewModel;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class DataFragment extends Fragment {
 
@@ -134,7 +129,66 @@ public class DataFragment extends Fragment {
         getTableForMeasurement(MeasurementType.carbonDioxide);
 
 
+
         return root;
+    }
+
+
+
+    private void getTableForMeasurement(MeasurementType measurementType)
+    {
+        dataViewModel.getMeasurementsDB(measurementType).observe(getViewLifecycleOwner(), measurements -> {
+            try {
+                writeToTable(measurementType, measurements);
+            } catch (IndexOutOfBoundsException e)
+            {
+                e.getMessage();
+            }
+        });
+    }
+
+    private void writeToTable(MeasurementType measurementType, List<Measurement> measurements) throws IndexOutOfBoundsException
+    {
+        if(measurementType == MeasurementType.temperature) {
+            temDate1.setText(toDate(new Timestamp(measurements.get(0).getMeasurementDateTimeLong())));
+            temTime1.setText(toTime((new Timestamp(measurements.get(0).getMeasurementDateTimeLong()))));
+            temValue1.setText(measurements.get(0).getMeasuredValue() + "℃");
+
+            temDate2.setText((toDate(new Timestamp(measurements.get(1).getMeasurementDateTimeLong()))));
+            temTime2.setText((toTime(new Timestamp(measurements.get(1).getMeasurementDateTimeLong()))));
+            temValue2.setText(measurements.get(1).getMeasuredValue() + "℃");
+
+            temDate3.setText(toDate((new Timestamp(measurements.get(2).getMeasurementDateTimeLong()))));
+            temTime3.setText(toTime((new Timestamp(measurements.get(2).getMeasurementDateTimeLong()))));
+            temValue3.setText(measurements.get(2).getMeasuredValue() + "℃");
+
+        }
+        else if(measurementType == MeasurementType.humidity) {
+            humDate1.setText(toDate((new Timestamp(measurements.get(0).getMeasurementDateTimeLong()))));
+            humTime1.setText(toTime((new Timestamp(measurements.get(0).getMeasurementDateTimeLong()))));
+            humValue1.setText(measurements.get(0).getMeasuredValue() + "%");
+
+            humDate2.setText(toDate(new Timestamp(measurements.get(1).getMeasurementDateTimeLong())));
+            humTime2.setText(toTime(new Timestamp(measurements.get(1).getMeasurementDateTimeLong())));
+            humValue2.setText(measurements.get(1).getMeasuredValue() + "%");
+
+            humDate3.setText(toDate((new Timestamp(measurements.get(2).getMeasurementDateTimeLong()))));
+            humTime3.setText(toTime((new Timestamp(measurements.get(2).getMeasurementDateTimeLong()))));
+            humValue3.setText(measurements.get(2).getMeasuredValue() + "%");
+        }
+        else {
+            cdDate1.setText(toDate((new Timestamp(measurements.get(0).getMeasurementDateTimeLong()))));
+            cdTime1.setText(toTime((new Timestamp(measurements.get(0).getMeasurementDateTimeLong()))));
+            cdValue1.setText(measurements.get(0).getMeasuredValue() + "ppm");
+
+            cdDate2.setText(toDate(new Timestamp(measurements.get(1).getMeasurementDateTimeLong())));
+            cdTime2.setText(toTime(new Timestamp(measurements.get(1).getMeasurementDateTimeLong())));
+            cdValue2.setText(measurements.get(1).getMeasuredValue() + "ppm");
+
+            cdDate3.setText(toDate((new Timestamp(measurements.get(2).getMeasurementDateTimeLong()))));
+            cdTime3.setText(toTime((new Timestamp(measurements.get(2).getMeasurementDateTimeLong()))));
+            cdValue3.setText(measurements.get(2).getMeasuredValue() + "ppm");
+        }
     }
 
     private String toDate(Timestamp timestamp)
@@ -145,62 +199,5 @@ public class DataFragment extends Fragment {
     private String toTime(Timestamp timestamp)
     {
         return new SimpleDateFormat("HH:mm").format(timestamp);
-    }
-
-    private void getTableForMeasurement(MeasurementType measurementType)
-    {
-        if(NetworkCheck.isInternetAvailable(getContext())) {
-            dataViewModel.setMeasurementRepository(measurementType);
-            if (measurementType == MeasurementType.temperature) {
-                dataViewModel.getMeasurement(measurementType).observe(getViewLifecycleOwner(), measurement -> {
-                    temDate1.setText(toDate(measurement.get(measurement.size() - 1).getMeasurementDateTime()));
-                    temDate2.setText(toDate(measurement.get(measurement.size() - 2).getMeasurementDateTime()));
-                    temDate3.setText(toDate(measurement.get(measurement.size() - 3).getMeasurementDateTime()));
-
-                    temTime1.setText(toTime(measurement.get(measurement.size() - 1).getMeasurementDateTime()));
-                    temTime2.setText(toTime(measurement.get(measurement.size() - 2).getMeasurementDateTime()));
-                    temTime3.setText(toTime(measurement.get(measurement.size() - 3).getMeasurementDateTime()));
-
-                    temValue1.setText(measurement.get(measurement.size() - 1).getMeasurementValue() + "℃");
-                    temValue2.setText(measurement.get(measurement.size() - 2).getMeasurementValue() + "℃");
-                    temValue3.setText(measurement.get(measurement.size() - 3).getMeasurementValue() + "℃");
-                });
-            } else if (measurementType == MeasurementType.humidity) {
-                dataViewModel.getMeasurement(measurementType).observe(getViewLifecycleOwner(), measurement -> {
-                    humDate1.setText(toDate(measurement.get(measurement.size() - 1).getMeasurementDateTime()));
-                    humDate2.setText(toDate(measurement.get(measurement.size() - 2).getMeasurementDateTime()));
-                    humDate3.setText(toDate(measurement.get(measurement.size() - 3).getMeasurementDateTime()));
-
-                    humTime1.setText(toTime(measurement.get(measurement.size() - 1).getMeasurementDateTime()));
-                    humTime1.setText(toTime(measurement.get(measurement.size() - 2).getMeasurementDateTime()));
-                    humTime1.setText(toTime(measurement.get(measurement.size() - 3).getMeasurementDateTime()));
-
-                    humValue1.setText(measurement.get(measurement.size() - 1).getMeasurementValue() + "%");
-                    humValue2.setText(measurement.get(measurement.size() - 2).getMeasurementValue() + "%");
-                    humValue3.setText(measurement.get(measurement.size() - 3).getMeasurementValue() + "%");
-                });
-            } else {
-                dataViewModel.setMeasurementRepository(MeasurementType.carbonDioxide);
-                dataViewModel.getMeasurement(MeasurementType.carbonDioxide).observe(getViewLifecycleOwner(), measurement -> {
-                    cdDate1.setText(toDate(measurement.get(measurement.size() - 1).getMeasurementDateTime()));
-                    cdDate2.setText(toDate(measurement.get(measurement.size() - 2).getMeasurementDateTime()));
-                    cdDate3.setText(toDate(measurement.get(measurement.size() - 3).getMeasurementDateTime()));
-
-                    cdTime1.setText(toTime(measurement.get(measurement.size() - 1).getMeasurementDateTime()));
-                    cdTime2.setText(toTime(measurement.get(measurement.size() - 2).getMeasurementDateTime()));
-                    cdTime3.setText(toTime(measurement.get(measurement.size() - 3).getMeasurementDateTime()));
-
-                    cdValue1.setText(measurement.get(measurement.size() - 1).getMeasurementValue() + "ppm");
-                    cdValue2.setText(measurement.get(measurement.size() - 2).getMeasurementValue() + "ppm");
-                    cdValue3.setText(measurement.get(measurement.size() - 3).getMeasurementValue() + "ppm");
-                });
-            }
-        }
-        else
-        {
-            dataViewModel.getMeasurementsDB().observe(getViewLifecycleOwner(), measurements -> {
-                // TODO: implement reading from database
-            });
-        }
     }
 }

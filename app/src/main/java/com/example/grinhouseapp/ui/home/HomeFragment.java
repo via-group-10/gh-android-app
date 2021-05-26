@@ -2,6 +2,7 @@ package com.example.grinhouseapp.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,33 +41,52 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         if(NetworkCheck.isInternetAvailable(getContext())) {
-            homeViewModel.setMeasurementRepository();
+            int count = 3;
+            homeViewModel.setTopMeasurement(MeasurementType.temperature,count);
+            homeViewModel.setTopMeasurement(MeasurementType.carbonDioxide,count);
+            homeViewModel.setTopMeasurement(MeasurementType.humidity,count);
 
-            homeViewModel.getMeasurement().observe(getViewLifecycleOwner(), measurements -> {
-                for (Measurement measurement : measurements) {
-                    homeViewModel.insertMeasurement(measurement);
-
-                    if (measurement.getMeasurementTypeEnum() == MeasurementType.temperature)
-                        temperatureTextView.setText(measurement.getMeasuredValue() + "℃");
-                    else if (measurement.getMeasurementTypeEnum() == MeasurementType.carbonDioxide)
-                        temperatureTextView.setText(measurement.getMeasuredValue() + "ppm");
-                    else
-                        temperatureTextView.setText(measurement.getMeasuredValue() + "%");
-                }
+            homeViewModel.getTopMeasurement(MeasurementType.temperature).observe(getViewLifecycleOwner(), measurements -> {
+                for(Measurement measurement : measurements)
+                    measurement.setMeasurementDateTimeLong(measurement.getMeasurementDateTime().getTime());
+                homeViewModel.insertMeasurement(measurements);
+                temperatureTextView.setText(measurements.get(0).getMeasuredValue() + "℃");
+            });
+            homeViewModel.getTopMeasurement(MeasurementType.carbonDioxide).observe(getViewLifecycleOwner(), measurements -> {
+                for(Measurement measurement : measurements)
+                    measurement.setMeasurementDateTimeLong(measurement.getMeasurementDateTime().getTime());
+                homeViewModel.insertMeasurement(measurements);
+                co2TextView.setText(measurements.get(0).getMeasuredValue() + "ppm");
+            });
+            homeViewModel.getTopMeasurement(MeasurementType.humidity).observe(getViewLifecycleOwner(), measurements -> {
+                for(Measurement measurement : measurements)
+                    measurement.setMeasurementDateTimeLong(measurement.getMeasurementDateTime().getTime());
+                homeViewModel.insertMeasurement(measurements);
+                humidityTextView.setText(measurements.get(0).getMeasuredValue() + "%");
             });
         }
         else
         {
-            homeViewModel.getAllMeasurementsDB().observe(getViewLifecycleOwner(), measurements -> {
-                for (Measurement measurement : measurements) {
-                    homeViewModel.insertMeasurement(measurement);
+            homeViewModel.getAllMeasurementsDB(MeasurementType.temperature).observe(getViewLifecycleOwner(), measurements -> {
+                try{
+                    temperatureTextView.setText(measurements.get(0).getMeasuredValue() + "℃");
+                } catch (IndexOutOfBoundsException e) {
+                    temperatureTextView.setText("N/A");
+                }
 
-                    if (measurement.getMeasurementTypeEnum() == MeasurementType.temperature)
-                        temperatureTextView.setText(measurement.getMeasuredValue() + "℃");
-                    else if (measurement.getMeasurementTypeEnum() == MeasurementType.carbonDioxide)
-                        temperatureTextView.setText(measurement.getMeasuredValue() + "ppm");
-                    else
-                        temperatureTextView.setText(measurement.getMeasuredValue() + "%");
+            });
+            homeViewModel.getAllMeasurementsDB(MeasurementType.humidity).observe(getViewLifecycleOwner(), measurements -> {
+                try{
+                    humidityTextView.setText(measurements.get(0).getMeasuredValue() + "%");
+                } catch (IndexOutOfBoundsException e) {
+                    humidityTextView.setText("N/A");
+                }
+            });
+            homeViewModel.getAllMeasurementsDB(MeasurementType.carbonDioxide).observe(getViewLifecycleOwner(), measurements -> {
+                try{
+                    co2TextView.setText(measurements.get(0).getMeasuredValue() + "%");
+                } catch (IndexOutOfBoundsException e) {
+                    co2TextView.setText("N/A");
                 }
             });
         }
