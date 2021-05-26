@@ -31,11 +31,6 @@ public class ProfileViewModel extends ViewModel {
         return profileRepository.getAllProfiles();
     }
 
-    public List<ThresholdProfile> getAllProfilesInList()
-    {
-        return profileRepository.getAllProfiles().getValue();
-    }
-
     public LiveData<String> getText() {
         return mText;
     }
@@ -44,16 +39,8 @@ public class ProfileViewModel extends ViewModel {
     {
         profileRepository.deleteProfile(id);
     }
-    public void activateProfile()
+    public void updateProfile(ThresholdProfile profile)
     {
-        //avoid NULL pointer if deleting the activeProfile
-        if (profileRepository.getCurrentProfile().getValue()!=null)
-        {
-            ThresholdProfile thresholdProfile = profileRepository.getCurrentProfile().getValue();
-            thresholdProfile.setActive(false);
-            profileRepository.updateProfile(thresholdProfile);
-        }
-        EditProfileViewModel.OldProfile.setActive(true);
-        profileRepository.updateProfile(EditProfileViewModel.OldProfile);
+        profileRepository.updateProfile(profile);
     }
 }

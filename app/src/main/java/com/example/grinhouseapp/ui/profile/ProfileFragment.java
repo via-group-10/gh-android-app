@@ -1,18 +1,13 @@
 package com.example.grinhouseapp.ui.profile;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,12 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.ThresholdProfile;
 import com.example.grinhouseapp.ui.editProfile.EditProfileViewModel;
-import com.example.grinhouseapp.ui.home.HomeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class ProfileFragment extends Fragment implements ProfileAdapter.OnListItemClickListener{
 
@@ -39,9 +32,6 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        //@TODO: decrease RecycleViews loading time
-
         viewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         viewModel.setProfileRepository();
@@ -66,11 +56,8 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
 
         viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
             profileList.clear();
-            List<ThresholdProfile> profiles = thresholdProfiles;
-//            List<ThresholdProfile> profiles = viewModel.getAllProfilesInList();
-            Collections.reverse(profiles);
+            Collections.reverse(thresholdProfiles);
             profileList.addAll(thresholdProfiles);
-//            profileList.addAll(profiles);
             adapter.notifyDataSetChanged();
         });
 
@@ -80,24 +67,23 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        EditProfileViewModel.OldProfile = profileList.get(clickedItemIndex);
         ProfileDialog.showAlertDialog(getActivity(), true, new ProfileDialog.AlertDialogBtnClickListener() {
             @Override
             public void clickApply() {
-                Toast.makeText(getActivity(),"SUCCESSFULLY!!!",Toast.LENGTH_SHORT).show();
-                viewModel.activateProfile();
+                if (!profileList.get(clickedItemIndex).isActive()) {
+                    for (ThresholdProfile thresholdProfile : profileList) {
+                        thresholdProfile.setActive(false);
+                    }
+                }
+                profileList.get(clickedItemIndex).setActive(!profileList.get(clickedItemIndex).isActive());
+                viewModel.updateProfile(profileList.get(clickedItemIndex));
+                adapter.notifyDataSetChanged();
             }
             @Override
             public void clickCancel() {
 
             }
         });
-//        //@TODO: clickable buttons
-//        viewModel.deleteProfile(profileList.get(clickedItemIndex).getProfileId());
-//        profileList.remove(clickedItemIndex);
-//        adapter.notifyItemRemoved(clickedItemIndex);
-//        adapter.notifyItemRangeChanged(clickedItemIndex,adapter.getItemCount());
-//        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -115,7 +101,4 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
         Navigation.findNavController(getView()).navigate(R.id.navigateToUpdateProfilesFragment);
         adapter.notifyDataSetChanged();
     }
-
-
-
 }

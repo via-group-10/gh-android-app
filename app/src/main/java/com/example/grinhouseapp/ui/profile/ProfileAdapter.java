@@ -80,7 +80,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         holder.carbonValue.setText(currentItem.getMinimumCarbonDioxide() + "ppm - " + currentItem.getMaximumCarbonDioxide() + "ppm");
         holder.humidityValue.setText(currentItem.getMinimumHumidity() + "% - " + currentItem.getMaximumHumidity() + "%");
         holder.temperatureValue.setText(currentItem.getMinimumTemperature() + "℃ - " + currentItem.getMaximumTemperature() + "℃");
-       holder.removeBtn.setOnClickListener(new View.OnClickListener() {
+        holder.removeBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
               //profileList.remove(position);
@@ -109,9 +109,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
             }
         });
 
-        if (currentItem.isActive()) {
+        if (profileList.get(position).isActive()) {
             holder.profileItem.setCardBackgroundColor(Color.parseColor("#FF03DAC5"));
         }
+        else
+            holder.profileItem.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
     }
 
     @Override
