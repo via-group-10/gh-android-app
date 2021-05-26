@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.grinhouseapp.R;
+import com.example.grinhouseapp.ui.deviceState.DeviceStateActivity;
 import com.example.grinhouseapp.ui.graph.GraphFragment;
 import com.example.grinhouseapp.ui.filter.FilterFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_data, R.id.navigation_profile, R.id.addProfileFragment)
+                R.id.navigation_home, R.id.navigation_data, R.id.navigation_profile, R.id.addProfileFragment, R.id.editProfileFragment)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -61,6 +62,11 @@ public class HomeActivity extends AppCompatActivity {
             FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.content_frame,fragment).addToBackStack(null).commit();
 
+        }
+        else if (itemId == R.id.device_icon)
+        {
+            Intent intent = new Intent(this, DeviceStateActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

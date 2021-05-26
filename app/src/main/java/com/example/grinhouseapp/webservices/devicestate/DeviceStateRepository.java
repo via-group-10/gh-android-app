@@ -63,10 +63,10 @@ public class DeviceStateRepository {
             public void onResponse(Call<ACState> call, Response<ACState> response) {
                 if(response.isSuccessful())
                 {
-                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGG"+response.body().getAcStateId()+response.body().isCoolerOn()+response.body().isHeaterOn());
+                    System.out.println("Cooler on: "+response.body().getAcStateId()+response.body().isCoolerOn()+ "Heater on: " + response.body().isHeaterOn());
                     ACState acState = response.body();
                     currentAcState.setValue(acState);
-                    System.out.println("LLLLLLLLLLLLLLLLL"+currentAcState.getValue().isCoolerOn());
+                    System.out.println("Cooler on: "+currentAcState.getValue().isCoolerOn());
                 }
             }
 

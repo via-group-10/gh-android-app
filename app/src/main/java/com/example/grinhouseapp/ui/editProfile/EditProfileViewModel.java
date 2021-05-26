@@ -47,7 +47,7 @@ public class  EditProfileViewModel   extends ViewModel {
         //ThresholdProfile profile = new ThresholdProfile(OldProfile.getProfileId(),profileName, false,minimumTemperature,maximumTemperature,
         //        minimumHumidity,maximumHumidity, minimumCarbonDioxide,maximumCarbonDioxide,1);
         profileRepository.updateProfile(OldProfile);
-        System.out.println("ggggggsssssssssssssssssggggggggggggssssssssss"+OldProfile.getProfileName());
+        System.out.println("Updating, profile name: "+OldProfile.getProfileName());
     }
 
 }

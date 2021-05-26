@@ -1,4 +1,6 @@
 package com.example.grinhouseapp.ui.deviceState;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -18,8 +20,9 @@ public class DeviceStateViewModel extends ViewModel {
 
     public LiveData<ACState> getCurrentAcState()
     {
-        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+        Log.i("current_state", "getting current state..");
         return deviceStateRepository.getCurrentAcState();
+
     }
 
     public LiveData<CarbonDioxideGeneratorState> getCurrentCo2GeneratorState()

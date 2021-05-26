@@ -21,7 +21,7 @@ public interface ProfileApi {
     @DELETE("api/profile/{id}")
     Call<ResponseBody> deleteProfile(@Path("id") int id);
     @POST("api/profile")
-    Call<ProfileResponse> createProfile(@Body ThresholdProfile profile);
+    Call<ResponseBody> createProfile(@Body ThresholdProfile profile);
     @PUT("api/profile")
-    Call<ProfileResponse> putProfile(@Body ThresholdProfile profile);
+    Call<ResponseBody> putProfile(@Body ThresholdProfile profile);
 }

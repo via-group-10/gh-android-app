@@ -95,10 +95,10 @@ public class ProfileRepository {
         ProfileApi profileApi = ServiceGenerator.getProfileApi();
         ThresholdProfile profile = new ThresholdProfile(profileId, profileName, active, minimumTemperature,
                 maximumTemperature, minimumHumidity, maximumHumidity, minimumCarbonDioxide, maximumCarbonDioxide, greenhouseId);
-        Call<ProfileResponse> call = profileApi.createProfile(profile);
-        call.enqueue(new Callback<ProfileResponse>() {
+        Call<ResponseBody> call = profileApi.createProfile(profile);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful())
                 {
                     //allProfilesMutableData.getValue().add(profile);
@@ -107,8 +107,8 @@ public class ProfileRepository {
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
-                Log.i("Retrofit", "CREATE PROFILE Something went wrong");
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("Retrofit", "CREATE PROFILE Something went wrong", t);
             }
         });
     }
@@ -145,19 +145,24 @@ public class ProfileRepository {
 //                              int minimumCarbonDioxide, int maximumCarbonDioxide, int greenhouseId
     {
         ProfileApi profileApi = ServiceGenerator.getProfileApi();
-        Call<ProfileResponse> call = profileApi.putProfile(profile);
-        call.enqueue(new Callback<ProfileResponse>() {
+        Call<ResponseBody> call = profileApi.putProfile(profile);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful())
                 {
                     //allProfilesMutableData.getValue().add(profile);
                     Log.i("Update profile",response.body().toString());
                 }
+                else
+                {
+                    Log.i("fail", String.valueOf(response.code()));
+                }
+
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.i("Retrofit", "UPDATE PROFILE Something went wrong");
             }
         });

@@ -100,4 +100,10 @@ public class AddProfileFragment extends Fragment {
 
         return view;
     }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//        // TODO: Use the ViewModel
+//    }
 }
