@@ -16,11 +16,13 @@ import java.util.List;
 public class DataViewModel extends AndroidViewModel {
 
     MeasurementRepository measurementRepository;
+    DatabaseRepository databaseRepository;
 
     public DataViewModel(Application app)
     {
         super(app);
         measurementRepository = MeasurementRepository.getInstance();
+        databaseRepository = DatabaseRepository.getInstance(app);
     }
 
     public LiveData<List<Measurement>> getMeasurement(MeasurementType measurementType)
@@ -41,5 +43,10 @@ public class DataViewModel extends AndroidViewModel {
             measurementRepository.setCarbonDioxideMeasurement();
         else
             measurementRepository.setHumidityMeasurements();
+    }
+
+    public LiveData<List<Measurement>> getMeasurementsDB(MeasurementType measurementType)
+    {
+        return databaseRepository.getAllMeasurements(measurementType);
     }
 }
