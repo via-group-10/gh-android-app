@@ -22,13 +22,6 @@ public class HumidifierState {
         return greenhouseId;
     }
 
-    public Timestamp getStateDateTime() {
-        return stateDateTime;
-    }
-
-    public int getHumidifierId() {
-        return humidifierId;
-    }
 
     public boolean dehumidifierOn() {
         return dehumidifierOn;
@@ -40,21 +33,5 @@ public class HumidifierState {
 
     public void setGreenhouseId(int greenhouseId) {
         this.greenhouseId = greenhouseId;
-    }
-
-    public void setStateDateTime(Timestamp stateDateTime) {
-        this.stateDateTime = stateDateTime;
-    }
-
-    public void setDehumidifierOn(boolean dehumidifierOn) {
-        this.dehumidifierOn = dehumidifierOn;
-    }
-
-    public void setHumidifierId(int humidifierId) {
-        this.humidifierId = humidifierId;
-    }
-
-    public void setHumidifierOn(boolean humidifierOn) {
-        this.humidifierOn = humidifierOn;
     }
 }

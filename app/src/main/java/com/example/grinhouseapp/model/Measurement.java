@@ -76,29 +76,6 @@ public class Measurement {
         this.greenhouseId = greenhouseId;
     }
 
-    public void setMeasurementDateTime(Timestamp measurementDateTime)
-    {
-        this.measurementDateTime = measurementDateTime;
-    }
-
-    public void setMeasurementId(int measurementId)
-    {
-        this.measurementId = measurementId;
-    }
-
-    public void setMeasurementTypeEnum(MeasurementType measurementTypeEnum)
-    {
-        this.measurementTypeEnum = measurementTypeEnum;
-    }
-
-    public void setMeasurementValue(float measurementValue)
-    {
-        this.measuredValue = measurementValue;
-    }
-    public void setMeasuredValue(float measuredValue) {
-        this.measuredValue = measuredValue;
-    }
-
     public long getMeasurementDateTimeLong() {
         return measurementDateTimeLong;
     }

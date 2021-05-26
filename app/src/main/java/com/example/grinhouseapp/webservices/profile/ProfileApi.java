@@ -16,8 +16,6 @@ import retrofit2.http.Path;
 public interface ProfileApi {
     @GET("api/profile")
     Call<List<ProfileResponse>> getProfiles();
-    @GET("api/profile/current")
-    Call<ProfileResponse> getCurrentProfile();
     @DELETE("api/profile/{id}")
     Call<ResponseBody> deleteProfile(@Path("id") int id);
     @POST("api/profile")

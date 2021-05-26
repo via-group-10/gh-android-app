@@ -1,6 +1,5 @@
 package com.example.grinhouseapp.ui.addProfile;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.grinhouseapp.R;
-import com.example.grinhouseapp.ui.data.DataViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,10 +98,4 @@ public class AddProfileFragment extends Fragment {
 
         return view;
     }
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//
-//        // TODO: Use the ViewModel
-//    }
 }

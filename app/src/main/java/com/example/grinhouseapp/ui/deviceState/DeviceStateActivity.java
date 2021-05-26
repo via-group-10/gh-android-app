@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.grinhouseapp.R;
-import com.example.grinhouseapp.model.ACState;
-import com.example.grinhouseapp.ui.profile.ProfileViewModel;
 
 
 public class DeviceStateActivity extends AppCompatActivity {
@@ -37,10 +35,8 @@ public class DeviceStateActivity extends AppCompatActivity {
 
 
 
-        // System.out.println("XXXXXXXXXXXXXXXXXXXXXXX"+viewModel.getCurrentAcState().getValue().isHeaterOn());
 
         viewModel.getCurrentAcState().observe(this, currentAcState ->{
-            //ACState a = new ACState(currentAcState.getAcStateId(),currentAcState.isHeaterOn(),currentAcState.isCoolerOn(),currentAcState.getStateDateTime(),currentAcState.getGreenhouseId());
             coolerSwitchCompat.setChecked(currentAcState.isCoolerOn());
             heaterSwitchCompat.setChecked(currentAcState.isHeaterOn());
         });

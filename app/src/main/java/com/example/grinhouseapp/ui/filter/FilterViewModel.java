@@ -1,7 +1,6 @@
 package com.example.grinhouseapp.ui.filter;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.grinhouseapp.webservices.measurement.MeasurementRepository;

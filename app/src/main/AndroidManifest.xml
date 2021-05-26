@@ -20,15 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.treshold.HumidityActivity"
-            android:parentActivityName=".ui.main.HomeActivity" />
-        <activity
-            android:name=".ui.treshold.CarbonDioxideActivity"
-            android:parentActivityName=".ui.main.HomeActivity" />
-        <activity
-            android:name=".ui.treshold.TemperatureActivity"
-            android:parentActivityName=".ui.main.HomeActivity" />
         <activity android:name=".ui.graph.GraphFragment" />
         <activity android:name=".ui.deviceState.DeviceStateActivity"
             android:parentActivityName=".ui.main.HomeActivity">

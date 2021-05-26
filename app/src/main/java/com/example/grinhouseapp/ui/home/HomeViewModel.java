@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.grinhouseapp.database.DatabaseRepository;
 import com.example.grinhouseapp.model.Measurement;
@@ -25,10 +24,6 @@ public class HomeViewModel extends AndroidViewModel {
         databaseRepository = DatabaseRepository.getInstance(app);
     }
 
-    LiveData<List<Measurement>> getMeasurement()
-    {
-        return measurementRepository.getLatestMeasurements();
-    }
 
     public LiveData<List<Measurement>> getTopMeasurement(MeasurementType measurementType)
     {
@@ -48,11 +43,6 @@ public class HomeViewModel extends AndroidViewModel {
             measurementRepository.setTopHumidityMeasurements(count);
         else
             measurementRepository.setTopCarbonDioxideMeasurements(count);
-    }
-
-    public void setMeasurementRepository()
-    {
-        measurementRepository.setLatestMeasurements();
     }
 
     /** DATABASE **/

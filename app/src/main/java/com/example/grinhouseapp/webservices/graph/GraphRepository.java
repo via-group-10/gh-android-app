@@ -76,7 +76,7 @@ public class GraphRepository {
     public void setHumidityMeasurement(String filter)
     {
         GraphApi graphApi = ServiceGenerator.getGraphApi();
-        Call<List<MeasurementResponse>> call = graphApi.getTemperatureGraphData(filter);
+        Call<List<MeasurementResponse>> call = graphApi.getHumidityGraphData(filter);
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
@@ -106,7 +106,7 @@ public class GraphRepository {
     public void setCarbonDioxideMeasurement(String filter)
     {
         GraphApi graphApi = ServiceGenerator.getGraphApi();
-        Call<List<MeasurementResponse>> call = graphApi.getTemperatureGraphData(filter);
+        Call<List<MeasurementResponse>> call = graphApi.getCarbonDioxideGraphData(filter);
         call.enqueue(new Callback<List<MeasurementResponse>>() {
             @Override
             public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {

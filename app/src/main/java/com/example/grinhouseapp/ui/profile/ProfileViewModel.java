@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.grinhouseapp.ui.editProfile.EditProfileViewModel;
 import com.example.grinhouseapp.webservices.profile.ProfileRepository;
 import com.example.grinhouseapp.model.ThresholdProfile;
 

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.grinhouseapp.model.ACState;
 import com.example.grinhouseapp.webservices.ServiceGenerator;
-import com.example.grinhouseapp.webservices.profile.ProfileResponse;
 import com.example.grinhouseapp.model.CarbonDioxideGeneratorState;
 import com.example.grinhouseapp.model.HumidifierState;
 
@@ -41,7 +40,6 @@ public class DeviceStateRepository {
     }
 
     public LiveData<ACState> getCurrentAcState() {
-        //System.out.println("FFFFFFFFFFFFFFFFFFFFFF"+currentAcState.getValue().isCoolerOn());
         return currentAcState;
     }
 

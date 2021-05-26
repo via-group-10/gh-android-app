@@ -31,7 +31,6 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.Measuremen
             date = itemView.findViewById(R.id.filter_date);
             hour = itemView.findViewById(R.id.filter_hour);
             value = itemView.findViewById(R.id.filter_value);
-//            image = itemView.findViewById(R.id.filter_image);
         }
     }
 

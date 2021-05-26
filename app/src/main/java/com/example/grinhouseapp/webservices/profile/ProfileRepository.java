@@ -40,10 +40,6 @@ public class ProfileRepository {
         return allProfilesMutableData;
     }
 
-    public MutableLiveData<ThresholdProfile> getCurrentProfile() {
-        return currentProfileMutableData;
-    }
-
     public void setAllProfiles()
     {
         ProfileApi profileApi = ServiceGenerator.getProfileApi();
@@ -63,26 +59,6 @@ public class ProfileRepository {
 
             @Override
             public void onFailure(Call<List<ProfileResponse>> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong");
-            }
-        });
-    }
-
-    public void setCurrentProfile()
-    {
-        ProfileApi profileApi = ServiceGenerator.getProfileApi();
-        Call<ProfileResponse> call = profileApi.getCurrentProfile();
-        call.enqueue(new Callback<ProfileResponse>() {
-            @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
-                if(response.isSuccessful())
-                {
-                    currentProfileMutableData.setValue(response.body().getProfile());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong");
             }
         });

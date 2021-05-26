@@ -1,7 +1,6 @@
 package com.example.grinhouseapp.ui.profile;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.ThresholdProfile;
-import com.example.grinhouseapp.ui.editProfile.EditProfileViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

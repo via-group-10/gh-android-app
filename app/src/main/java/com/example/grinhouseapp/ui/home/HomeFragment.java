@@ -1,8 +1,6 @@
 package com.example.grinhouseapp.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grinhouseapp.NetworkCheck;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.Measurement;
-import com.example.grinhouseapp.ui.data.DataViewModel;
-import com.example.grinhouseapp.ui.treshold.CarbonDioxideActivity;
-import com.example.grinhouseapp.ui.treshold.HumidityActivity;
-import com.example.grinhouseapp.ui.treshold.TemperatureActivity;
 
 import com.example.grinhouseapp.model.MeasurementType;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 
@@ -39,6 +30,10 @@ public class HomeFragment extends Fragment {
         homeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(HomeViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        temperatureTextView = root.findViewById(R.id.text_temData);
+        co2TextView = root.findViewById(R.id.text_cdData);
+        humidityTextView = root.findViewById(R.id.text_humData);
 
         if(NetworkCheck.isInternetAvailable(getContext())) {
             int count = 3;
@@ -90,27 +85,6 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
-
-        //temperature
-        temperatureTextView = root.findViewById(R.id.text_temData);
-        temperatureTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), TemperatureActivity.class);
-            startActivity(intent);
-        });
-
-        //co2
-        co2TextView = root.findViewById(R.id.text_cdData);
-        co2TextView.setOnClickListener(v -> {
-            Intent intentco2 = new Intent(getActivity(), CarbonDioxideActivity.class);
-            startActivity(intentco2);
-        });
-
-        //humidity
-        humidityTextView = root.findViewById(R.id.text_humData);
-        humidityTextView.setOnClickListener(v -> {
-            Intent intentco2 = new Intent(getActivity(), HumidityActivity.class);
-            startActivity(intentco2);
-        });
 
         return root;
     }

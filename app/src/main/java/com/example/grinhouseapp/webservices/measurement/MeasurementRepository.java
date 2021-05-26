@@ -49,10 +49,6 @@ public class MeasurementRepository {
         return instance;
     }
 
-    public LiveData<List<Measurement>> getLatestMeasurements() {
-        return  latestMeasurementsMutableData;
-    }
-
     public LiveData<List<Measurement>> getTopTemperatureMeasurements()
     {
         return topTemperatureMeasurements;
@@ -78,33 +74,6 @@ public class MeasurementRepository {
 
     public LiveData<List<Measurement>> getFilteredHumidityMeasurementMutableData() {
         return filteredHumidityMeasurementMutableData;
-    }
-
-    public void setLatestMeasurements()
-    {
-        MeasurementApi measurementApi = ServiceGenerator.getMeasurementApi();
-        Call<List<MeasurementResponse>> call = measurementApi.getLatestMeasurements();
-        call.enqueue(new Callback<List<MeasurementResponse>>() {
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<List<MeasurementResponse>> call, Response<List<MeasurementResponse>> response) {
-                if(response.isSuccessful() && !response.body().isEmpty()) {
-
-                    List<MeasurementResponse> measurementResponses = response.body();
-                    ArrayList<Measurement> measurements = new ArrayList<>();
-                    for (MeasurementResponse measurementResponse : measurementResponses) {
-                        measurements.add(measurementResponse.getMeasurement());
-                    }
-                    latestMeasurementsMutableData.setValue(measurements);
-                }
-            }
-
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<List<MeasurementResponse>> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong", t);
-            }
-        });
     }
 
     public void setTopTemperatureMeasurements(int count)

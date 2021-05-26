@@ -22,9 +22,6 @@ public class ACState {
         return acStateId;
     }
 
-    public void setAcStateId(int acStateId) {
-        this.acStateId = acStateId;
-    }
 
     public boolean isCoolerOn() {
         return coolerOn;
@@ -38,23 +35,8 @@ public class ACState {
         return greenhouseId;
     }
 
-    public Timestamp getStateDateTime() {
-        return stateDateTime;
-    }
 
     public void setGreenhouseId(int greenhouseId) {
         this.greenhouseId = greenhouseId;
-    }
-
-    public void setCoolerOn(boolean coolerOn) {
-        this.coolerOn = coolerOn;
-    }
-
-    public void setHeaterOn(boolean heaterOn) {
-        this.heaterOn = heaterOn;
-    }
-
-    public void setStateDateTime(Timestamp stateDateTime) {
-        this.stateDateTime = stateDateTime;
     }
 }

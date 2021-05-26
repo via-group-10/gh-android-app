@@ -25,28 +25,14 @@ public class CarbonDioxideGeneratorState {
         return greenhouseId;
     }
 
-    public int getCarbonDioxideGeneratorStateId() {
-        return carbonDioxideGeneratorStateId;
-    }
 
     public boolean isCarbonDioxideGeneratorOn() {
         return isCarbonDioxideGeneratorOn;
     }
 
-    public void setStateDateTime(Timestamp stateDateTime) {
-        this.stateDateTime = stateDateTime;
-    }
 
     public void setGreenhouseId(int greenhouseId) {
         this.greenhouseId = greenhouseId;
-    }
-
-    public void setCarbonDioxideGeneratorOn(boolean carbonDioxideGeneratorOn) {
-        isCarbonDioxideGeneratorOn = carbonDioxideGeneratorOn;
-    }
-
-    public void setCarbonDioxideGeneratorStateId(int carbonDioxideGeneratorStateId) {
-        this.carbonDioxideGeneratorStateId = carbonDioxideGeneratorStateId;
     }
 }
 

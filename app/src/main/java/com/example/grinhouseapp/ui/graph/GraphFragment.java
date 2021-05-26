@@ -79,7 +79,6 @@ public class GraphFragment extends AppCompatActivity {
                     graph.removeAllSeries();
                     DataPoint[] dataPoints = new DataPoint[measurements.size()];
                     for (int i = 0;i<measurements.size();i++){
-//                        Date[i] = new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasurementValue());
                         dataPoints[i] = new DataPoint(new Date(measurements.get(measurements.size()-1-i).getMeasurementDateTime().getTime()), measurements.get(measurements.size()-1-i).getMeasuredValue());
                     }
                     Log.i("Graph", "Temperature " + filter);

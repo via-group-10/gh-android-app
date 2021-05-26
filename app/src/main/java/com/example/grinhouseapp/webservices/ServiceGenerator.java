@@ -75,7 +75,7 @@ public class ServiceGenerator {
         if (deviceStateApi == null)
         {
             deviceStateApi = new Retrofit.Builder()
-                    .baseUrl("http://20.52.3.144:8080/")
+                    .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build().create(DeviceStateApi.class);
         }

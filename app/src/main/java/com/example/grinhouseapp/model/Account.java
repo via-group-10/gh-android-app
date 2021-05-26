@@ -34,25 +34,16 @@ public class Account {
         return greenhouseName;
     }
 
-    public void setGreenhouseName(String greenhouseName) {
-        this.greenhouseName = greenhouseName;
-    }
 
     public String getLoginName() {
         return loginName;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
 
     public String getLoginPassword() {
         return loginPassword;
     }
 
-    public void setLoginPassword(String loginPassword) {
-        this.loginPassword = loginPassword;
-    }
 
     @Override
     public String toString() {

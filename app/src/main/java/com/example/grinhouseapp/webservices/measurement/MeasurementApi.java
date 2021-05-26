@@ -19,13 +19,6 @@ public interface MeasurementApi {
     @GET("api/measurement/carbon-dioxide")
     Call<List<MeasurementResponse>> getTopCarbonDioxideMeasurements(@Query("top") int count);
 
-    @GET("api/measurement/temperature")
-    Call<List<MeasurementResponse>> getTemperatureMeasurement();
-    @GET("api/measurement/humidity")
-    Call<List<MeasurementResponse>> getHumidityMeasurement();
-    @GET("api/measurement/carbon-dioxide")
-    Call<List<MeasurementResponse>> getCarbonDioxideMeasurement();
-
     /** FILTERING **/
     @GET("api/measurement/temperature/range")
     Call<List<MeasurementResponse>> getFilteredTemperature(@Query("from")Timestamp from, @Query("to") Timestamp to);

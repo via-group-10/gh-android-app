@@ -16,9 +16,6 @@ public class ThresholdProfile {
         return thresholdProfileId;
     }
 
-    public void setThresholdProfileId(int thresholdProfileId) {
-        this.thresholdProfileId = thresholdProfileId;
-    }
 
     public String getProfileName() {
         return profileName;
