@@ -71,20 +71,27 @@ public class AddProfileFragment extends Fragment {
                 lists.add(String.valueOf(minCd.getText()));
                 lists.add(String.valueOf(maxCd.getText()));
                 ArrayList<String> a = new ArrayList<>();
-                for (int i = 0; i<lists.size();i++) {
+                for (int i = 0; i < lists.size(); i++) {
                     if (lists.get(i) == null || lists.get(i).equals("")) {
                         Toast.makeText(getActivity(), "Please write all the info", Toast.LENGTH_SHORT).show();
                         a.add(lists.get(i));
                         break;
+                    } else if (Integer.parseInt(lists.get(1)) >= Integer.parseInt(lists.get(2)) || Integer.parseInt(lists.get(3)) >=
+                            Integer.parseInt(lists.get(4)) || Integer.parseInt(lists.get(5)) >=
+                            Integer.parseInt(lists.get(6))) {
+                        Toast.makeText(getActivity(), "Invalid values (PLEASE check high/low values)", Toast.LENGTH_SHORT).show();
+                        a.add(lists.get(i));
+                        break;
+                    } else {
+                        a.clear();
                     }
 
                 }
-                if (a.size()==0)
-                {
+                if (a.size() == 0) {
                     //add profile method
-                    viewModel.addNewProfile(lists.get(0),Integer.parseInt(lists.get(1)),
-                            Integer.parseInt(lists.get(2)),Integer.parseInt(lists.get(3)),
-                            Integer.parseInt(lists.get(4)),Integer.parseInt(lists.get(5)),
+                    viewModel.addNewProfile(lists.get(0), Integer.parseInt(lists.get(1)),
+                            Integer.parseInt(lists.get(2)), Integer.parseInt(lists.get(3)),
+                            Integer.parseInt(lists.get(4)), Integer.parseInt(lists.get(5)),
                             Integer.parseInt(lists.get(6)));
                     Navigation.findNavController(getView()).navigate(R.id.navigation_profile);
                 }
@@ -93,12 +100,4 @@ public class AddProfileFragment extends Fragment {
 
         return view;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // TODO: Use the ViewModel
-    }
-
 }

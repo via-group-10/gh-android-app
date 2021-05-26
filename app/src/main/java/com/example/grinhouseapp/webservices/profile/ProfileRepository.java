@@ -11,9 +11,11 @@ import com.example.grinhouseapp.model.ThresholdProfile;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class ProfileRepository {
     private static ProfileRepository instance;
@@ -113,10 +115,10 @@ public class ProfileRepository {
 
     public void deleteProfile(int id) {
         ProfileApi profileApi = ServiceGenerator.getProfileApi();
-        Call<ProfileResponse> call = profileApi.deleteProfile(id);
-        call.enqueue(new Callback<ProfileResponse>() {
+        Call<ResponseBody> call = profileApi.deleteProfile(id);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     //for (int i=0; i<allProfilesMutableData.getValue().size(); i++)
                     //{
@@ -131,19 +133,18 @@ public class ProfileRepository {
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.i("Retrofit", "DELETE PROFILE Something went wrong");
             }
         });
     }
 
-    public void updateProfile(int profileId, String profileName, boolean active, int minimumTemperature,
-                              int maximumTemperature, int minimumHumidity, int maximumHumidity,
-                              int minimumCarbonDioxide, int maximumCarbonDioxide, int greenhouseId)
+    public void updateProfile(ThresholdProfile profile)
+//            int profileId, String profileName, boolean active, int minimumTemperature,
+//                              int maximumTemperature, int minimumHumidity, int maximumHumidity,
+//                              int minimumCarbonDioxide, int maximumCarbonDioxide, int greenhouseId
     {
         ProfileApi profileApi = ServiceGenerator.getProfileApi();
-        ThresholdProfile profile = new ThresholdProfile(profileId, profileName, active, minimumTemperature,
-                maximumTemperature, minimumHumidity, maximumHumidity, minimumCarbonDioxide, maximumCarbonDioxide, greenhouseId);
         Call<ProfileResponse> call = profileApi.putProfile(profile);
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
@@ -157,7 +158,7 @@ public class ProfileRepository {
 
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
-                Log.i("Retrofit", "CREATE PROFILE Something went wrong");
+                Log.i("Retrofit", "UPDATE PROFILE Something went wrong");
             }
         });
     }

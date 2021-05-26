@@ -29,6 +29,9 @@
             android:name=".ui.treshold.TemperatureActivity"
             android:parentActivityName=".ui.main.HomeActivity" />
         <activity android:name=".ui.graph.GraphFragment" />
+        <activity android:name=".ui.deviceState.DeviceStateActivity"
+            android:parentActivityName=".ui.main.HomeActivity">
+        </activity>
 
         <meta-data
             android:name="com.google.android.actions"

@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cochcem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.addProfile.AddProfileFragment">
+    tools:context=".ui.editProfile.EditProfileFragment">
 
 
 
@@ -17,7 +16,7 @@
         android:layout_marginTop="38dp"
         android:src="@drawable/ic_carbon_humidity"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCO2High"
+        app:layout_constraintTop_toBottomOf="@+id/updateTextCO2High"
         app:srcCompat="@drawable/ic_carbon_humidity" />
 
     <TextView
@@ -31,7 +30,7 @@
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCO2Low" />
+        app:layout_constraintTop_toBottomOf="@+id/updateTextCO2Low" />
 
     <TextView
         android:id="@+id/textView14"
@@ -48,7 +47,7 @@
 
 
     <EditText
-        android:id="@+id/editTextHumidityLow"
+        android:id="@+id/updateTextHumidityLow"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -68,12 +67,12 @@
         android:text="@string/highThreshold"
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextHumidityLow"
+        app:layout_constraintStart_toEndOf="@+id/updateTextHumidityLow"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 
     <EditText
-        android:id="@+id/editTextHumidityHigh"
+        android:id="@+id/updateTextHumidityHigh"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -95,7 +94,7 @@
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTemperatureLow" />
+        app:layout_constraintTop_toBottomOf="@+id/updateTextTemperatureLow" />
 
     <TextView
         android:id="@+id/textView9"
@@ -111,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
-        android:id="@+id/editTextCO2Low"
+        android:id="@+id/updateTextCO2Low"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -131,11 +130,11 @@
         android:text="@string/highThreshold"
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextCO2Low"
+        app:layout_constraintStart_toEndOf="@+id/updateTextCO2Low"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
-        android:id="@+id/editTextCO2High"
+        android:id="@+id/updateTextCO2High"
 
         android:layout_width="60sp"
         android:layout_height="wrap_content"
@@ -154,7 +153,7 @@
         android:layout_marginTop="38dp"
         android:src="@drawable/ic_iwwa_co2"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTemperatureHigh"
+        app:layout_constraintTop_toBottomOf="@+id/updateTextTemperatureHigh"
         app:srcCompat="@drawable/ic_iwwa_co2" />
 
     <TextView
@@ -164,7 +163,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/createProfile"
+        android:text="Update the profile"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +184,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editTextProfileName"
+        android:id="@+id/updateTextProfileName"
         android:layout_width="170sp"
         android:layout_height="45sp"
         android:layout_marginStart="30dp"
@@ -225,7 +224,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/editTextTemperatureLow"
+        android:id="@+id/updateTextTemperatureLow"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -245,13 +244,13 @@
         android:text="@string/highThreshold"
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextTemperatureLow"
+        app:layout_constraintStart_toEndOf="@+id/updateTextTemperatureLow"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
 
     <EditText
-        android:id="@+id/editTextTemperatureHigh"
+        android:id="@+id/updateTextTemperatureHigh"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -269,10 +268,10 @@
         android:layout_marginTop="30dp"
         android:src="@drawable/ic_thermostat"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProfileName" />
+        app:layout_constraintTop_toBottomOf="@+id/updateTextProfileName" />
 
     <Button
-        android:id="@+id/button_save_profile"
+        android:id="@+id/button_save_Update_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -281,10 +280,10 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextHumidityHigh" />
+        app:layout_constraintTop_toBottomOf="@+id/updateTextHumidityHigh" />
 
     <Button
-        android:id="@+id/button_cancel"
+        android:id="@+id/button_Update_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -293,7 +292,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/cancel"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/button_save_profile"
-        app:layout_constraintTop_toBottomOf="@+id/editTextHumidityHigh" />
+        app:layout_constraintEnd_toStartOf="@+id/button_save_Update_profile"
+        app:layout_constraintTop_toBottomOf="@+id/updateTextHumidityHigh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

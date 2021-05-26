@@ -25,9 +25,27 @@ public class AddProfileViewModel extends ViewModel {
                               int minimumCarbonDioxide, int maximumCarbonDioxide)
     {
         int num =(int) (Math.random() * 9 + 1) * 100000;
+        for (int i=0;i<profileRepository.getAllProfiles().getValue().size();i++)
+        {
+            if (getThresholdProfileById(num)!=null)
+            {
+                num++;
+            }
+        }
         //profileRepository.createProfile(num,profileName, false,minimumTemperature,maximumTemperature,
         //        minimumHumidity,maximumHumidity, minimumCarbonDioxide,maximumCarbonDioxide,getCurrentProfile().getValue().getGreenhouseId());
         profileRepository.createProfile(num,profileName, false,minimumTemperature,maximumTemperature,
                 minimumHumidity,maximumHumidity, minimumCarbonDioxide,maximumCarbonDioxide,1);
+    }
+    public ThresholdProfile getThresholdProfileById(int id)
+    {
+        for (int i=0;i<profileRepository.getAllProfiles().getValue().size();i++) {
+            if (profileRepository.getAllProfiles().getValue().get(i).getProfileId()==id)
+            {
+                return profileRepository.getAllProfiles().getValue().get(i);
+            }
+        }
+        return null;
+
     }
 }

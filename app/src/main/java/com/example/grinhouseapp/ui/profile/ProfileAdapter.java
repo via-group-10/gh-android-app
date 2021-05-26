@@ -1,5 +1,6 @@
 package com.example.grinhouseapp.ui.profile;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,16 +8,19 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.ThresholdProfile;
+import com.example.grinhouseapp.ui.editProfile.EditProfileViewModel;
 
 import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> {
     private ArrayList<ThresholdProfile> profileList;
     final private OnListItemClickListener listener;
+    public static Boolean ifActivate;
 
     class ProfileViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -26,6 +30,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         public TextView temperatureValue;
         public Button editBtn;
         public Button removeBtn;
+        public CardView profileItem;
+
         public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
             profileName = itemView.findViewById(R.id.profile_name);
@@ -34,12 +40,14 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
             temperatureValue = itemView.findViewById(R.id.measurement_temperature);
             editBtn = itemView.findViewById(R.id.EditBtn);
             removeBtn = itemView.findViewById(R.id.RemoveBtn);
+            profileItem = itemView.findViewById(R.id.profileItem);
         }
 
         @Override
         public void onClick(View v) {
             listener.onListItemClick(getAdapterPosition());
             listener.deleteProfile(profileList.get(getAdapterPosition()).getProfileId(),getAdapterPosition());
+            listener.updateProfile(getAdapterPosition());
            // switch (v.getId())
            // {
            //     case R.id.RemoveBtn:
@@ -52,6 +60,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     {
         this.profileList = profileLst;
         this.listener = listener;
+        ifActivate = true;
     }
 
     @NonNull
@@ -78,10 +87,31 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
               //notifyItemRemoved(position);
               //notifyItemRangeChanged(position,getItemCount());
               //notifyDataSetChanged();
+               ifActivate = false;
                listener.deleteProfile(profileList.get(position).getProfileId(),position);
            }
        });
+        holder.editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ifActivate = false;
+                EditProfileViewModel.OldProfile = profileList.get(position);
+                listener.updateProfile(position);
+                //Navigation.findNavController(v).navigate(R.id.navigateToUpdateProfilesFragment);
+            }
+        });
+        holder.profileItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ifActivate=true) {
+                    listener.onListItemClick(position);
+                }
+            }
+        });
 
+        if (currentItem.isActive()) {
+            holder.profileItem.setCardBackgroundColor(Color.parseColor("#FF03DAC5"));
+        }
     }
 
     @Override
@@ -92,6 +122,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     public interface OnListItemClickListener {
         void onListItemClick(int clickedItemIndex);
         void deleteProfile(int id,int position);
+        void updateProfile(int position);
     }
 
 }

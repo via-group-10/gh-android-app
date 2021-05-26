@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.deviceState.DeviceStateActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/up_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/teal_200"
+        app:title="Device State"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_new_24"
+        style="@style/Widget.MaterialComponents.ActionBar.Primary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Temperature"
+            android:textSize="25sp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_marginLeft="20dp">
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Heater " />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/heaterState"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:clickable="false"
+                app:showText="true"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+            >
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Cooler" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/coolerState"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:clickable="false"
+                app:showText="true"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Carbon Dioxide"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="CO2 Generator"
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/co2State"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:showText="true"
+                android:clickable="false"
+                android:layout_gravity="center_vertical"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Humidity"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Humidifier " />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/humidifierState"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:showText="true"
+                android:clickable="false"
+                android:layout_gravity="center_vertical"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+
+            android:padding="5dp">
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="DeHumidifier "
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/deHumidifierState"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:showText="true"
+                android:layout_gravity="center_vertical"
+                android:clickable="false"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

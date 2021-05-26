@@ -1,5 +1,6 @@
 package com.example.grinhouseapp.webservices;
 
+import com.example.grinhouseapp.webservices.devicestate.DeviceStateApi;
 import com.example.grinhouseapp.webservices.graph.GraphApi;
 import com.example.grinhouseapp.webservices.greenhouse.GreenhouseApi;
 import com.example.grinhouseapp.webservices.measurement.MeasurementApi;
@@ -13,6 +14,7 @@ public class ServiceGenerator {
     private static ProfileApi profileApi;
     private static GraphApi graphApi;
     private static GreenhouseApi greenhouseApi;
+    private static DeviceStateApi deviceStateApi;
 
     public static MeasurementApi getMeasurementApi()
     {
@@ -64,5 +66,17 @@ public class ServiceGenerator {
                     .create(GreenhouseApi.class);
         }
         return greenhouseApi;
+    }
+
+    public static DeviceStateApi getDeviceStateApi()
+    {
+        if (deviceStateApi == null)
+        {
+            deviceStateApi = new Retrofit.Builder()
+                    .baseUrl("http://20.52.3.144:8080/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build().create(DeviceStateApi.class);
+        }
+        return deviceStateApi;
     }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.grinhouseapp.ui.editProfile.EditProfileViewModel;
 import com.example.grinhouseapp.webservices.profile.ProfileRepository;
 import com.example.grinhouseapp.model.ThresholdProfile;
 
@@ -42,5 +43,17 @@ public class ProfileViewModel extends ViewModel {
     public void deleteProfile(int id)
     {
         profileRepository.deleteProfile(id);
+    }
+    public void activateProfile()
+    {
+        //avoid NULL pointer if deleting the activeProfile
+        if (profileRepository.getCurrentProfile().getValue()!=null)
+        {
+            ThresholdProfile thresholdProfile = profileRepository.getCurrentProfile().getValue();
+            thresholdProfile.setActive(false);
+            profileRepository.updateProfile(thresholdProfile);
+        }
+        EditProfileViewModel.OldProfile.setActive(true);
+        profileRepository.updateProfile(EditProfileViewModel.OldProfile);
     }
 }

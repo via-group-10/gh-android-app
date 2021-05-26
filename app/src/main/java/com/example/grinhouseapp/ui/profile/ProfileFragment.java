@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.ThresholdProfile;
+import com.example.grinhouseapp.ui.editProfile.EditProfileViewModel;
 import com.example.grinhouseapp.ui.home.HomeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -65,9 +66,11 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
 
         viewModel.getAllProfiles().observe(getViewLifecycleOwner(), thresholdProfiles -> {
             profileList.clear();
-            List<ThresholdProfile> profiles = viewModel.getAllProfilesInList();
+            List<ThresholdProfile> profiles = thresholdProfiles;
+//            List<ThresholdProfile> profiles = viewModel.getAllProfilesInList();
             Collections.reverse(profiles);
-            profileList.addAll(profiles);
+            profileList.addAll(thresholdProfiles);
+//            profileList.addAll(profiles);
             adapter.notifyDataSetChanged();
         });
 
@@ -77,12 +80,24 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        //@TODO: clickable buttons
-        viewModel.deleteProfile(profileList.get(clickedItemIndex).getProfileId());
-        profileList.remove(clickedItemIndex);
-        adapter.notifyItemRemoved(clickedItemIndex);
-        adapter.notifyItemRangeChanged(clickedItemIndex,adapter.getItemCount());
-        adapter.notifyDataSetChanged();
+        EditProfileViewModel.OldProfile = profileList.get(clickedItemIndex);
+        ProfileDialog.showAlertDialog(getActivity(), true, new ProfileDialog.AlertDialogBtnClickListener() {
+            @Override
+            public void clickApply() {
+                Toast.makeText(getActivity(),"SUCCESSFULLY!!!",Toast.LENGTH_SHORT).show();
+                viewModel.activateProfile();
+            }
+            @Override
+            public void clickCancel() {
+
+            }
+        });
+//        //@TODO: clickable buttons
+//        viewModel.deleteProfile(profileList.get(clickedItemIndex).getProfileId());
+//        profileList.remove(clickedItemIndex);
+//        adapter.notifyItemRemoved(clickedItemIndex);
+//        adapter.notifyItemRangeChanged(clickedItemIndex,adapter.getItemCount());
+//        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -91,6 +106,13 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
         profileList.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position,adapter.getItemCount());
+        adapter.notifyDataSetChanged();
+        ProfileAdapter.ifActivate=true;
+    }
+    @Override
+    public void updateProfile(int position)
+    {
+        Navigation.findNavController(getView()).navigate(R.id.navigateToUpdateProfilesFragment);
         adapter.notifyDataSetChanged();
     }
 

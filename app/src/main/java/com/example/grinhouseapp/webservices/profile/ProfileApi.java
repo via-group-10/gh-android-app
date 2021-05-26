@@ -4,6 +4,7 @@ import com.example.grinhouseapp.model.ThresholdProfile;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -18,7 +19,7 @@ public interface ProfileApi {
     @GET("api/profile/current")
     Call<ProfileResponse> getCurrentProfile();
     @DELETE("api/profile/{id}")
-    Call<ProfileResponse> deleteProfile(@Path("id") int id);
+    Call<ResponseBody> deleteProfile(@Path("id") int id);
     @POST("api/profile")
     Call<ProfileResponse> createProfile(@Body ThresholdProfile profile);
     @PUT("api/profile")
