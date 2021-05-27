@@ -1,11 +1,21 @@
 package com.example.grinhouseapp.ui.addProfile;
 
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.rule.ActivityTestRule;
 
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.ui.main.HomeActivity;
+import com.example.grinhouseapp.ui.profile.ProfileAdapter;
+import com.example.grinhouseapp.ui.profile.ProfileFragment;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -14,11 +24,12 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
 public class AddProfileFragmentTest {
 
     @Rule
     public ActivityTestRule<HomeActivity> activityTestRule = new ActivityTestRule<HomeActivity>(HomeActivity.class);
-
 
     //this will fail because it can't find the view given how the layout is made...
     @Test
@@ -47,10 +58,8 @@ public class AddProfileFragmentTest {
         Espresso.onView(withId(R.id.fragment_profile)).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void redTest() {
-        Espresso.onView(withId(R.id.navigation_profile)).perform(click());
-        //Espresso.onView(withId(R.id.profileRecView)).perform(RecyclerViewActions));
-    }
+
+
+
 
 }
