@@ -85,4 +85,6 @@ public class HomeActivity extends AppCompatActivity {
         intent.putExtra("measurement", measurementCategory);
         startActivity(intent);
     }
+
+
 }
