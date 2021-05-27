@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.grinhouseapp.NetworkCheck;
 import com.example.grinhouseapp.R;
 
 import com.example.grinhouseapp.model.Measurement;
@@ -96,21 +98,33 @@ public class DataFragment extends Fragment {
         moreHumidityBtn = root.findViewById(R.id.seeMoreHumidity);
 
         moreTemperatureBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
-            intent.putExtra("measurement", 0);
-            getActivity().startActivity(intent);
+            if(NetworkCheck.isInternetAvailable(getContext())) {
+                Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
+                intent.putExtra("measurement", 0);
+                getActivity().startActivity(intent);
+            }
+            else
+                Toast.makeText(getContext(), "You need to be online to view graph.", Toast.LENGTH_LONG).show();
         });
 
         moreHumidityBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
-            intent.putExtra("measurement", 1);
-            getActivity().startActivity(intent);
+            if(NetworkCheck.isInternetAvailable(getContext())) {
+                Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
+                intent.putExtra("measurement", 1);
+                getActivity().startActivity(intent);
+            }
+            else
+                Toast.makeText(getContext(), "You need to be online to view graph.", Toast.LENGTH_LONG).show();
         });
 
         moreCO2Btn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
-            intent.putExtra("measurement", 2);
-            getActivity().startActivity(intent);
+            if(NetworkCheck.isInternetAvailable(getContext())) {
+                Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
+                intent.putExtra("measurement", 2);
+                getActivity().startActivity(intent);
+            }
+            else
+                Toast.makeText(getContext(), "You need to be online to view graph.", Toast.LENGTH_LONG).show();
         });
 
         getTableForMeasurement(MeasurementType.temperature);

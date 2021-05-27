@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.grinhouseapp.NetworkCheck;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.ui.deviceState.DeviceStateActivity;
 import com.example.grinhouseapp.ui.graph.GraphFragment;
@@ -55,35 +57,22 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.filter){
+        if (itemId == R.id.filter && NetworkCheck.isInternetAvailable(this)){
 
             Fragment fragment = new FilterFragment();
-          
+
             FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.content_frame,fragment).addToBackStack(null).commit();
+            transaction.add(R.id.content_frame, fragment).addToBackStack(null).commit();
 
         }
-        else if (itemId == R.id.device_icon)
+        else if (itemId == R.id.device_icon && NetworkCheck.isInternetAvailable(this))
         {
             Intent intent = new Intent(this, DeviceStateActivity.class);
             startActivity(intent);
         }
+        else
+            Toast.makeText(this, "You need to be online to perform this action", Toast.LENGTH_LONG).show();
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void seeMore(View view) {
-        int measurementCategory;
-
-        if(view.getId() == R.id.seeMoreTemperature)
-            measurementCategory = 0;
-        else if(view.getId() == R.id.seeMoreCO2)
-            measurementCategory = 1;
-        else
-            measurementCategory = 2;
-
-        Intent intent = new Intent(this, GraphFragment.class);
-        intent.putExtra("measurement", measurementCategory);
-        startActivity(intent);
     }
 }

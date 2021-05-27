@@ -38,21 +38,31 @@ public class LoginActivity extends AppCompatActivity {
             else {
                 viewModel.login(username.getText().toString().trim(), password.getText().toString());
                 viewModel.getCurrentAccount().observe(this, account -> {
-                    Log.i("Account", account.toString());
-                    viewModel.replaceAccount(account);
-                    startActivity(new Intent(this, HomeActivity.class));
-                    finish();
+                    if(username.getText().toString().trim().equals(account.getLoginName()) && password.getText().toString().equals(account.getLoginPassword())) {
+                        Log.i("Credentials", account.toString());
+                        viewModel.replaceAccount(account);
+                        startActivity(new Intent(this, HomeActivity.class));
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(this, "User not found.", Toast.LENGTH_SHORT).show();
+                    }
                 });
             }
         } else {
-            Toast.makeText(this, "No available network connection. Data does not be updated.", Toast.LENGTH_LONG).show();
-                if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty())
-                    Toast.makeText(this, "All information must be filled", Toast.LENGTH_SHORT).show();
-                else {
-                    viewModel.getAccount(username.getText().toString(), password.getText().toString()).observe(this, account -> {
+            if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty())
+                Toast.makeText(this, "All information must be filled", Toast.LENGTH_SHORT).show();
+            else {
+                viewModel.getAccount(username.getText().toString(), password.getText().toString()).observe(this, account -> {
+                    if(account != null && username.getText().toString().trim().equals(account.getLoginName()) && password.getText().toString().equals(account.getLoginPassword())) {
+                        Toast.makeText(this, "No available network connection. Data will not be updated.", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(this, HomeActivity.class));
                         finish();
-                    });
+                    }
+                    else{
+                        Toast.makeText(this, "User not found.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }
     }
