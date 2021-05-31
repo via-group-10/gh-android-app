@@ -24,9 +24,11 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.*;
 
 public class ProfileFragmentTest {
@@ -34,29 +36,16 @@ public class ProfileFragmentTest {
     @Rule
     public ActivityTestRule<HomeActivity> activityTestRule = new ActivityTestRule<HomeActivity>(HomeActivity.class);
 
-
     @Test
-    public void checkFirstItem(){
+    public void countOfChildrenIsNot2(){
         Espresso.onView(withId(R.id.navigation_profile)).perform(click());
-        Espresso.onView(withId(R.id.profileRecView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-
-        Espresso.onView(withId(R.id.profileRecView)).check(matches(hasChildCount(1)));
-    }
-
-    @Test
-    public void countOfChildrenIs1(){
-        Espresso.onView(withId(R.id.navigation_profile)).perform(click());
-        Espresso.onView(withId(R.id.profileRecView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-
-        Espresso.onView(withId(R.id.profileRecView)).check(matches(hasChildCount(1)));
+        Espresso.onView(withId(R.id.profileRecView)).check(matches(not(hasChildCount(2))));
     }
 
     @Test
     public void firstItemTitleMatches(){
         Espresso.onView(withId(R.id.navigation_profile)).perform(click());
-        Espresso.onView(withId(R.id.profileRecView)).check(matches(atPosition(0,hasDescendant(withText("sesty")))));
+        Espresso.onView(withId(R.id.profileRecView)).check(matches(atPosition(0,hasDescendant(withText("b")))));
     }
 
     @Test
@@ -65,7 +54,14 @@ public class ProfileFragmentTest {
         Espresso.onView(withId(R.id.profileRecView)).perform(RecyclerViewActions.actionOnItemAtPosition(0,MyViewAction.clickChildViewWithId(R.id.RemoveBtn)));
     }
 
+    @Test
+    public void set1ProfileAsActive(){
+        Espresso.onView(withId(R.id.navigation_profile)).perform(click());
+        Espresso.onView(withId(R.id.profileRecView)).perform(RecyclerViewActions.actionOnItemAtPosition(0,MyViewAction.clickChildViewWithId(R.id.profileItem)));
+        Espresso.onView(withId(R.id.applyButton)).check(matches(isDisplayed()));
+        Espresso.onView(withId(R.id.applyButton)).perform(click());
 
+    }
 
     public static Matcher<View> atPosition(final int position, @NonNull final Matcher<View> itemMatcher) {
         checkNotNull(itemMatcher);

@@ -53,23 +53,5 @@ public class HomeFragmentTest {
         Espresso.onView(withId(R.id.filtering)).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void test_navThresholdTemperatureFragment(){
-        Espresso.onView(withId(R.id.text_temData)).perform(click());
-        Espresso.onView(withId(R.id.threshold_temperature)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void test_navThresholdCO2Fragment(){
-        Espresso.onView(withId(R.id.text_cdData)).perform(click());
-        Espresso.onView(withId(R.id.threshold_co2)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void test_navThresholdHumidityFragment(){
-        Espresso.onView(withId(R.id.text_humData)).perform(click());
-        Espresso.onView(withId(R.id.threshold_hum)).check(matches(isDisplayed()));
-    }
-
 
 }
