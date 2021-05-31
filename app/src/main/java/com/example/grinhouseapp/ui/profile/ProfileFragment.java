@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.grinhouseapp.NetworkCheck;
 import com.example.grinhouseapp.R;
 import com.example.grinhouseapp.model.ThresholdProfile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +38,10 @@ public class ProfileFragment extends Fragment implements ProfileAdapter.OnListIt
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         fab = root.findViewById(R.id.fab);
+        if(!NetworkCheck.isInternetAvailable(getContext())) {
+            Toast.makeText(getContext(), "You are not connected. Profiles cannot be viewed", Toast.LENGTH_SHORT).show();
+            fab.setVisibility(View.GONE);
+        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

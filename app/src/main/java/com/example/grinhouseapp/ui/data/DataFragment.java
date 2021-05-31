@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.grinhouseapp.NetworkCheck;
 import com.example.grinhouseapp.R;
 
 import com.example.grinhouseapp.model.Measurement;
@@ -94,6 +95,13 @@ public class DataFragment extends Fragment {
         moreTemperatureBtn = root.findViewById(R.id.seeMoreTemperature);
         moreCO2Btn = root.findViewById(R.id.seeMoreCO2);
         moreHumidityBtn = root.findViewById(R.id.seeMoreHumidity);
+
+        if(!NetworkCheck.isInternetAvailable(getContext()))
+        {
+            moreHumidityBtn.setVisibility(View.GONE);
+            moreCO2Btn.setVisibility(View.GONE);
+            moreTemperatureBtn.setVisibility(View.GONE);
+        }
 
         moreTemperatureBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity().getBaseContext(), GraphFragment.class);
